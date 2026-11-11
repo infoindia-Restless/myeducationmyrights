@@ -418,6 +418,93 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .cards-photo { margin:0; display:flex; flex-direction:column; }
 .cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
 @media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
+/* theory of change */
+.toc-sec .sec-head { margin-bottom:var(--s8); }
+.toc-controls { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s2); margin:0 0 var(--s8); padding-top:var(--s6); border-top:3px solid var(--ink); }
+.toc-controls .label { margin-right:var(--s2); color:var(--ink-muted); }
+.toc-controls button { display:inline-flex; align-items:center; gap:var(--s2); padding:8px 12px 7px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
+.toc-controls button i { width:10px; height:10px; display:inline-block; transform:skewX(calc(var(--slant) * -1)); }
+.toc-controls button[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+.toc-controls .replay { margin-left:auto; border-style:dashed; }
+.toc-controls .replay::before { content:"\21BB"; font-size:15px; letter-spacing:0; }
+.toc { display:grid; grid-template-columns:minmax(0,1fr) 40px minmax(0,1.3fr) 40px minmax(0,1.3fr) 40px minmax(0,1fr) 40px minmax(0,.95fr); grid-template-rows:auto repeat(3, auto); gap:var(--s3) 0; align-items:stretch; }
+.toc-h { grid-row:1; align-self:end; padding-bottom:var(--s2); border-bottom:1px solid var(--hairline); }
+.toc-h b { display:block; font:800 28px/28px var(--font-display); font-stretch:112%; color:var(--learn-text); font-variant-numeric:tabular-nums; }
+.toc-h span { font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); }
+.toc-h.h1c { grid-column:1; } .toc-h.h2c { grid-column:3; } .toc-h.h3c { grid-column:5; } .toc-h.h4c { grid-column:7; } .toc-h.h5c { grid-column:9; }
+.toc-card { position:relative; padding:var(--s4); min-width:0; font-size:15px; line-height:22px; }
+.toc-card .label { display:block; margin-bottom:var(--s2); }
+.toc-card h3 { margin:0 0 var(--s2); font:700 19px/23px var(--font-display); }
+.toc-card p { margin:0; }
+.toc-card ul { margin:0; padding:0; list-style:none; display:grid; gap:4px; }
+.toc-card ul li::before { content:""; display:inline-block; width:2px; height:11px; margin-right:8px; background:currentColor; transform:skewX(calc(var(--slant) * -1)); }
+.tc-challenge { grid-column:1; grid-row:2 / 5; background:var(--navy); color:var(--on-navy); display:flex; flex-direction:column; gap:var(--s4); }
+.tc-challenge .label { color:var(--on-navy-muted); }
+.tc-challenge p { color:var(--on-navy-muted); }
+.tc-act { grid-column:3; }
+.tc-act.learn { background:var(--learn); color:var(--on-learn); }
+.tc-act.lead { background:var(--lead-deep); color:#ffffff; }
+.tc-act.link { background:var(--link); color:var(--on-link); }
+.tc-act .label { opacity:.92; }
+.tc-out { grid-column:5; background:var(--paper); padding-top:calc(var(--s4) + 6px); }
+.tc-out::before { content:""; position:absolute; left:0; right:0; top:0; height:6px; }
+.tc-out.learn::before { background:var(--learn); } .tc-out.lead::before { background:var(--lead); } .tc-out.link::before { background:var(--link); }
+.tc-out .ev { display:block; margin-top:var(--s3); padding-top:var(--s2); border-top:1px solid var(--hairline); font:600 13px/18px var(--font-text); color:var(--ink-muted); font-variant-numeric:tabular-nums; }
+.tc-out .ev b { font:800 17px/18px var(--font-display); font-stretch:112%; color:var(--learn-text); }
+.tc-long { grid-column:7; grid-row:2 / 5; background:var(--paper); border:3px solid var(--ink); display:flex; flex-direction:column; justify-content:center; }
+.tc-long ul { gap:var(--s3); font-weight:600; }
+.tc-impact { grid-column:9; grid-row:2 / 5; background:var(--link); color:var(--on-link); display:flex; flex-direction:column; justify-content:flex-end; clip-path:polygon(0 0, calc(100% - 28px) 0, 100% 159px, 100% 100%, 0 100%); }
+.tc-impact .big { font:italic 600 24px/1.15 var(--font-serif); margin:0 0 var(--s4); }
+.r2 { grid-row:2; } .r3 { grid-row:3; } .r4 { grid-row:4; }
+.conn { position:relative; align-self:center; height:14px; }
+.conn.c1 { grid-column:2; } .conn.c2 { grid-column:4; } .conn.c3 { grid-column:6; }
+.conn.c4 { grid-column:8; grid-row:2 / 5; }
+.conn::before { content:""; position:absolute; left:4px; right:10px; top:5px; height:4px; background:repeating-linear-gradient(90deg, var(--cc, var(--ink)) 0 7px, transparent 7px 12px); background-size:12px 4px; transform-origin:left center; }
+.conn::after { content:""; position:absolute; right:2px; top:0; width:10px; height:14px; background:var(--cc, var(--ink)); clip-path:polygon(0 0, 100% 50%, 0 100%); }
+.conn.learn { --cc:var(--learn); } .conn.lead { --cc:var(--lead); } .conn.link { --cc:var(--link); }
+.conn.mob { display:none; }
+/* pathway focus */
+.toc [data-p] { transition:opacity .35s ease; }
+.toc[data-focus="learn"] [data-p]:not([data-p="learn"]), .toc[data-focus="lead"] [data-p]:not([data-p="lead"]), .toc[data-focus="link"] [data-p]:not([data-p="link"]) { opacity:.18; }
+.toc-note { margin:var(--s8) 0 0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s3) var(--s6); align-items:baseline; padding-top:var(--s4); border-top:1px solid var(--hairline); }
+.toc-note .label { color:var(--learn-text); }
+.toc-note p { margin:0; font-size:16px; line-height:24px; max-width:60em; }
+/* animation: reveal in order, then flow */
+.toc.toc-anim [data-s] { opacity:0; transform:translateY(14px); }
+.toc.toc-anim .conn { opacity:1; transform:none; }
+.toc.toc-anim .conn::before { transform:scaleX(0); }
+.toc.toc-anim .conn::after { opacity:0; }
+.toc.toc-anim.is-playing [data-s] { opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease; transition-delay:calc(var(--d) * 1s); }
+.toc.toc-anim.is-playing [data-p] { transition:opacity .6s ease calc(var(--d) * 1s), transform .6s ease calc(var(--d) * 1s); }
+.toc.toc-anim.is-playing .conn::before { transform:scaleX(1); transition:transform .5s ease calc(var(--d) * 1s); animation:toc-flow .9s linear calc(var(--d) * 1s + .5s) infinite; }
+.toc.toc-anim.is-playing .conn::after { opacity:1; transition:opacity .2s ease calc(var(--d) * 1s + .4s); }
+.toc.toc-anim.is-playing.is-done [data-p] { transition:opacity .35s ease; }
+@keyframes toc-flow { from { background-position-x:0; } to { background-position-x:12px; } }
+@keyframes toc-flow-y { from { background-position-y:0; } to { background-position-y:12px; } }
+@media (prefers-reduced-motion: reduce) {
+  .toc.toc-anim [data-s] { opacity:1; transform:none; }
+  .toc.toc-anim .conn::before { transform:none; animation:none !important; }
+  .toc.toc-anim .conn::after { opacity:1; }
+  .toc-controls .replay { display:none; }
+}
+@media (max-width:1000px) {
+  .toc { display:flex; flex-direction:column; gap:0; }
+  .toc-h { display:none; }
+  .toc-card { margin:0; }
+  .tc-long, .tc-impact { justify-content:flex-start; }
+  .tc-impact { clip-path:polygon(0 0, calc(100% - 28px) 0, 100% 159px, 100% 100%, 0 100%); }
+  .conn, .conn.mob { display:block; align-self:center; width:14px; height:34px; }
+  .conn.c3 { display:none; }
+  .conn::before { left:5px; right:auto; top:2px; bottom:10px; width:4px; height:auto; background:repeating-linear-gradient(180deg, var(--cc, var(--ink)) 0 7px, transparent 7px 12px); background-size:4px 12px; transform-origin:center top; }
+  .conn::after { left:0; right:auto; top:auto; bottom:0; width:14px; height:10px; clip-path:polygon(0 0, 100% 0, 50% 100%); }
+  .toc.toc-anim .conn::before { transform:scaleY(0); }
+  .toc.toc-anim.is-playing .conn::before { transform:scaleY(1); animation-name:toc-flow-y; }
+  .toc-card .stage { display:block; }
+  .toc-note { grid-template-columns:1fr; }
+}
+.toc-card .stage { display:none; font:800 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; margin-bottom:var(--s2); opacity:.85; }
+@media (max-width:480px) { .toc-controls .replay { margin-left:0; } }
+@media (max-width:1000px) { .toc-card .stage { display:block; } .tc-challenge .stage, .tc-impact .stage { color:inherit; } }
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
@@ -488,6 +575,74 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
         <p>Connecting girls with families, schools, ITIs, colleges, employers and education authorities.</p></div>
     </div>
   </div>
+</section>
+
+<section class="bg-chalk toc-sec" id="theory-of-change">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Theory of change</p><h2 class="h1">How Learn, Lead and Link <span class="hl">change</span> her future</h2></div>
+      <p class="lead muted">Three pathways work together: what a girl learns in school, the leadership she builds in her community, and the people and systems that open doors for her.</p>
+    </div>
+    <div class="toc-controls" role="group" aria-label="Follow a pathway">
+      <span class="label">Follow a pathway</span>
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="learn" aria-pressed="false"><i style="background:var(--learn)"></i>Learn</button>
+      <button type="button" data-f="lead" aria-pressed="false"><i style="background:var(--lead)"></i>Lead</button>
+      <button type="button" data-f="link" aria-pressed="false"><i style="background:var(--link)"></i>Link</button>
+      <button type="button" class="replay">Replay</button>
+    </div>
+    <div class="toc toc-anim" data-focus="all">
+      <div class="toc-h h1c" data-s style="--d:0"><b>01</b><span>The challenge</span></div>
+      <div class="toc-h h2c" data-s style="--d:.6"><b>02</b><span>What we do</span></div>
+      <div class="toc-h h3c" data-s style="--d:1.6"><b>03</b><span>What changes for girls</span></div>
+      <div class="toc-h h4c" data-s style="--d:2.6"><b>04</b><span>Long-term change</span></div>
+      <div class="toc-h h5c" data-s style="--d:3.4"><b>05</b><span>Impact</span></div>
+      <div class="toc-card tc-challenge" data-s style="--d:0"><span class="stage">01 &#183; The challenge</span><span class="label">Ganjam and Mayurbhanj, Odisha</span><h3>Girls leave school too early</h3><ul><li>Poverty</li><li>Seasonal migration</li><li>Early marriage</li><li>Restrictive gender norms</li><li>Little access to STEM</li></ul><p>Girls from tribal and marginalised communities are the most affected.</p></div>
+      <span class="conn c1 learn r2" data-s data-p="learn" style="--d:0.5" aria-hidden="true"></span>
+      <div class="toc-card tc-act learn r2" data-s data-p="learn" style="--d:0.8"><span class="stage">02 &#183; What we do</span><span class="label">Learn &#183; In school</span><h3>Classroom modules</h3><p>For Classes 8 to 10: STEM and Scratch coding, social-emotional learning, gender and SRHR, critical thinking, careers and digital skills.</p></div>
+      <span class="conn c2 learn r2" data-s data-p="learn" style="--d:1.5" aria-hidden="true"></span>
+      <div class="toc-card tc-out learn r2" data-s data-p="learn" style="--d:1.8"><span class="stage">03 &#183; What changes</span><h3>Knowledge, skills and STEM ambition</h3><p>Girls understand their bodies and rights, think critically and see STEM as theirs.</p><span class="ev">Aspire to a STEM career <b>54% to 74%</b></span></div>
+      <span class="conn c3 learn r2" data-s data-p="learn" style="--d:2.5" aria-hidden="true"></span>
+      <span class="conn c1 lead r3" data-s data-p="lead" style="--d:0.7" aria-hidden="true"></span>
+      <div class="toc-card tc-act lead r3" data-s data-p="lead" style="--d:1.0"><span class="stage">02 &#183; What we do</span><span class="label">Lead &#183; In the community</span><h3>Youth leadership</h3><p>Youth Resource Centres, Youth Facilitators, Youth Champions and Peer Leaders. Ideathons, hackathons and campaigns.</p></div>
+      <span class="conn c2 lead r3" data-s data-p="lead" style="--d:1.7" aria-hidden="true"></span>
+      <div class="toc-card tc-out lead r3" data-s data-p="lead" style="--d:2.0"><span class="stage">03 &#183; What changes</span><h3>Voice, confidence and leadership</h3><p>Girls speak up, lead their peers and build solutions to problems they choose.</p><span class="ev"><b>32</b> prototypes built by girls</span></div>
+      <span class="conn c3 lead r3" data-s data-p="lead" style="--d:2.7" aria-hidden="true"></span>
+      <span class="conn c1 link r4" data-s data-p="link" style="--d:0.9" aria-hidden="true"></span>
+      <div class="toc-card tc-act link r4" data-s data-p="link" style="--d:1.2"><span class="stage">02 &#183; What we do</span><span class="label">Link &#183; Into systems</span><h3>Families, schools and pathways</h3><p>Parents, teachers, headteachers, ITIs, colleges, employers and education officials. Role models and exposure visits.</p></div>
+      <span class="conn c2 link r4" data-s data-p="link" style="--d:1.9" aria-hidden="true"></span>
+      <div class="toc-card tc-out link r4" data-s data-p="link" style="--d:2.2"><span class="stage">03 &#183; What changes</span><h3>Support around her, and open doors</h3><p>Families and schools back girls, and routes to further study, skills and work become visible.</p><span class="ev"><b>252</b> parents engaged &#183; <b>88</b> girls on exposure visits</span></div>
+      <span class="conn c3 link r4" data-s data-p="link" style="--d:2.9" aria-hidden="true"></span>
+      <span class="conn c5 mob" data-s style="--d:2.5" aria-hidden="true"></span>
+      <div class="toc-card tc-long" data-s style="--d:2.7"><span class="stage">04 &#183; Long-term change</span><h3>Girls stay in school and choose their future</h3><ul><li>Stay in and complete school</li><li>Make informed choices about their health and lives</li><li>Move into STEM, skills training and careers</li><li>Lead change in their communities</li></ul></div>
+      <span class="conn c4" data-s style="--d:3.2" aria-hidden="true"></span>
+      <div class="toc-card tc-impact" data-s style="--d:3.5"><span class="stage">05 &#183; Impact</span><p class="big">Unlock her potential. Change her future.</p><p>Every adolescent girl, particularly from tribal and marginalised communities, exercises her right to education.</p></div>
+    </div>
+    <div class="toc-note"><span class="label">What makes it work</span><p>Schools that give the sessions time, families engaged from the start, and Youth Facilitators from the communities they serve. Evidence from Year 1 of Phase 2 in Ganjam: see the <a href="../impact/">findings</a> and the <a href="../odisha/">programme</a>.</p></div>
+  </div>
+<script>
+(function () {
+  var sec = document.getElementById("theory-of-change"); if (!sec) return;
+  var toc = sec.querySelector(".toc"), btns = sec.querySelectorAll(".toc-controls [data-f]"), timer;
+  function play() {
+    toc.classList.remove("is-playing", "is-done"); void toc.offsetWidth; toc.classList.add("is-playing");
+    clearTimeout(timer); timer = setTimeout(function () { toc.classList.add("is-done"); }, 4600);
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () {
+    btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    toc.classList.add("is-done"); toc.setAttribute("data-focus", b.getAttribute("data-f"));
+  }); });
+  sec.querySelector(".replay").addEventListener("click", function () {
+    btns.forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-f") === "all" ? "true" : "false"); });
+    toc.setAttribute("data-focus", "all"); play();
+  });
+  if (!("IntersectionObserver" in window)) { play(); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { play(); io.disconnect(); } });
+  }, { threshold: 0, rootMargin: "0px 0px -15% 0px" });
+  io.observe(toc);
+})();
+</script>
 </section>
 
 <section id="change">
