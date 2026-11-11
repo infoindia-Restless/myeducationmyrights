@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Programmes | My Education, My Rights</title>
-<meta name="description" content="Education and STEM programmes on the My Education, My Rights platform, rooted in Odisha, Delhi, Bihar and beyond.">
+<meta name="description" content="My Education, My Right in Ganjam, Odisha: the featured programme on the My Education, My Rights platform.">
 <link rel="canonical" href="https://myeducationmyrights.info/programmes/">
 <meta property="og:title" content="Programmes | My Education, My Rights">
-<meta property="og:description" content="Education and STEM programmes on the My Education, My Rights platform, rooted in Odisha, Delhi, Bihar and beyond.">
+<meta property="og:description" content="My Education, My Right in Ganjam, Odisha: the featured programme on the My Education, My Rights platform.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://myeducationmyrights.info/programmes/">
 <meta property="og:site_name" content="My Education, My Rights · Restless Development India">
@@ -379,6 +379,11 @@ section { padding-block:var(--s24); }
 .open-box .btn.outline { background:transparent; color:var(--on-link); }
 @media (max-width:760px) { .open-box { grid-template-columns:1fr; } }
 .endline { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s3); margin:var(--s6) 0 0; padding:var(--s4) 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); font-size:15px; line-height:22px; }
+.cards.single { grid-template-columns:minmax(0,5fr) minmax(0,7fr); align-items:stretch; }
+.cards.single .pcard.featured { grid-column:auto; }
+.cards-photo { margin:0; display:flex; flex-direction:column; }
+.cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
+@media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
@@ -401,16 +406,16 @@ section { padding-block:var(--s24); }
 <main id="main">
 <header class="page-head"><div class="wrap">
   <p class="crumbs small"><a href="../">Home</a> &#8250; Programmes</p>
-  <h1 class="display-l">Programmes rooted in <span class="hl">place</span></h1>
-  <p class="lead muted">Restless Development India works across Odisha, Delhi, Bihar and beyond. Every programme on the platform shares the Learn, Lead and Link approach.</p>
+  <h1 class="display-l">A programme rooted in <span class="hl">place</span></h1>
+  <p class="lead muted">My Education, My Right in Ganjam, Odisha is the platform&#8217;s featured programme, built on the Learn, Lead and Link approach.</p>
 </div></header>
 <section class="bg-chalk">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow label"><span class="slash"></span>Programmes</p><h2 class="h1">One platform, programmes in every state where we work</h2></div>
-      <p class="lead muted">My Education, My Rights brings together Restless Development India's education and STEM work. Each programme is rooted in its place and shares one approach.</p>
+      <div><p class="eyebrow label"><span class="slash"></span>Programmes</p><h2 class="h1">Where the work begins: Ganjam, Odisha</h2></div>
+      <p class="lead muted">My Education, My Rights brings together Restless Development India&#8217;s education and STEM work. It begins in Ganjam, Odisha, where girls in 18 schools are learning, leading and linking to opportunity.</p>
     </div>
-    <div class="cards">
+    <div class="cards single">
       <article class="pcard featured">
         <div class="pbar"><i></i><i></i><i></i></div>
         <div class="row"><span class="tag on-dark"><span class="slash"></span>Odisha <small>Ganjam</small></span></div>
@@ -419,30 +424,14 @@ section { padding-block:var(--s24); }
         <div class="pnums"><div><b>2,260</b><span>girls in Year 1</span></div><div><b>18</b><span>schools in 9 blocks</span></div></div>
         <div><a class="btn on-dark" href="../odisha/">Visit the programme</a></div>
       </article>
-      <article class="pcard soon">
-        <div class="row"><span class="tag soon"><span class="slash"></span>Delhi</span></div>
-        <h3 class="h2">Programme profile in preparation</h3>
-        <p>Our education work in Delhi joins the platform here.</p>
-      </article>
-      <article class="pcard soon">
-        <div class="row"><span class="tag soon"><span class="slash"></span>Bihar</span></div>
-        <h3 class="h2">Programme profile in preparation</h3>
-        <p>Our education work in Bihar joins the platform here.</p>
-      </article>
+      <figure class="photo cards-photo">
+        <div class="img"><img src="../assets/img/show.webp" alt="A group of girls in uniform standing behind a table of models they built"></div>
+        <figcaption>Girls with the prototypes they built, Ganjam.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap two">
-    <div><p class="eyebrow label"><span class="slash"></span>Growing the platform</p><h2 class="h1">How a state joins</h2></div>
-    <ol class="steps steps-tight">
-      <li><h3 class="h3">Agreed</h3><p>The state appears with a tag and a card marked "in preparation".</p></li>
-      <li><h3 class="h3">Live</h3><p>The programme gets its own page, with its approach, its people and its place.</p></li>
-      <li><h3 class="h3">Reporting</h3><p>Results appear once there is a published report to cite.</p></li>
-    </ol>
-  </div>
-</section>
 <nav class="pager" aria-label="Next page"><div class="wrap"><a href="../approach/"><span class="label muted">Next</span><span class="h1">Our approach</span><span class="arrow" aria-hidden="true">&#8594;</span></a></div></nav>
 </main>
 <footer class="site-foot">

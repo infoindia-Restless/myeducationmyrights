@@ -379,6 +379,11 @@ section { padding-block:var(--s24); }
 .open-box .btn.outline { background:transparent; color:var(--on-link); }
 @media (max-width:760px) { .open-box { grid-template-columns:1fr; } }
 .endline { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s3); margin:var(--s6) 0 0; padding:var(--s4) 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); font-size:15px; line-height:22px; }
+.cards.single { grid-template-columns:minmax(0,5fr) minmax(0,7fr); align-items:stretch; }
+.cards.single .pcard.featured { grid-column:auto; }
+.cards-photo { margin:0; display:flex; flex-direction:column; }
+.cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
+@media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
@@ -422,7 +427,7 @@ section { padding-block:var(--s24); }
   <div class="wrap about">
     <div><p class="eyebrow label"><span class="slash"></span>About</p><h2 class="h1">Restless Development India</h2></div>
     <div>
-      <p class="lead">Student Partnership Worldwide India Project Trust has worked with young people since 2000, across Odisha, Jharkhand, Bihar, Delhi, Karnataka and Tamil Nadu. Our mission is to empower young people, especially girls, with agency, skills and connections to realise their potential and lead change in their communities.</p>
+      <p class="lead">Student Partnership Worldwide India Project Trust has worked with young people across India since 2000. Our mission is to empower young people, especially girls, with agency, skills and connections to realise their potential and lead change in their communities.</p>
       <div class="about-stats">
         <div><b>1M+</b><span>Young people reached directly</span></div>
         <div><b>20+</b><span>Years working in India</span></div>
