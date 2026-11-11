@@ -425,7 +425,7 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .stair-bar .replay { display:inline-flex; align-items:center; gap:var(--s2); padding:8px 12px 7px; border:1.5px dashed var(--ink); background:transparent; color:var(--ink); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
 .stair-bar .replay::before { content:"\21BB"; font-size:15px; letter-spacing:0; }
 .stairs-scroll { overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
-.stairs { position:relative; padding-top:128px; }
+.stairs { position:relative; padding-top:164px; }
 .stair-steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:end; border-bottom:4px solid var(--ink); }
 .stair { --bg:var(--paper); --fg:var(--ink); position:relative; height:var(--h); display:flex; flex-direction:column; gap:var(--s2); padding:calc(var(--s4) + 6px) var(--s4) var(--s4); background:var(--paper); color:var(--ink-muted); box-shadow:inset 0 0 0 1.5px var(--hairline); cursor:pointer; transition:background-color .7s ease, color .7s ease, box-shadow .4s ease; min-width:0; }
 .stair::before { content:""; position:absolute; left:0; right:0; top:0; height:6px; background:var(--hairline); transition:background-color .4s ease; }
@@ -453,18 +453,29 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .stair .out span strong { font:800 16px/18px var(--font-display); font-stretch:112%; }
 .stair.s4 .big { margin-top:auto; padding:var(--s3) var(--s3) var(--s3); background:var(--highlight); color:var(--on-link); font:italic 600 21px/1.2 var(--font-serif); }
 .stair.s4 .big + p { margin-top:var(--s2); }
-.girl { position:absolute; left:0; top:0; width:46px; height:104px; z-index:3; pointer-events:none; opacity:0; transition:opacity .4s ease; will-change:transform; }
+.girl { position:absolute; left:0; top:0; width:56px; height:112px; z-index:3; pointer-events:none; opacity:0; transition:opacity .4s ease; will-change:transform; }
 .girl.ready { opacity:1; }
+.girl .gbody { width:100%; height:100%; transform-origin:50% 100%; }
 .girl svg { display:block; width:100%; height:100%; overflow:visible; }
-.girl .leg-l, .girl .leg-r { transform-box:fill-box; transform-origin:50% 0; }
-.girl.walking .leg-l { animation:toc-leg .26s ease-in-out infinite alternate; }
-.girl.walking .leg-r { animation:toc-leg .26s ease-in-out infinite alternate-reverse; }
-@keyframes toc-leg { from { transform:rotate(-18deg); } to { transform:rotate(18deg); } }
-.girl .arm-up, .girl .cheer { opacity:0; transition:opacity .3s ease; }
-.at-top .girl .arm-up, .at-top .girl .cheer { opacity:1; }
-.at-top .girl .arm-down { opacity:0; }
-.at-top .girl .cheer { animation:toc-cheer 1s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
-@keyframes toc-cheer { from { transform:scale(.85); } to { transform:scale(1.1); } }
+.girl .leg-f, .girl .leg-b, .girl .arm-f, .girl .arm-b { transform-box:fill-box; transform-origin:50% 0; transition:transform .18s ease; }
+.girl.walking .gbody { animation:toc-bob .17s ease-in-out infinite alternate; }
+.girl.walking .leg-f { animation:toc-leg .34s ease-in-out infinite alternate; }
+.girl.walking .leg-b { animation:toc-leg .34s ease-in-out infinite alternate-reverse; }
+.girl.walking .arm-f { animation:toc-arm .34s ease-in-out infinite alternate-reverse; }
+.girl.walking .arm-b { animation:toc-arm .34s ease-in-out infinite alternate; }
+.girl.airborne .leg-f { transform:rotate(-34deg); }
+.girl.airborne .leg-b { transform:rotate(22deg); }
+.girl.airborne .arm-f { transform:rotate(-58deg); }
+.girl.airborne .arm-b { transform:rotate(40deg); }
+@keyframes toc-leg { from { transform:rotate(-20deg); } to { transform:rotate(20deg); } }
+@keyframes toc-arm { from { transform:rotate(-24deg); } to { transform:rotate(24deg); } }
+@keyframes toc-bob { from { transform:translateY(0); } to { transform:translateY(-2px); } }
+.girl .arms-up, .girl .cheer { opacity:0; transition:opacity .25s ease; }
+.at-top .girl .arms-up, .at-top .girl .cheer { opacity:1; }
+.at-top .girl .arm-f, .at-top .girl .arm-b { opacity:0; }
+.at-top .girl .cheer { animation:toc-cheer .9s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+@keyframes toc-cheer { from { transform:scale(.8); } to { transform:scale(1.12); } }
+.dust { position:absolute; left:0; top:0; width:44px; height:12px; z-index:2; pointer-events:none; opacity:0; background:radial-gradient(circle at 18% 60%, rgba(63,85,96,.5) 0 3.5px, transparent 4.5px), radial-gradient(circle at 50% 40%, rgba(63,85,96,.4) 0 3px, transparent 4px), radial-gradient(circle at 82% 60%, rgba(63,85,96,.5) 0 3.5px, transparent 4.5px); }
 .swipe-hint { display:none; margin:var(--s3) 0 0; }
 .toc-note { margin:var(--s8) 0 0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s3) var(--s6); align-items:baseline; padding-top:var(--s4); border-top:1px solid var(--hairline); }
 .toc-note .label { color:var(--learn-text); }
@@ -557,22 +568,27 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
     <div class="stair-bar"><p class="label">Click any step to follow her climb</p><button type="button" class="replay">Replay</button></div>
     <div class="stairs-scroll">
       <div class="stairs">
-        <div class="girl" aria-hidden="true"><svg viewBox="0 -12 46 104">
-  <g class="cheer" stroke="#e7a839" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M6 -2 L1 -8"/><path d="M23 -5 L23 -12"/><path d="M40 -2 L45 -8"/></g>
-  <path d="M29 11 C37 16 37 30 32 39" stroke="#1d1712" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <circle cx="32" cy="40" r="3" fill="#e7a839"/>
-  <g class="arm-down" stroke="#8a5a3c" stroke-width="3.6" stroke-linecap="round" fill="none"><path d="M15 28 L10 47"/><path d="M31 28 L35 44"/></g>
-  <rect class="arm-down" x="32" y="39" width="10" height="12" rx="1.2" fill="#0d7377" transform="rotate(-10 37 45)"/>
-  <g class="arm-up" stroke="#8a5a3c" stroke-width="3.6" stroke-linecap="round" fill="none"><path d="M15 28 L8 10"/><path d="M31 28 L38 10"/></g>
-  <g class="leg-l"><rect x="16" y="60" width="4.5" height="23" rx="2" fill="#8a5a3c"/><rect x="13.5" y="81" width="9" height="4.5" rx="2.2" fill="#1d1712"/></g>
-  <g class="leg-r"><rect x="25.5" y="60" width="4.5" height="23" rx="2" fill="#8a5a3c"/><rect x="24" y="81" width="9" height="4.5" rx="2.2" fill="#1d1712"/></g>
-  <path d="M15 25 H31 L37 62 H9 Z" fill="#1a3a4a"/>
-  <path d="M18 25 L23 32 L28 25 Z" fill="#ffffff"/>
-  <rect x="11.6" y="41" width="22.8" height="3.4" fill="#e7a839"/>
-  <rect x="21" y="20" width="4" height="6" fill="#8a5a3c"/>
-  <circle cx="23" cy="13" r="9" fill="#8a5a3c"/>
-  <path d="M14 13.5 A9 9 0 0 1 32 13.5 C28 9.5 19 9.5 14 13.5 Z" fill="#1d1712"/>
-</svg></div>
+        <div class="girl" aria-hidden="true"><div class="gbody"><svg viewBox="0 0 60 120">
+  <g class="cheer" stroke="#e7a839" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M14 4 L9 -3"/><path d="M31 1 L31 -7"/><path d="M48 4 L53 -3"/></g>
+  <g class="arm-b"><path d="M27 40 L24 63" stroke="#8a5a3c" stroke-width="4.6" stroke-linecap="round"/><path d="M27 39 L25.5 48" stroke="#0d7377" stroke-width="6" stroke-linecap="round"/></g>
+  <g class="bag"><rect x="11" y="40" width="15" height="25" rx="4.5" fill="#d4523e"/><rect x="13" y="53" width="11" height="9" rx="2.5" fill="#b8432f"/><rect x="15" y="44" width="7" height="2" rx="1" fill="#b8432f"/></g>
+  <path d="M25 21 C18 26 15 38 17 50" stroke="#1d1712" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M14.5 50 L17 53.5 L19.5 50 L17 55 Z" fill="#e7a839"/><circle cx="17" cy="51.5" r="1.8" fill="#e7a839"/>
+  <g class="leg-b"><path d="M27 82 L26 109" stroke="#f4f1ea" stroke-width="7" stroke-linecap="round"/><path d="M26 109 L26 111" stroke="#8a5a3c" stroke-width="4" stroke-linecap="round"/><ellipse cx="28.5" cy="114" rx="5.5" ry="3" fill="#1d1712"/></g>
+  <g class="leg-f"><path d="M33 82 L34 109" stroke="#f4f1ea" stroke-width="7" stroke-linecap="round"/><path d="M34 109 L34 111" stroke="#8a5a3c" stroke-width="4" stroke-linecap="round"/><ellipse cx="36.5" cy="114" rx="5.5" ry="3" fill="#1d1712"/></g>
+  <path d="M22 37 Q30 33.5 38 37 L43.5 85 Q30 89 16.5 85 Z" fill="#0d7377"/>
+  <path d="M16.8 83.5 Q30 87.5 43.2 83.5" stroke="#e7a839" stroke-width="2.2" fill="none"/>
+  <path d="M37 37.5 L20 63 L24.5 65 L39.5 41 Z" fill="#ffffff"/>
+  <path d="M24 38 Q29.5 46 27 59" stroke="#b8432f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="28" y="30" width="5" height="6" rx="1" fill="#8a5a3c"/>
+  <circle cx="31" cy="22" r="11" fill="#8a5a3c"/>
+  <path d="M20.2 23.5 C18.6 13 26.5 9.4 32 9.6 C38.2 9.9 43.3 14.4 42.2 20 C38.5 15.8 33.6 15.6 28.5 17.4 C24.8 18.8 22.2 20.6 20.2 23.5 Z" fill="#1d1712"/>
+  <circle cx="35.6" cy="22.6" r="1.35" fill="#1d1712"/><circle cx="29.8" cy="22.8" r="1.2" fill="#1d1712"/>
+  <path d="M31.6 27.4 Q34 29.2 36.4 27.2" stroke="#1d1712" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+  <g class="arm-f"><path d="M36 40 L39 63" stroke="#8a5a3c" stroke-width="4.6" stroke-linecap="round"/><path d="M36 39 L37.5 48" stroke="#0d7377" stroke-width="6" stroke-linecap="round"/></g>
+  <g class="arms-up" stroke="#8a5a3c" stroke-width="4.6" stroke-linecap="round" fill="none"><path d="M25 40 L17 12"/><path d="M37 40 L45 12"/></g>
+</svg></div></div>
+        <span class="dust" aria-hidden="true"></span>
         <ol class="stair-steps">
           <li class="stair s0" tabindex="0" aria-label="Where she starts"><span class="label">Where she starts</span><h3>Barriers keep her out of school</h3><ul><li>Poverty</li><li>Seasonal migration</li><li>Early marriage</li><li>Restrictive gender norms</li><li>Little access to STEM</li></ul><p style="margin-top:auto;opacity:.85;">Girls from tribal and marginalised communities in Ganjam and Mayurbhanj.</p></li>
           <li class="stair s1" tabindex="0" aria-label="Step 1, Learn"><span class="label">Step 1 &#183; In school</span><h3><small>Learn</small>She learns</h3><p>Classroom modules for Classes 8 to 10: STEM and Scratch coding, social-emotional learning, gender and SRHR, careers and digital skills.</p><div class="out"><b>Knowledge, skills and STEM ambition</b><span>Aspire to a STEM career <strong>54% to 74%</strong></span></div></li>
@@ -588,34 +604,80 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 <script>
 (function () {
   var sec = document.getElementById("theory-of-change"); if (!sec) return;
-  var stage = sec.querySelector(".stairs"), girl = sec.querySelector(".girl"), scroller = sec.querySelector(".stairs-scroll");
+  var stage = sec.querySelector(".stairs"), girl = sec.querySelector(".girl"), body = girl.querySelector(".gbody"), dust = sec.querySelector(".dust"), scroller = sec.querySelector(".stairs-scroll");
   var steps = [].slice.call(sec.querySelectorAll(".stair")), last = steps.length - 1;
-  var cur = 0, busy = false, queued = null, run = 0;
+  var cur = 0, gx = 0, gy = 0, busy = false, queued = null, run = 0;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function pos(i) { var r = steps[i].getBoundingClientRect(), c = stage.getBoundingClientRect(); return [r.left - c.left + 16, r.top - c.top - girl.offsetHeight + 3]; }
-  function tf(p) { return "translate(" + p[0] + "px," + p[1] + "px)"; }
-  function place(i) { girl.style.transform = tf(pos(i)); girl.classList.add("ready"); }
+  var canAnim = !!girl.animate;
+  function tf(x, y) { return "translate(" + x + "px," + y + "px)"; }
+  function tread(i) { var r = steps[i].getBoundingClientRect(), c = stage.getBoundingClientRect(); return { l: r.left - c.left, r: r.right - c.left, t: r.top - c.top }; }
+  function W() { return girl.offsetWidth; } function H() { return girl.offsetHeight; }
+  function standX(i) { var t = tread(i); return i === last ? (t.l + t.r) / 2 - W() / 2 : t.l + 10; }
+  function edgeX(i) { var t = tread(i); return t.r - W() + 4; }
+  function Y(i) { return tread(i).t - H() + 3; }
+  function set(x, y) { gx = x; gy = y; girl.style.transform = tf(x, y); girl.classList.add("ready"); }
+  function place(i) { set(standX(i), Y(i)); }
   function light(i) { steps.forEach(function (s, k) { s.classList.toggle("on", k <= i); s.classList.toggle("here", k === i); }); sec.classList.toggle("at-top", i === last); }
   function follow(i) { if (scroller.scrollWidth > scroller.clientWidth + 4) scroller.scrollTo({ left: Math.max(0, steps[i].offsetLeft - 24), behavior: reduce ? "auto" : "smooth" }); }
+  function walkTo(x, id, cb) {
+    var d = Math.abs(x - gx); if (d < 2 || !canAnim) { set(x, gy); cb(); return; }
+    girl.classList.add("walking");
+    var a = girl.animate([{ transform: tf(gx, gy) }, { transform: tf(x, gy) }], { duration: Math.max(260, d * 5), easing: "linear" });
+    a.onfinish = function () { if (id !== run) return; girl.classList.remove("walking"); set(x, gy); cb(); };
+  }
+  function puff(x, y) {
+    if (!canAnim) return;
+    dust.style.left = (x + W() / 2 - 22) + "px"; dust.style.top = (y + H() - 8) + "px";
+    dust.animate([{ opacity: .9, transform: "scale(.4)" }, { opacity: 0, transform: "scale(1.5,1.2)" }], { duration: 480, easing: "ease-out" });
+  }
+  function jumpTo(x, y, id, cb) {
+    if (!canAnim) { set(x, y); cb(); return; }
+    var crouch = body.animate([{ transform: "scale(1,1)" }, { transform: "scale(1.1,.84)" }], { duration: 150, easing: "ease-in" });
+    crouch.onfinish = function () {
+      if (id !== run) return;
+      girl.classList.add("airborne");
+      var peak = Math.min(gy, y) - 42, x0 = gx, y0 = gy;
+      body.animate([{ transform: "scale(.92,1.1)" }, { transform: "scale(1,1)" }], { duration: 560, easing: "ease-out" });
+      var a = girl.animate([
+        { transform: tf(x0, y0), easing: "cubic-bezier(.2,.6,.4,1)" },
+        { transform: tf(x0 + (x - x0) * .5, peak), offset: .48, easing: "cubic-bezier(.6,0,.8,.4)" },
+        { transform: tf(x, y) }
+      ], { duration: 600 });
+      a.onfinish = function () {
+        if (id !== run) return;
+        girl.classList.remove("airborne"); set(x, y); puff(x, y);
+        var land = body.animate([{ transform: "scale(1.14,.82)" }, { transform: "scale(.97,1.03)", offset: .6 }, { transform: "scale(1,1)" }], { duration: 300, easing: "ease-out" });
+        land.onfinish = function () { if (id === run) cb(); };
+      };
+    };
+  }
   function hop(to, id, done) {
-    var a = pos(cur), b = pos(to); girl.classList.add("walking");
-    var mid = [a[0] + (b[0] - a[0]) * 0.55, Math.min(a[1], b[1]) - 44];
-    var an = girl.animate ? girl.animate([{ transform: tf(a) }, { transform: tf(mid), offset: 0.55 }, { transform: tf(b) }], { duration: 950, easing: "ease-in-out" }) : null;
-    function end() { if (id !== run) return; girl.classList.remove("walking"); cur = to; place(to); light(to); follow(to); done(); }
-    if (an) an.onfinish = end; else end();
+    walkTo(edgeX(cur), id, function () {
+      jumpTo(tread(to).l + 6, Y(to), id, function () {
+        cur = to; light(to); follow(to);
+        walkTo(standX(to), id, function () {
+          if (to === last && canAnim) body.animate([{ transform: "translateY(0)" }, { transform: "translateY(-14px)" }, { transform: "translateY(0)" }], { duration: 420, iterations: 2, easing: "ease-in-out" });
+          done();
+        });
+      });
+    });
   }
   function climb(target, pause) {
     if (busy) { queued = target; return; }
-    if (target <= cur) { cur = target; place(target); light(target); follow(target); return; }
-    if (reduce) { cur = target; place(target); light(target); follow(target); return; }
+    if (target <= cur || reduce) { cur = target; place(target); light(target); follow(target); return; }
     busy = true; var id = run;
     (function next() { hop(cur + 1, id, function () {
+      if (id !== run) return;
       if (cur < target) setTimeout(function () { if (id === run) next(); }, pause);
       else { busy = false; if (queued !== null) { var q = queued; queued = null; climb(q, 300); } }
     }); })();
   }
-  function reset() { run++; busy = false; queued = null; girl.getAnimations && girl.getAnimations().forEach(function (a) { a.cancel(); }); girl.classList.remove("walking"); cur = 0; scroller.scrollLeft = 0; place(0); light(0); }
-  function start() { reset(); if (reduce) { cur = last; place(last); light(last); return; } var id = run; setTimeout(function () { if (id === run) climb(last, 1200); }, 700); }
+  function reset() {
+    run++; busy = false; queued = null;
+    if (girl.getAnimations) { girl.getAnimations().forEach(function (a) { a.cancel(); }); body.getAnimations().forEach(function (a) { a.cancel(); }); }
+    girl.classList.remove("walking", "airborne"); cur = 0; scroller.scrollLeft = 0; place(0); light(0);
+  }
+  function start() { reset(); if (reduce) { cur = last; place(last); light(last); return; } var id = run; setTimeout(function () { if (id === run) climb(last, 700); }, 700); }
   sec.querySelector(".replay").addEventListener("click", start);
   steps.forEach(function (s, i) {
     function go() { climb(i, 250); }
