@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="My Education, My Rights · Restless Development India">
 <meta property="og:image" content="https://myeducationmyrights.info/assets/img/hero.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1a3a4a">
+<meta name="theme-color" content="#579598">
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +21,9 @@
 <style>
 /* Layout: asymmetric 12 column editorial grid; sections separated by ground (paper, chalk, navy) and 3px ink rules; one 10 degree slant device throughout. Tokens from the My Education, My Rights design system. */
 :root {
-  --paper:#ffffff; --chalk:#f2f4f3; --ink:#0e1a22; --ink-muted:#4a5a63; --hairline:#c9d1d4;
+  --paper:#dff0f0; --chalk:#c9e6e6; --ink:#0e1a22; --ink-muted:#3f5560; --hairline:#a9cfd0; --spw:#579598; --on-spw:#0e1a22;
   --navy:#1a3a4a; --on-navy:#ffffff; --on-navy-muted:#c4d3da;
-  --learn:#0d7377; --on-learn:#ffffff; --learn-text:#0d7377;
+  --learn:#0d7377; --on-learn:#ffffff; --learn-text:#0b6266;
   --lead:#d4523e; --on-lead:#ffffff; --lead-deep:#b8432f; --lead-text:#b8432f;
   --link:#e7a839; --on-link:#0e1a22; --highlight:#e7a839;
   --restless-aqua:#74c6ca; --focus:#0e1a22; --focus-on-dark:#e7a839;
@@ -37,16 +37,16 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --paper:#0b1419; --chalk:#13212a; --ink:#f2f4f3; --ink-muted:#a9b7be; --hairline:#2b3c46;
-  --learn-text:#4fc1c2; --lead-text:#d4523e; --focus:#f2f4f3; color-scheme:dark; } }
+  --learn-text:#4fc1c2; --lead-text:#d4523e; --focus:#f2f4f3; --spw:#2f5e61; --on-spw:#f2f4f3; color-scheme:dark; } }
 :root[data-theme="dark"] {
   --paper:#0b1419; --chalk:#13212a; --ink:#f2f4f3; --ink-muted:#a9b7be; --hairline:#2b3c46;
-  --learn-text:#4fc1c2; --lead-text:#d4523e; --focus:#f2f4f3; color-scheme:dark; }
+  --learn-text:#4fc1c2; --lead-text:#d4523e; --focus:#f2f4f3; --spw:#2f5e61; --on-spw:#f2f4f3; color-scheme:dark; }
 
 *,*::before,*::after { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:80px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
 body { background:var(--paper); color:var(--ink); font:400 17px/26px var(--font-text); -webkit-font-smoothing:antialiased; }
-body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--paper); }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--spw); }
 img { display:block; max-width:100%; }
 a { color:inherit; }
 :focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
@@ -107,20 +107,28 @@ section { padding-block:var(--s24); }
 .tag.on-dark small { color:var(--on-navy-muted); }
 
 /* header */
-.site-head { position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:var(--paper); border-bottom:3px solid var(--ink); }
+.site-head { position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:var(--spw); color:var(--on-spw); border-bottom:3px solid var(--ink); }
+.brand { display:flex; align-items:center; gap:var(--s4); }
+.rd-logo { display:block; height:34px; width:auto; }
+.brand .divider { width:2px; height:34px; background:var(--on-spw); opacity:.5; transform:skewX(calc(var(--slant) * -1)); }
+.site-head .wm { color:var(--on-spw); }
+.site-foot .rd-logo { filter:invert(1); height:40px; margin-bottom:var(--s4); }
+@media (max-width:480px) { .rd-logo { height:26px; } .brand .divider { height:26px; } .site-head .wm { font-size:18px; } }
+:root[data-theme="dark"] .site-head .rd-logo { filter:invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .site-head .rd-logo { filter:invert(1); } }
 .site-head .wrap { display:flex; align-items:center; justify-content:space-between; gap:var(--s6); padding-block:var(--s3); }
 .wm { display:inline-flex; flex-direction:column; font-weight:800; text-transform:uppercase; line-height:.9; letter-spacing:-.01em; color:var(--ink); text-decoration:none; font-size:22px; }
 .wm b { font-weight:800; position:relative; z-index:0; align-self:flex-start; margin-top:.1em; padding:.04em .14em 0 .06em; color:var(--on-link); }
 .wm b::before { content:""; position:absolute; z-index:-1; inset:-.02em 0 -.06em 0; background:var(--highlight); transform:skewX(calc(var(--slant) * -1)); }
 .band-navy .wm { color:var(--on-navy); }
 .nav { display:flex; gap:var(--s6); flex-wrap:wrap; }
-.nav a { font:600 15px/20px var(--font-text); text-decoration:none; padding-bottom:2px; border-bottom:2px solid transparent; }
+.nav a { font:600 15px/20px var(--font-text); color:var(--on-spw); text-decoration:none; padding-bottom:2px; border-bottom:2px solid transparent; }
 .nav a:hover { border-bottom-color:var(--ink); }
 .nav a[aria-current="page"] { border-bottom-color:var(--highlight); }
-.menu-btn { display:none; font:600 15px/20px var(--font-text); background:transparent; border:2px solid var(--ink); color:var(--ink); padding:6px 12px; cursor:pointer; }
+.menu-btn { display:none; font:600 15px/20px var(--font-text); background:transparent; border:2px solid var(--on-spw); color:var(--on-spw); padding:6px 12px; cursor:pointer; }
 @media (max-width:860px) {
   .menu-btn { display:inline-block; }
-  .nav { display:none; position:absolute; left:0; right:0; top:100%; background:var(--paper); border-bottom:3px solid var(--ink); flex-direction:column; gap:0; padding:var(--s2) max(16px, env(safe-area-inset-right,0px)) var(--s4) max(16px, env(safe-area-inset-left,0px)); }
+  .nav { display:none; position:absolute; left:0; right:0; top:100%; background:var(--spw); border-bottom:3px solid var(--ink); flex-direction:column; gap:0; padding:var(--s2) max(16px, env(safe-area-inset-right,0px)) var(--s4) max(16px, env(safe-area-inset-left,0px)); }
   .nav.open { display:flex; }
   .nav a { padding:var(--s3) 0; border-bottom:1px solid var(--hairline); }
 }
@@ -367,7 +375,7 @@ section { padding-block:var(--s24); }
 <a class="skip label" href="#main">Skip to content</a>
 <header class="site-head">
   <div class="wrap">
-    <a class="wm" href="../" aria-label="My Education, My Rights home">MY EDUCATION,<b>MY RIGHTS</b></a>
+    <div class="brand"><a href="https://restlessdevelopment.org" target="_blank" rel="noopener" aria-label="Restless Development"><img class="rd-logo" src="../assets/img/rdlogo.png" alt="Restless Development"></a><span class="divider" aria-hidden="true"></span><a class="wm" href="../" aria-label="My Education, My Rights home">MY EDUCATION,<b>MY RIGHTS</b></a></div>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="../programmes/" data-nav="programmes">Programmes</a>
@@ -437,6 +445,7 @@ section { padding-block:var(--s24); }
         <p style="margin-top:var(--s4);">Every right. Every opportunity. Every future.</p>
       </div>
       <div>
+        <img class="rd-logo" src="../assets/img/rdlogo.png" alt="Restless Development">
         <span class="label endorse">A Restless Development India platform</span>
         <p>Student Partnership Worldwide India Project Trust, New Delhi.</p>
       </div>
