@@ -418,93 +418,64 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .cards-photo { margin:0; display:flex; flex-direction:column; }
 .cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
 @media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
-/* theory of change */
+/* theory of change: the staircase */
 .toc-sec .sec-head { margin-bottom:var(--s8); }
-.toc-controls { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s2); margin:0 0 var(--s8); padding-top:var(--s6); border-top:3px solid var(--ink); }
-.toc-controls .label { margin-right:var(--s2); color:var(--ink-muted); }
-.toc-controls button { display:inline-flex; align-items:center; gap:var(--s2); padding:8px 12px 7px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
-.toc-controls button i { width:10px; height:10px; display:inline-block; transform:skewX(calc(var(--slant) * -1)); }
-.toc-controls button[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
-.toc-controls .replay { margin-left:auto; border-style:dashed; }
-.toc-controls .replay::before { content:"\21BB"; font-size:15px; letter-spacing:0; }
-.toc { display:grid; grid-template-columns:minmax(0,1fr) 40px minmax(0,1.3fr) 40px minmax(0,1.3fr) 40px minmax(0,1fr) 40px minmax(0,.95fr); grid-template-rows:auto repeat(3, auto); gap:var(--s3) 0; align-items:stretch; }
-.toc-h { grid-row:1; align-self:end; padding-bottom:var(--s2); border-bottom:1px solid var(--hairline); }
-.toc-h b { display:block; font:800 28px/28px var(--font-display); font-stretch:112%; color:var(--learn-text); font-variant-numeric:tabular-nums; }
-.toc-h span { font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); }
-.toc-h.h1c { grid-column:1; } .toc-h.h2c { grid-column:3; } .toc-h.h3c { grid-column:5; } .toc-h.h4c { grid-column:7; } .toc-h.h5c { grid-column:9; }
-.toc-card { position:relative; padding:var(--s4); min-width:0; font-size:15px; line-height:22px; }
-.toc-card .label { display:block; margin-bottom:var(--s2); }
-.toc-card h3 { margin:0 0 var(--s2); font:700 19px/23px var(--font-display); }
-.toc-card p { margin:0; }
-.toc-card ul { margin:0; padding:0; list-style:none; display:grid; gap:4px; }
-.toc-card ul li::before { content:""; display:inline-block; width:2px; height:11px; margin-right:8px; background:currentColor; transform:skewX(calc(var(--slant) * -1)); }
-.tc-challenge { grid-column:1; grid-row:2 / 5; background:var(--navy); color:var(--on-navy); display:flex; flex-direction:column; gap:var(--s4); }
-.tc-challenge .label { color:var(--on-navy-muted); }
-.tc-challenge p { color:var(--on-navy-muted); }
-.tc-act { grid-column:3; }
-.tc-act.learn { background:var(--learn); color:var(--on-learn); }
-.tc-act.lead { background:var(--lead-deep); color:#ffffff; }
-.tc-act.link { background:var(--link); color:var(--on-link); }
-.tc-act .label { opacity:.92; }
-.tc-out { grid-column:5; background:var(--paper); padding-top:calc(var(--s4) + 6px); }
-.tc-out::before { content:""; position:absolute; left:0; right:0; top:0; height:6px; }
-.tc-out.learn::before { background:var(--learn); } .tc-out.lead::before { background:var(--lead); } .tc-out.link::before { background:var(--link); }
-.tc-out .ev { display:block; margin-top:var(--s3); padding-top:var(--s2); border-top:1px solid var(--hairline); font:600 13px/18px var(--font-text); color:var(--ink-muted); font-variant-numeric:tabular-nums; }
-.tc-out .ev b { font:800 17px/18px var(--font-display); font-stretch:112%; color:var(--learn-text); }
-.tc-long { grid-column:7; grid-row:2 / 5; background:var(--paper); border:3px solid var(--ink); display:flex; flex-direction:column; justify-content:center; }
-.tc-long ul { gap:var(--s3); font-weight:600; }
-.tc-impact { grid-column:9; grid-row:2 / 5; background:var(--link); color:var(--on-link); display:flex; flex-direction:column; justify-content:flex-end; clip-path:polygon(0 0, calc(100% - 28px) 0, 100% 159px, 100% 100%, 0 100%); }
-.tc-impact .big { font:italic 600 24px/1.15 var(--font-serif); margin:0 0 var(--s4); }
-.r2 { grid-row:2; } .r3 { grid-row:3; } .r4 { grid-row:4; }
-.conn { position:relative; align-self:center; height:14px; }
-.conn.c1 { grid-column:2; } .conn.c2 { grid-column:4; } .conn.c3 { grid-column:6; }
-.conn.c4 { grid-column:8; grid-row:2 / 5; }
-.conn::before { content:""; position:absolute; left:4px; right:10px; top:5px; height:4px; background:repeating-linear-gradient(90deg, var(--cc, var(--ink)) 0 7px, transparent 7px 12px); background-size:12px 4px; transform-origin:left center; }
-.conn::after { content:""; position:absolute; right:2px; top:0; width:10px; height:14px; background:var(--cc, var(--ink)); clip-path:polygon(0 0, 100% 50%, 0 100%); }
-.conn.learn { --cc:var(--learn); } .conn.lead { --cc:var(--lead); } .conn.link { --cc:var(--link); }
-.conn.mob { display:none; }
-/* pathway focus */
-.toc [data-p] { transition:opacity .35s ease; }
-.toc[data-focus="learn"] [data-p]:not([data-p="learn"]), .toc[data-focus="lead"] [data-p]:not([data-p="lead"]), .toc[data-focus="link"] [data-p]:not([data-p="link"]) { opacity:.18; }
+.stair-bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--s3); padding-top:var(--s6); border-top:3px solid var(--ink); }
+.stair-bar .label { color:var(--ink-muted); margin:0; }
+.stair-bar .replay { display:inline-flex; align-items:center; gap:var(--s2); padding:8px 12px 7px; border:1.5px dashed var(--ink); background:transparent; color:var(--ink); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; cursor:pointer; }
+.stair-bar .replay::before { content:"\21BB"; font-size:15px; letter-spacing:0; }
+.stairs-scroll { overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
+.stairs { position:relative; padding-top:128px; }
+.stair-steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:end; border-bottom:4px solid var(--ink); }
+.stair { --bg:var(--paper); --fg:var(--ink); position:relative; height:var(--h); display:flex; flex-direction:column; gap:var(--s2); padding:calc(var(--s4) + 6px) var(--s4) var(--s4); background:var(--paper); color:var(--ink-muted); box-shadow:inset 0 0 0 1.5px var(--hairline); cursor:pointer; transition:background-color .7s ease, color .7s ease, box-shadow .4s ease; min-width:0; }
+.stair::before { content:""; position:absolute; left:0; right:0; top:0; height:6px; background:var(--hairline); transition:background-color .4s ease; }
+.stair > * { opacity:.5; transition:opacity .7s ease; }
+.stair.on { background:var(--bg); color:var(--fg); box-shadow:none; }
+.stair.on > * { opacity:1; }
+.stair.on::before { background:rgba(0,0,0,.18); }
+.stair.here::before { background:var(--highlight); }
+.stair:focus-visible { outline:3px solid var(--focus); outline-offset:-3px; }
+.stair.s0 { --h:305px; --bg:var(--navy); --fg:var(--on-navy); }
+.stair.s1 { --h:380px; --bg:var(--learn); --fg:var(--on-learn); }
+.stair.s2 { --h:455px; --bg:var(--lead-deep); --fg:#ffffff; }
+.stair.s3 { --h:530px; --bg:var(--link); --fg:var(--on-link); }
+.stair.s4 { --h:600px; --bg:var(--paper); --fg:var(--ink); }
+.stair.s4.on { box-shadow:inset 0 0 0 3px var(--ink); }
+.stair .label { display:block; font:700 11px/15px var(--font-text); letter-spacing:.12em; text-transform:uppercase; }
+.stair h3 { margin:0; font:700 21px/25px var(--font-display); }
+.stair h3 small { display:block; font:800 13px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; opacity:.85; }
+.stair p { margin:0; font-size:14px; line-height:20px; }
+.stair ul { margin:0; padding:0; list-style:none; display:grid; gap:4px; font-size:14px; line-height:20px; }
+.stair ul li::before { content:""; display:inline-block; width:2px; height:10px; margin-right:7px; background:currentColor; transform:skewX(calc(var(--slant) * -1)); }
+.stair .out { margin-top:auto; padding-top:var(--s3); border-top:1px solid currentColor; }
+.stair .out b { display:block; font:700 15px/20px var(--font-display); }
+.stair .out span { display:block; margin-top:4px; font:600 13px/18px var(--font-text); font-variant-numeric:tabular-nums; }
+.stair .out span strong { font:800 16px/18px var(--font-display); font-stretch:112%; }
+.stair.s4 .big { margin-top:auto; padding:var(--s3) var(--s3) var(--s3); background:var(--highlight); color:var(--on-link); font:italic 600 21px/1.2 var(--font-serif); }
+.stair.s4 .big + p { margin-top:var(--s2); }
+.girl { position:absolute; left:0; top:0; width:46px; height:104px; z-index:3; pointer-events:none; opacity:0; transition:opacity .4s ease; will-change:transform; }
+.girl.ready { opacity:1; }
+.girl svg { display:block; width:100%; height:100%; overflow:visible; }
+.girl .leg-l, .girl .leg-r { transform-box:fill-box; transform-origin:50% 0; }
+.girl.walking .leg-l { animation:toc-leg .26s ease-in-out infinite alternate; }
+.girl.walking .leg-r { animation:toc-leg .26s ease-in-out infinite alternate-reverse; }
+@keyframes toc-leg { from { transform:rotate(-18deg); } to { transform:rotate(18deg); } }
+.girl .arm-up, .girl .cheer { opacity:0; transition:opacity .3s ease; }
+.at-top .girl .arm-up, .at-top .girl .cheer { opacity:1; }
+.at-top .girl .arm-down { opacity:0; }
+.at-top .girl .cheer { animation:toc-cheer 1s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+@keyframes toc-cheer { from { transform:scale(.85); } to { transform:scale(1.1); } }
+.swipe-hint { display:none; margin:var(--s3) 0 0; }
 .toc-note { margin:var(--s8) 0 0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s3) var(--s6); align-items:baseline; padding-top:var(--s4); border-top:1px solid var(--hairline); }
 .toc-note .label { color:var(--learn-text); }
 .toc-note p { margin:0; font-size:16px; line-height:24px; max-width:60em; }
-/* animation: reveal in order, then flow */
-.toc.toc-anim [data-s] { opacity:0; transform:translateY(14px); }
-.toc.toc-anim .conn { opacity:1; transform:none; }
-.toc.toc-anim .conn::before { transform:scaleX(0); }
-.toc.toc-anim .conn::after { opacity:0; }
-.toc.toc-anim.is-playing [data-s] { opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease; transition-delay:calc(var(--d) * 1s); }
-.toc.toc-anim.is-playing [data-p] { transition:opacity .6s ease calc(var(--d) * 1s), transform .6s ease calc(var(--d) * 1s); }
-.toc.toc-anim.is-playing .conn::before { transform:scaleX(1); transition:transform .5s ease calc(var(--d) * 1s); animation:toc-flow .9s linear calc(var(--d) * 1s + .5s) infinite; }
-.toc.toc-anim.is-playing .conn::after { opacity:1; transition:opacity .2s ease calc(var(--d) * 1s + .4s); }
-.toc.toc-anim.is-playing.is-done [data-p] { transition:opacity .35s ease; }
-@keyframes toc-flow { from { background-position-x:0; } to { background-position-x:12px; } }
-@keyframes toc-flow-y { from { background-position-y:0; } to { background-position-y:12px; } }
-@media (prefers-reduced-motion: reduce) {
-  .toc.toc-anim [data-s] { opacity:1; transform:none; }
-  .toc.toc-anim .conn::before { transform:none; animation:none !important; }
-  .toc.toc-anim .conn::after { opacity:1; }
-  .toc-controls .replay { display:none; }
-}
+@media (prefers-reduced-motion: reduce) { .stair, .stair > *, .girl { transition:none; } .girl.walking .leg-l, .girl.walking .leg-r, .at-top .girl .cheer { animation:none; } }
 @media (max-width:1000px) {
-  .toc { display:flex; flex-direction:column; gap:0; }
-  .toc-h { display:none; }
-  .toc-card { margin:0; }
-  .tc-long, .tc-impact { justify-content:flex-start; }
-  .tc-impact { clip-path:polygon(0 0, calc(100% - 28px) 0, 100% 159px, 100% 100%, 0 100%); }
-  .conn, .conn.mob { display:block; align-self:center; width:14px; height:34px; }
-  .conn.c3 { display:none; }
-  .conn::before { left:5px; right:auto; top:2px; bottom:10px; width:4px; height:auto; background:repeating-linear-gradient(180deg, var(--cc, var(--ink)) 0 7px, transparent 7px 12px); background-size:4px 12px; transform-origin:center top; }
-  .conn::after { left:0; right:auto; top:auto; bottom:0; width:14px; height:10px; clip-path:polygon(0 0, 100% 0, 50% 100%); }
-  .toc.toc-anim .conn::before { transform:scaleY(0); }
-  .toc.toc-anim.is-playing .conn::before { transform:scaleY(1); animation-name:toc-flow-y; }
-  .toc-card .stage { display:block; }
+  .stairs { width:1000px; }
+  .swipe-hint { display:block; }
   .toc-note { grid-template-columns:1fr; }
 }
-.toc-card .stage { display:none; font:800 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; margin-bottom:var(--s2); opacity:.85; }
-@media (max-width:480px) { .toc-controls .replay { margin-left:0; } }
-@media (max-width:1000px) { .toc-card .stage { display:block; } .tc-challenge .stage, .tc-impact .stage { color:inherit; } }
+/* end theory of change */
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
@@ -580,67 +551,82 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 <section class="bg-chalk toc-sec" id="theory-of-change">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow label"><span class="slash"></span>Theory of change</p><h2 class="h1">How Learn, Lead and Link <span class="hl">change</span> her future</h2></div>
-      <p class="lead muted">Three pathways work together: what a girl learns in school, the leadership she builds in her community, and the people and systems that open doors for her.</p>
+      <div><p class="eyebrow label"><span class="slash"></span>Theory of change</p><h2 class="h1">Step by step, she <span class="hl">climbs</span> to her future</h2></div>
+      <p class="lead muted">Learn, Lead and Link are not separate projects. Each step builds on the one before, until a girl reaches a future she chooses for herself.</p>
     </div>
-    <div class="toc-controls" role="group" aria-label="Follow a pathway">
-      <span class="label">Follow a pathway</span>
-      <button type="button" data-f="all" aria-pressed="true">All</button>
-      <button type="button" data-f="learn" aria-pressed="false"><i style="background:var(--learn)"></i>Learn</button>
-      <button type="button" data-f="lead" aria-pressed="false"><i style="background:var(--lead)"></i>Lead</button>
-      <button type="button" data-f="link" aria-pressed="false"><i style="background:var(--link)"></i>Link</button>
-      <button type="button" class="replay">Replay</button>
+    <div class="stair-bar"><p class="label">Click any step to follow her climb</p><button type="button" class="replay">Replay</button></div>
+    <div class="stairs-scroll">
+      <div class="stairs">
+        <div class="girl" aria-hidden="true"><svg viewBox="0 -12 46 104">
+  <g class="cheer" stroke="#e7a839" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M6 -2 L1 -8"/><path d="M23 -5 L23 -12"/><path d="M40 -2 L45 -8"/></g>
+  <path d="M29 11 C37 16 37 30 32 39" stroke="#1d1712" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="32" cy="40" r="3" fill="#e7a839"/>
+  <g class="arm-down" stroke="#8a5a3c" stroke-width="3.6" stroke-linecap="round" fill="none"><path d="M15 28 L10 47"/><path d="M31 28 L35 44"/></g>
+  <rect class="arm-down" x="32" y="39" width="10" height="12" rx="1.2" fill="#0d7377" transform="rotate(-10 37 45)"/>
+  <g class="arm-up" stroke="#8a5a3c" stroke-width="3.6" stroke-linecap="round" fill="none"><path d="M15 28 L8 10"/><path d="M31 28 L38 10"/></g>
+  <g class="leg-l"><rect x="16" y="60" width="4.5" height="23" rx="2" fill="#8a5a3c"/><rect x="13.5" y="81" width="9" height="4.5" rx="2.2" fill="#1d1712"/></g>
+  <g class="leg-r"><rect x="25.5" y="60" width="4.5" height="23" rx="2" fill="#8a5a3c"/><rect x="24" y="81" width="9" height="4.5" rx="2.2" fill="#1d1712"/></g>
+  <path d="M15 25 H31 L37 62 H9 Z" fill="#1a3a4a"/>
+  <path d="M18 25 L23 32 L28 25 Z" fill="#ffffff"/>
+  <rect x="11.6" y="41" width="22.8" height="3.4" fill="#e7a839"/>
+  <rect x="21" y="20" width="4" height="6" fill="#8a5a3c"/>
+  <circle cx="23" cy="13" r="9" fill="#8a5a3c"/>
+  <path d="M14 13.5 A9 9 0 0 1 32 13.5 C28 9.5 19 9.5 14 13.5 Z" fill="#1d1712"/>
+</svg></div>
+        <ol class="stair-steps">
+          <li class="stair s0" tabindex="0" aria-label="Where she starts"><span class="label">Where she starts</span><h3>Barriers keep her out of school</h3><ul><li>Poverty</li><li>Seasonal migration</li><li>Early marriage</li><li>Restrictive gender norms</li><li>Little access to STEM</li></ul><p style="margin-top:auto;opacity:.85;">Girls from tribal and marginalised communities in Ganjam and Mayurbhanj.</p></li>
+          <li class="stair s1" tabindex="0" aria-label="Step 1, Learn"><span class="label">Step 1 &#183; In school</span><h3><small>Learn</small>She learns</h3><p>Classroom modules for Classes 8 to 10: STEM and Scratch coding, social-emotional learning, gender and SRHR, careers and digital skills.</p><div class="out"><b>Knowledge, skills and STEM ambition</b><span>Aspire to a STEM career <strong>54% to 74%</strong></span></div></li>
+          <li class="stair s2" tabindex="0" aria-label="Step 2, Lead"><span class="label">Step 2 &#183; In the community</span><h3><small>Lead</small>She leads</h3><p>Youth Resource Centres, Youth Facilitators, Youth Champions and Peer Leaders. Ideathons, hackathons and campaigns she helps run.</p><div class="out"><b>Voice, confidence and leadership</b><span><strong>32</strong> prototypes built by girls</span></div></li>
+          <li class="stair s3" tabindex="0" aria-label="Step 3, Link"><span class="label">Step 3 &#183; Into systems</span><h3><small>Link</small>She links</h3><p>Parents, teachers, headteachers, ITIs, colleges, employers and education officials. Role models and exposure visits.</p><div class="out"><b>Support around her, and open doors</b><span><strong>252</strong> parents engaged &#183; <strong>88</strong> girls on exposure visits</span></div></li>
+          <li class="stair s4" tabindex="0" aria-label="The top step, her future"><span class="label">The top step</span><h3>She chooses her future</h3><ul><li>Stays in and completes school</li><li>Makes informed choices about her health and life</li><li>Moves into STEM, skills training and careers</li><li>Leads change in her community</li></ul><p class="big">Unlock her potential. Change her future.</p><p>Every adolescent girl exercises her right to education.</p></li>
+        </ol>
+      </div>
     </div>
-    <div class="toc toc-anim" data-focus="all">
-      <div class="toc-h h1c" data-s style="--d:0"><b>01</b><span>The challenge</span></div>
-      <div class="toc-h h2c" data-s style="--d:.6"><b>02</b><span>What we do</span></div>
-      <div class="toc-h h3c" data-s style="--d:1.6"><b>03</b><span>What changes for girls</span></div>
-      <div class="toc-h h4c" data-s style="--d:2.6"><b>04</b><span>Long-term change</span></div>
-      <div class="toc-h h5c" data-s style="--d:3.4"><b>05</b><span>Impact</span></div>
-      <div class="toc-card tc-challenge" data-s style="--d:0"><span class="stage">01 &#183; The challenge</span><span class="label">Ganjam and Mayurbhanj, Odisha</span><h3>Girls leave school too early</h3><ul><li>Poverty</li><li>Seasonal migration</li><li>Early marriage</li><li>Restrictive gender norms</li><li>Little access to STEM</li></ul><p>Girls from tribal and marginalised communities are the most affected.</p></div>
-      <span class="conn c1 learn r2" data-s data-p="learn" style="--d:0.5" aria-hidden="true"></span>
-      <div class="toc-card tc-act learn r2" data-s data-p="learn" style="--d:0.8"><span class="stage">02 &#183; What we do</span><span class="label">Learn &#183; In school</span><h3>Classroom modules</h3><p>For Classes 8 to 10: STEM and Scratch coding, social-emotional learning, gender and SRHR, critical thinking, careers and digital skills.</p></div>
-      <span class="conn c2 learn r2" data-s data-p="learn" style="--d:1.5" aria-hidden="true"></span>
-      <div class="toc-card tc-out learn r2" data-s data-p="learn" style="--d:1.8"><span class="stage">03 &#183; What changes</span><h3>Knowledge, skills and STEM ambition</h3><p>Girls understand their bodies and rights, think critically and see STEM as theirs.</p><span class="ev">Aspire to a STEM career <b>54% to 74%</b></span></div>
-      <span class="conn c3 learn r2" data-s data-p="learn" style="--d:2.5" aria-hidden="true"></span>
-      <span class="conn c1 lead r3" data-s data-p="lead" style="--d:0.7" aria-hidden="true"></span>
-      <div class="toc-card tc-act lead r3" data-s data-p="lead" style="--d:1.0"><span class="stage">02 &#183; What we do</span><span class="label">Lead &#183; In the community</span><h3>Youth leadership</h3><p>Youth Resource Centres, Youth Facilitators, Youth Champions and Peer Leaders. Ideathons, hackathons and campaigns.</p></div>
-      <span class="conn c2 lead r3" data-s data-p="lead" style="--d:1.7" aria-hidden="true"></span>
-      <div class="toc-card tc-out lead r3" data-s data-p="lead" style="--d:2.0"><span class="stage">03 &#183; What changes</span><h3>Voice, confidence and leadership</h3><p>Girls speak up, lead their peers and build solutions to problems they choose.</p><span class="ev"><b>32</b> prototypes built by girls</span></div>
-      <span class="conn c3 lead r3" data-s data-p="lead" style="--d:2.7" aria-hidden="true"></span>
-      <span class="conn c1 link r4" data-s data-p="link" style="--d:0.9" aria-hidden="true"></span>
-      <div class="toc-card tc-act link r4" data-s data-p="link" style="--d:1.2"><span class="stage">02 &#183; What we do</span><span class="label">Link &#183; Into systems</span><h3>Families, schools and pathways</h3><p>Parents, teachers, headteachers, ITIs, colleges, employers and education officials. Role models and exposure visits.</p></div>
-      <span class="conn c2 link r4" data-s data-p="link" style="--d:1.9" aria-hidden="true"></span>
-      <div class="toc-card tc-out link r4" data-s data-p="link" style="--d:2.2"><span class="stage">03 &#183; What changes</span><h3>Support around her, and open doors</h3><p>Families and schools back girls, and routes to further study, skills and work become visible.</p><span class="ev"><b>252</b> parents engaged &#183; <b>88</b> girls on exposure visits</span></div>
-      <span class="conn c3 link r4" data-s data-p="link" style="--d:2.9" aria-hidden="true"></span>
-      <span class="conn c5 mob" data-s style="--d:2.5" aria-hidden="true"></span>
-      <div class="toc-card tc-long" data-s style="--d:2.7"><span class="stage">04 &#183; Long-term change</span><h3>Girls stay in school and choose their future</h3><ul><li>Stay in and complete school</li><li>Make informed choices about their health and lives</li><li>Move into STEM, skills training and careers</li><li>Lead change in their communities</li></ul></div>
-      <span class="conn c4" data-s style="--d:3.2" aria-hidden="true"></span>
-      <div class="toc-card tc-impact" data-s style="--d:3.5"><span class="stage">05 &#183; Impact</span><p class="big">Unlock her potential. Change her future.</p><p>Every adolescent girl, particularly from tribal and marginalised communities, exercises her right to education.</p></div>
-    </div>
+    <p class="swipe-hint small muted">Swipe sideways to follow her climb &#8594;</p>
     <div class="toc-note"><span class="label">What makes it work</span><p>Schools that give the sessions time, families engaged from the start, and Youth Facilitators from the communities they serve. Evidence from Year 1 of Phase 2 in Ganjam: see the <a href="../impact/">findings</a> and the <a href="../odisha/">programme</a>.</p></div>
   </div>
 <script>
 (function () {
   var sec = document.getElementById("theory-of-change"); if (!sec) return;
-  var toc = sec.querySelector(".toc"), btns = sec.querySelectorAll(".toc-controls [data-f]"), timer;
-  function play() {
-    toc.classList.remove("is-playing", "is-done"); void toc.offsetWidth; toc.classList.add("is-playing");
-    clearTimeout(timer); timer = setTimeout(function () { toc.classList.add("is-done"); }, 4600);
+  var stage = sec.querySelector(".stairs"), girl = sec.querySelector(".girl"), scroller = sec.querySelector(".stairs-scroll");
+  var steps = [].slice.call(sec.querySelectorAll(".stair")), last = steps.length - 1;
+  var cur = 0, busy = false, queued = null, run = 0;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function pos(i) { var r = steps[i].getBoundingClientRect(), c = stage.getBoundingClientRect(); return [r.left - c.left + 16, r.top - c.top - girl.offsetHeight + 3]; }
+  function tf(p) { return "translate(" + p[0] + "px," + p[1] + "px)"; }
+  function place(i) { girl.style.transform = tf(pos(i)); girl.classList.add("ready"); }
+  function light(i) { steps.forEach(function (s, k) { s.classList.toggle("on", k <= i); s.classList.toggle("here", k === i); }); sec.classList.toggle("at-top", i === last); }
+  function follow(i) { if (scroller.scrollWidth > scroller.clientWidth + 4) scroller.scrollTo({ left: Math.max(0, steps[i].offsetLeft - 24), behavior: reduce ? "auto" : "smooth" }); }
+  function hop(to, id, done) {
+    var a = pos(cur), b = pos(to); girl.classList.add("walking");
+    var mid = [a[0] + (b[0] - a[0]) * 0.55, Math.min(a[1], b[1]) - 44];
+    var an = girl.animate ? girl.animate([{ transform: tf(a) }, { transform: tf(mid), offset: 0.55 }, { transform: tf(b) }], { duration: 950, easing: "ease-in-out" }) : null;
+    function end() { if (id !== run) return; girl.classList.remove("walking"); cur = to; place(to); light(to); follow(to); done(); }
+    if (an) an.onfinish = end; else end();
   }
-  btns.forEach(function (b) { b.addEventListener("click", function () {
-    btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-    toc.classList.add("is-done"); toc.setAttribute("data-focus", b.getAttribute("data-f"));
-  }); });
-  sec.querySelector(".replay").addEventListener("click", function () {
-    btns.forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-f") === "all" ? "true" : "false"); });
-    toc.setAttribute("data-focus", "all"); play();
+  function climb(target, pause) {
+    if (busy) { queued = target; return; }
+    if (target <= cur) { cur = target; place(target); light(target); follow(target); return; }
+    if (reduce) { cur = target; place(target); light(target); follow(target); return; }
+    busy = true; var id = run;
+    (function next() { hop(cur + 1, id, function () {
+      if (cur < target) setTimeout(function () { if (id === run) next(); }, pause);
+      else { busy = false; if (queued !== null) { var q = queued; queued = null; climb(q, 300); } }
+    }); })();
+  }
+  function reset() { run++; busy = false; queued = null; girl.getAnimations && girl.getAnimations().forEach(function (a) { a.cancel(); }); girl.classList.remove("walking"); cur = 0; scroller.scrollLeft = 0; place(0); light(0); }
+  function start() { reset(); if (reduce) { cur = last; place(last); light(last); return; } var id = run; setTimeout(function () { if (id === run) climb(last, 1200); }, 700); }
+  sec.querySelector(".replay").addEventListener("click", start);
+  steps.forEach(function (s, i) {
+    function go() { climb(i, 250); }
+    s.addEventListener("click", go);
+    s.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
   });
-  if (!("IntersectionObserver" in window)) { play(); return; }
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) { play(); io.disconnect(); } });
-  }, { threshold: 0, rootMargin: "0px 0px -15% 0px" });
-  io.observe(toc);
+  window.addEventListener("resize", function () { if (!busy) place(cur); });
+  light(0);
+  if (!("IntersectionObserver" in window)) { start(); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); start(); } }); }, { threshold: 0, rootMargin: "0px 0px -30% 0px" });
+  io.observe(stage);
 })();
 </script>
 </section>
