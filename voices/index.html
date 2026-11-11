@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Voices | My Education, My Rights</title>
-<meta name="description" content="Reports, findings and the prototypes girls built across the My Education, My Rights programmes.">
+<meta name="description" content="Stories of change, findings and the prototypes girls built across the My Education, My Rights programmes.">
 <link rel="canonical" href="https://myeducationmyrights.info/voices/">
 <meta property="og:title" content="Voices | My Education, My Rights">
-<meta property="og:description" content="Reports, findings and the prototypes girls built across the My Education, My Rights programmes.">
+<meta property="og:description" content="Stories of change, findings and the prototypes girls built across the My Education, My Rights programmes.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://myeducationmyrights.info/voices/">
 <meta property="og:site_name" content="My Education, My Rights · Restless Development India">
@@ -419,6 +419,53 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
 @media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
+.story-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s8); border-top:3px solid var(--ink); padding-top:var(--s4); margin-bottom:var(--s16); }
+.story-index > div > .label { margin:0 0 var(--s3); color:var(--learn-text); }
+.story-index ol { list-style:none; margin:0; padding:0; }
+.story-index li a { display:block; padding:var(--s3) 0; border-bottom:1px solid var(--hairline); text-decoration:none; }
+.story-index li a b { display:block; font:700 17px/22px var(--font-display); }
+.story-index li a span { font-size:14px; line-height:20px; color:var(--ink-muted); }
+.story-index li a:hover b { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:3px; text-decoration-color:var(--highlight); }
+.story-group { margin:var(--s16) 0 var(--s8); scroll-margin-top:96px; }
+.story-group:first-of-type { margin-top:0; }
+.story-group .display-l { margin-bottom:var(--s3); }
+.story-media .panel.teal { background:var(--learn); color:var(--on-learn); }
+.story-media .panel.navy { background:var(--navy); color:var(--on-navy); }
+@media (max-width:860px) { .story-index { grid-template-columns:1fr; gap:var(--s6); } }
+/* stories of change */
+.stories { display:grid; gap:var(--s16); }
+.story { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); align-items:start; border-top:3px solid var(--ink); padding-top:var(--s8); scroll-margin-top:96px; }
+.story.flip { grid-template-columns:minmax(0,7fr) minmax(0,5fr); }
+.story.flip .story-media { order:2; }
+.story-media { margin:0; position:sticky; top:96px; }
+.story-media .img { position:relative; aspect-ratio:4/5; overflow:hidden; clip-path:polygon(14% 0,100% 0,100% 100%,0 100%); background:var(--learn); }
+.story.flip .story-media .img { clip-path:polygon(0 0,86% 0,100% 100%,0 100%); }
+.story-media .img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.story-media .img::after { content:""; position:absolute; left:0; right:0; bottom:0; height:10px; background:var(--highlight); }
+.story-media .panel { display:flex; flex-direction:column; justify-content:flex-end; gap:var(--s4); padding:var(--s8) var(--s6) var(--s8) 22%; background:var(--lead); color:var(--on-lead); }
+.story-media .panel p { margin:0; font:italic 600 clamp(24px, 2.6vw, 32px)/1.2 var(--font-serif); text-wrap:balance; }
+.story-media .panel .label { opacity:.9; }
+.story-media figcaption { margin-top:var(--s3); font-size:14px; line-height:20px; color:var(--ink-muted); }
+.story-body .label.kind { color:var(--learn-text); }
+.story-body .h1 { margin:var(--s2) 0 var(--s3); }
+.story-body .who { margin:0; color:var(--ink-muted); font-size:16px; line-height:24px; }
+.story .quote { margin:var(--s8) 0; }
+.story .quote blockquote { font-size:clamp(21px, 2.4vw, 26px); }
+.arc { margin:0; border-top:1px solid var(--hairline); }
+.arc > div { display:grid; grid-template-columns:9.5em minmax(0,1fr); gap:var(--s6); padding:var(--s4) 0; border-bottom:1px solid var(--hairline); }
+.arc dt { color:var(--learn-text); padding-top:3px; }
+.arc dd { margin:0; font-size:16px; line-height:24px; }
+.arc dd p { margin:0 0 var(--s3); max-width:38em; }
+.arc dd p:last-child { margin-bottom:0; }
+.story .credit { margin:var(--s4) 0 0; }
+@media (max-width:860px) {
+  .story, .story.flip { grid-template-columns:1fr; gap:var(--s6); }
+  .story.flip .story-media { order:0; }
+  .story-media { position:static; }
+  .story-media .img, .story.flip .story-media .img { aspect-ratio:4/3; clip-path:polygon(10% 0,100% 0,100% 100%,0 100%); }
+  .story-media .panel { aspect-ratio:auto; min-height:220px; padding-left:16%; }
+  .arc > div { grid-template-columns:1fr; gap:var(--s2); }
+}
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
 </head>
@@ -441,7 +488,8 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 <header class="page-head"><div class="wrap">
   <p class="crumbs small"><a href="../">Home</a> &#8250; Voices</p>
   <h1 class="display-l">In their own words and <span class="hl">work</span></h1>
-  <p class="lead muted">Reports, findings and the things girls built across the programmes on the platform.</p>
+  <p class="lead muted">Stories of change, findings and the things girls built across the programmes on the platform.</p>
+  <div class="row gap" style="margin-top:var(--s6);"><a class="btn" href="#stories">Read 15 stories of change</a></div>
 </div></header>
 <section>
   <div class="wrap">
@@ -476,6 +524,188 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
       <blockquote>Education is a fundamental right. Every young person must have the agency, skills, opportunities and enabling environment to realise it.</blockquote>
       <figcaption class="label">My Education, My Rights</figcaption>
     </figure>
+  </div>
+</section>
+
+<section class="bg-chalk" id="stories">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Stories of change &#183; Odisha</p><h2 class="h1">15 stories from Ganjam</h2></div>
+      <p class="lead muted">Recorded by Youth Facilitators in schools and villages across Ganjam: girls who found their voice, girls who started coding, and the adults who made space for them.</p>
+    </div>
+    <div class="story-index"><div><p class="label">Girls finding their voice</p><ol><li><a href="#story-subhashree"><b>Dancing towards her dream</b><span>Subhashree Acharya</span></a></li><li><a href="#story-barsha"><b>Breaking the silence around menstrual health</b><span>Barsha</span></a></li><li><a href="#story-ranjeeta"><b>From the back bench to the front</b><span>Ranjeeta Pattnaik</span></a></li><li><a href="#story-rupali"><b>From household chores back to the classroom</b><span>Rupali</span></a></li><li><a href="#story-puja"><b>From shyness to Best Anchor</b><span>Puja Rani Sahu</span></a></li><li><a href="#story-subhalaxmi"><b>One WhatsApp message</b><span>Subhalaxmi Ratha</span></a></li></ol></div><div><p class="label">Girls in STEM and coding</p><ol><li><a href="#story-monali"><b>From no computer knowledge to a national stage</b><span>Monali Padhy and Sonali Sethi</span></a></li><li><a href="#story-nandini"><b>Coding without the internet</b><span>Nandini Sahu</span></a></li><li><a href="#story-maity"><b>From learner to Scratch mentor</b><span>Subhasree Maity</span></a></li><li><a href="#story-alisha"><b>Getting to know the technical kit</b><span>Alisha Rani Dakua</span></a></li><li><a href="#story-sonam"><b>Big ideas from everyday things</b><span>Sonam Panigrahi</span></a></li></ol></div><div><p class="label">Schools and communities behind her</p><ol><li><a href="#story-headmaster"><b>A school leader&#8217;s journey of change</b><span>Bhopen Kumar Mohanta</span></a></li><li><a href="#story-minati"><b>A headmistress who came to see STEM for herself</b><span>Minati Kumari Patro</span></a></li><li><a href="#story-susuma"><b>When the screen went dark</b><span>Susuma Sahu</span></a></li><li><a href="#story-sabita"><b>Finding her voice for girls&#8217; rights</b><span>Sabita Maharana</span></a></li></ol></div></div>
+
+    <div class="story-group" id="stories-voice"><p class="eyebrow label"><span class="slash"></span>Part 1 of 3</p><h3 class="display-l">Girls finding their voice</h3><p class="lead muted">Confidence, staying in school, health and the right to choose her future.</p></div>
+    <div class="stories"><article class="story" id="story-subhashree">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/subhashree.webp" alt="Subhashree performing Odissi dance in a traditional green and red costume." loading="lazy"></div><figcaption>Subhashree performing Odissi at a local cultural programme.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Career awareness</span>
+          <h4 class="h1">Dancing towards her dream</h4>
+          <p class="who">Subhashree Acharya, 15, Class IX, Berhampur, Ganjam</p>
+          <figure class="quote"><blockquote>Before joining the programme, I was unsure about my future. The sessions helped me understand that my passion could also become my strength. Today, I am proudly learning Odissi and performing on stage while continuing my education.</blockquote><figcaption class="label">Subhashree</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Subhashree attended school regularly but had no clear idea of her future. She had loved Odissi dance since childhood, yet never saw it as a real option: her parents wanted her to focus only on academics and treated dance as a hobby.</p><p>Without their support she began to set the dream aside, unsure how to talk about it or how to balance it with her studies. Many girls in her community face the same gap: little awareness of the range of careers open to them, and little room to explore their talents.</p></dd></div><div><dt class="label">What happened</dt><dd><p>In career awareness, self-awareness and goal-setting sessions, her Youth Facilitator asked students to name their interests and strengths, and to choose careers on passion, ability and opportunity rather than expectation alone. Subhashree said her dream was to become an Odissi dancer.</p><p>The facilitator called her parents, listened to their worries, and talked through what classical dance builds: discipline, confidence, creativity and communication, alongside the careers it can open. They agreed to back her and enrolled her in Odissi classes.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Six months on, she trains regularly and has performed on stage at local cultural programmes. Her studies have not suffered; she is more motivated and disciplined, and teachers see more confidence in class.</p><p>Her parents now support her interests alongside her education, and other girls in the programme have begun talking openly about their own ambitions. When families become partners, girls can choose their futures without giving up their education.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Anita Chanda, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article><article class="story flip" id="story-barsha">
+        <figure class="story-media"><div class="img panel"><span class="label">Gender &amp; SRHR session</span><p>A safe, confidential space to speak about her health.</p></div><figcaption>No photo is shown, to protect her privacy.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Gender and SRHR</span>
+          <h4 class="h1">Breaking the silence around menstrual health</h4>
+          <p class="who">Barsha, 14, a student at a co-educational government high school in Ganjam</p>
+          <figure class="quote"><blockquote>I was afraid to talk about my menstrual health problem in front of others. After the session, I understood that I should not feel ashamed to talk about my health and seek the right support.</blockquote><figcaption class="label">Barsha</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>In a co-educational classroom, menstruation and reproductive health are hard topics for girls to raise in front of boys. In communities where these conversations are rarely open, girls can carry a health worry for months without asking anyone.</p><p>During a gender and SRHR session on menstrual health, the Youth Facilitator noticed that Barsha looked uneasy, as if she wanted to say something but could not.</p></dd></div><div><dt class="label">What happened</dt><dd><p>After the session the facilitator spoke with her privately rather than in front of the class. Barsha shared that she had been worried about a menstrual health concern and had been too embarrassed to tell anyone.</p><p>The facilitator reassured her that menstruation is a normal part of growing up and nothing to be ashamed of, explained that some concerns need a qualified health professional, and encouraged her to talk to a trusted family member and seek medical advice.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Barsha grew more comfortable talking about menstrual health and more confident about seeking support. Over time she began encouraging other girls to find reliable information and medical guidance instead of staying silent.</p><p>SRHR education is not only information. It is trust, a safe and confidential space, and a facilitator who notices when a girl needs more support, so that girls know their health concerns are valid and worth raising.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Anita Chanda, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-ranjeeta">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/ranjeeta.webp" alt="Ranjeeta standing at a classroom blackboard covered in chalk drawings of computer parts." loading="lazy" style="object-position:50% 30%;"></div><figcaption>Ranjeeta in her classroom at Chhatrapur.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Classroom confidence</span>
+          <h4 class="h1">From the back bench to the front</h4>
+          <p class="who">Ranjeeta Pattnaik, Class VIII, Chhatrapur Girls&#8217; High School, Ganjam</p>
+          <figure class="quote"><blockquote>Earlier, I used to sit on the back bench and hesitate to participate in class. My Youth Facilitator encouraged me to believe in myself. Now, I sit on the front bench, listen carefully, and try to answer questions.</blockquote><figcaption class="label">Ranjeeta</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Ranjeeta is the youngest of three daughters in a family with little money. She was struggling with her studies, sat on the back bench and rarely took part in lessons.</p></dd></div><div><dt class="label">What happened</dt><dd><p>On her school visits, the Youth Facilitator took time to talk with Ranjeeta: she should not hold herself back, and her difficulties with learning did not define what she could do. She encouraged her to move to the front, listen closely and try answering questions, and kept checking in.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Ranjeeta now sits on the front bench, listens attentively and answers questions in class. It is an early step, and the facilitator is following her progress, but it shows what individual attention and belief can start.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Rekha Nayak, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story flip" id="story-rupali">
+        <figure class="story-media"><div class="img panel teal"><span class="label">Counselling &#183; school retention</span><p>Every girl deserves the chance to learn, grow and build her future.</p></div><figcaption>No photo is shown, at her request.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Staying in school</span>
+          <h4 class="h1">From household chores back to the classroom</h4>
+          <p class="who">Rupali, Class IX, Government Girls&#8217; High School, Ganjam</p>
+          <div style="height:var(--s6)"></div>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Rupali had been missing school to look after her home and family. Each absence cost her lessons, contact with teachers and classmates, and confidence in her own learning.</p></dd></div><div><dt class="label">What happened</dt><dd><p>Her Youth Facilitator sat down with her, without blame, to understand her situation. They talked about what education gives a girl beyond exams: understanding, confidence, the ability to make her own decisions and more choices for her future. The facilitator encouraged her not to give up on school because of what she was managing at home.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Rupali started coming back to school. The facilitator is staying in touch with her, her family and the school so that she can keep attending alongside her responsibilities at home. Her story shows how Youth Facilitators spot the barriers that keep girls out of school and respond one girl at a time.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Barsha Patra, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-puja">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/puja.webp" alt="Puja Rani smiling, with classmates working at computers behind her." loading="lazy" style="object-position:50% 35%;"></div><figcaption>Puja Rani, a Peer Leader who leads Scratch sessions with her classmates.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Lead &#183; Peer Leader</span>
+          <h4 class="h1">From shyness to Best Anchor</h4>
+          <p class="who">Puja Rani Sahu, 14, Brundaban Government High School, Hinjilicut, Ganjam</p>
+          <div style="height:var(--s6)"></div>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Puja sat in the front row but was so shy she rarely answered a teacher&#8217;s question. Her doubts went unasked, and her learning and confidence suffered.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The programme&#8217;s Peer Leader model groups students into learning circles and gives some of them leadership roles. Puja was chosen as a Peer Leader. She passed on what she learned in sessions on social-emotional learning, gender and SRHR, coding and careers, and led quizzes, debates, small-group learning and Scratch coding sessions for her peers.</p></dd></div><div><dt class="label">What changed</dt><dd><p>One evening her Youth Facilitator got a WhatsApp message from her saying thank you. She had anchored the PM SHRI Mela at her school and been named Best Anchor. She credits the Peer Leader activities with helping her overcome her stage fright. Puja now wants to become a teacher, and other girls in her group have followed her lead.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Mahaprasad Mahapatra, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story flip" id="story-subhalaxmi">
+        <figure class="story-media"><div class="img panel navy"><span class="label">Mentoring beyond the classroom</span><p>&#8220;Ma&#8217;am, are you busy?&#8221;</p></div><figcaption>A message that started a learning journey.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Link &#183; Mentoring and careers</span>
+          <h4 class="h1">One WhatsApp message</h4>
+          <p class="who">Subhalaxmi Ratha, 15, Digapahandi High School, Ganjam</p>
+          <figure class="quote"><blockquote>Ma&#8217;am, which course should I start on Khan Academy? What should I begin learning now to build a better career in the future?</blockquote><figcaption class="label">Subhalaxmi, on WhatsApp</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Subhalaxmi was curious but quiet. She did not ask questions in class, join discussions or approach teachers, so the opportunities beyond the syllabus passed her by.</p></dd></div><div><dt class="label">What happened</dt><dd><p>Through STEM sessions, digital literacy, career guidance and regular mentoring, she came to trust her Youth Facilitator. Then one afternoon came a message: &#8220;Ma&#8217;am, are you busy?&#8221;, followed by her question about Khan Academy. From then on she wrote regularly, asking about careers, scholarships and online courses.</p></dd></div><div><dt class="label">What changed</dt><dd><p>In class she now raises her hand, joins discussions and looks for learning beyond the curriculum. She searches for courses herself instead of waiting to be told. &#8220;Sometimes the quietest students are the ones with the biggest dreams,&#8221; her facilitator says. &#8220;All they need is someone to listen to their questions and believe in their potential.&#8221;</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Bandana Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+    </div>
+    <div class="story-group" id="stories-stem"><p class="eyebrow label"><span class="slash"></span>Part 2 of 3</p><h3 class="display-l">Girls in STEM and coding</h3><p class="lead muted">From never having touched a computer to building, teaching and competing.</p></div>
+    <div class="stories">
+      <article class="story" id="story-monali">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/monali.webp" alt="Monali and Sonali standing side by side, smiling." loading="lazy" style="object-position:50% 30%;"></div><figcaption>Monali and Sonali, selected for Coolest Projects India.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Coding and computational thinking</span>
+          <h4 class="h1">From no computer knowledge to a national stage</h4>
+          <p class="who">Monali Padhy and Sonali Sethi, 14, Class 9, M.P.L. Girls&#8217; High School, Berhampur</p>
+          <figure class="quote"><blockquote>Learning technology and Scratch helped us discover our creativity and gave us the confidence to create something of our own.</blockquote><figcaption class="label">Monali and Sonali</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>When the sessions began, neither girl knew how a computer worked, what its parts were or what coding meant.</p></dd></div><div><dt class="label">What happened</dt><dd><p>Their Youth Facilitator started with the basics, using pictures and practical examples, and then moved on to Scratch. The two became so keen that they practised Scratch on a mobile phone in their free time. When the Raspberry Pi Foundation&#8217;s Coolest Projects India was announced in July 2026, they teamed up on an idea of their own, a &#8220;Smart Protection System&#8221;.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Their project was selected for Coolest Projects India, a national platform to show their work. In a few months they went from never having used a computer to designing their own ideas, and their selection has made them more determined to keep going in technology.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Priyanka Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story flip" id="story-nandini">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/nandini.webp" alt="Nandini smiling and holding up a handwritten chart." loading="lazy" style="object-position:50% 25%;"></div><figcaption>Nandini, who built her first Scratch project offline.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Coding without internet</span>
+          <h4 class="h1">Coding without the internet</h4>
+          <p class="who">Nandini Sahu, 15, Class 10, Digapahandi High School, Ganjam</p>
+          <div style="height:var(--s6)"></div>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Digapahandi High School is a rural school with weak internet. It runs the state&#8217;s Kaushali Pathyakrama skills course, but students had little hands-on digital practice and could not reach online coding platforms.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The team installed the offline version of Scratch on the school computers and ran hands-on sessions, introducing students to the Raspberry Pi Foundation&#8217;s Coolest Projects. Nandini had never seen Scratch before, but she came to every session and learned blocks, animation and the basics of programming step by step.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Within days she built her own project, &#8220;Earth is around the Sun&#8221;, an animation of the solar system. Her success drew classmates into the sessions, and the school saw that coding can be creative and possible even without the internet. Good offline tools and patient guidance can help close the digital divide for rural girls.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Bandana Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-maity">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/maity.webp" alt="Subhasree Maity smiling outdoors." loading="lazy" style="object-position:50% 30%;"></div><figcaption>Subhasree Maity, now a peer mentor in Scratch.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Lead &#183; Peer mentoring</span>
+          <h4 class="h1">From learner to Scratch mentor</h4>
+          <p class="who">Subhasree Maity, 15, Class 10, M.P. Girls&#8217; High School, Berhampur</p>
+          <figure class="quote"><blockquote>Learning Scratch gave me confidence. Today, I feel proud to teach younger students and share what I have learned.</blockquote><figcaption class="label">Subhasree</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>When Subhasree joined the Scratch sessions in Class 9, she had never coded and was nervous about speaking or showing her work in front of others.</p></dd></div><div><dt class="label">What happened</dt><dd><p>Over the year she learned to build Scratch projects on her own, alongside sessions on social-emotional learning, gender and hackathons. When a Scratch introduction began for the new Class 9, she walked in and said, &#8220;Ma&#8217;am, please give me a chance to teach the students.&#8221;</p></dd></div><div><dt class="label">What changed</dt><dd><p>She explained Scratch and built a project live while the younger girls joined in, finding it easier to learn from one of their own. One year&#8217;s learner had become the next year&#8217;s mentor, and peer learning is now part of how the school teaches coding.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Priyanka Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story flip" id="story-alisha">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/alisha.webp" alt="Alisha smiling, wearing a yellow T-shirt." loading="lazy" style="object-position:50% 25%;"></div><figcaption>Alisha, who now explains the technical kit to her friends.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Learn &#183; Hands-on STEM</span>
+          <h4 class="h1">Getting to know the technical kit</h4>
+          <p class="who">Alisha Rani Dakua, 13, Class 8, Brundaban Government High School, Hinjilicut, Ganjam</p>
+          <figure class="quote"><blockquote>Earlier, I was not familiar with technical kits, but now I am gradually finding them easier to understand and use. I feel excited to learn new things and explore more about technology.</blockquote><figcaption class="label">Alisha</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Alisha had never heard of a hackathon and did not know what the parts in a technical kit were or what they could make.</p></dd></div><div><dt class="label">What happened</dt><dd><p>Her Youth Facilitator walked her through the kit one part at a time, with simple explanations and demonstrations of what each component does and how it fits into a project. She practised until the names and functions stuck.</p></dd></div><div><dt class="label">What changed</dt><dd><p>The kit is getting easier for her to use, and she is curious to learn more. She has started explaining the components to her friends, a sign of real understanding, and of how hands-on learning spreads from one girl to her peers.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Mahaprasad Mahapatra, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-sonam">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/sonam.webp" alt="Sonam smiling, wearing a school medal." loading="lazy" style="object-position:50% 30%;"></div><figcaption>Sonam, who came up with the Eco-Vortex idea.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Lead &#183; Hackathon innovation</span>
+          <h4 class="h1">Big ideas from everyday things</h4>
+          <p class="who">Sonam Panigrahi, Class 9, Brundaban Government High School, Hinjilicut, Ganjam</p>
+          <figure class="quote"><blockquote>I realised that we could develop an innovative project using simple and easily available materials with a limited budget. By thinking creatively, we can turn everyday objects into useful solutions.</blockquote><figcaption class="label">Sonam</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Sonam&#8217;s STEM group wanted to build a fire safety model for the Hackathon Fair, but they had very little money and no special equipment.</p></dd></div><div><dt class="label">What happened</dt><dd><p>After the session, Sonam sent her Youth Facilitator a WhatsApp message with her own low-cost idea, which she called Eco-Vortex. It used a plastic bottle, a balloon and a bottle cap: pull and release the balloon to push a burst of air through the bottle and show how a fire safety device might work.</p></dd></div><div><dt class="label">What changed</dt><dd><p>She took ownership of the project and started a discussion in her group about building with whatever is to hand. The idea is a concept model still to be tested, not a working extinguisher. But it shows the curiosity, resourcefulness and confidence that STEM learning builds.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Mahaprasad Mahapatra, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+    </div>
+    <div class="story-group" id="stories-systems"><p class="eyebrow label"><span class="slash"></span>Part 3 of 3</p><h3 class="display-l">Schools and communities behind her</h3><p class="lead muted">Headteachers, teachers and village women who opened space for girls.</p></div>
+    <div class="stories"><article class="story flip" id="story-headmaster">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/bhopen.webp" alt="Headmaster Bhopen Kumar Mohanta seated at his desk in his school office." loading="lazy" style="object-position:50% 40%;"></div><figcaption>Bhopen Kumar Mohanta, Headmaster, Govt. Girls High School, Berhampur.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Link &#183; School leadership</span>
+          <h4 class="h1">A school leader&#8217;s journey of change</h4>
+          <p class="who">Bhopen Kumar Mohanta, Headmaster, Govt. Girls High School, Berhampur</p>
+          <figure class="quote"><blockquote>The positive changes in our girls inspired me to become a stronger supporter of the programme. Today, I see it as an important part of their holistic development.</blockquote><figcaption class="label">Bhopen Kumar Mohanta</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Government schools carry heavy academic and administrative loads, and fitting in an outside programme is not easy. When My Education, My Right arrived, the Headmaster was cautious. Sessions ran once a week, usually in the last period of the day, and he often came to observe.</p><p>He wanted to see that the programme would genuinely add to the girls' learning and development before giving it more of the school's time.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The Youth Facilitator kept sessions active and hands-on: digital literacy, Scratch programming, computational thinking, communication, career guidance and teamwork, taught through games, group work and coding projects rather than lectures.</p><p>Girls who had been hesitant began presenting their ideas and built animations, games and stories in Scratch. Seeing this, the Headmaster gave the sessions better time slots, planned timetables in advance and asked teachers to cooperate. When an exposure visit to the Govt. ITI, Berhampur was proposed, he approved it at once, arranged transport and sent two teachers with the girls.</p></dd></div><div><dt class="label">What changed</dt><dd><p>Cautious acceptance became institutional ownership. Girls now get regular STEM and life skills sessions, teachers see them speaking up and leading in group work, and the ITI visit opened up technical and vocational careers many had not pictured before.</p><p>The Headmaster now champions activity-based learning. When school leaders see real change in their students, they become powerful allies in making the school a place where girls explore technology and prepare for their futures.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Anita Chanda, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-minati">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/minati.webp" alt="Headmistress Minati Kumari Patro seated at her desk." loading="lazy" style="object-position:50% 25%;"></div><figcaption>Minati Kumari Patro, Headmistress, Government Girls High School, Aska.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Link &#183; School leadership</span>
+          <h4 class="h1">A headmistress who came to see STEM for herself</h4>
+          <p class="who">Minati Kumari Patro, Headmistress, Government Girls High School, Aska</p>
+          <div style="height:var(--s6)"></div>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>The Headmistress knew that STEM activities happened now and then, with different people visiting her school, but not what the programme was for or how it helped her students.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The Youth Facilitator met her regularly, explained the upcoming Scratch classes and showed how coding through games, animation and stories builds skills. The Headmistress was pleased, and as the sessions went on she watched them for herself.</p></dd></div><div><dt class="label">What changed</dt><dd><p>She now asks about upcoming sessions, wants to be in the room when they run, and invites the facilitator to school functions. Telling school leaders what is happening is not enough: they need to see the value with their own eyes.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Barsha Patra, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story flip" id="story-susuma">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/susuma.webp" alt="Susuma Sahu smiling, wearing glasses and a saree." loading="lazy" style="object-position:50% 25%;"></div><figcaption>Susuma Sahu, Sanskrit teacher, M.P. Girls&#8217; High School.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Link &#183; Teachers as partners</span>
+          <h4 class="h1">When the screen went dark</h4>
+          <p class="who">Susuma Sahu, Sanskrit teacher, M.P. Girls&#8217; High School, Berhampur</p>
+          <div style="height:var(--s6)"></div>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>Halfway through a Scratch session with Class 9, the classroom smart panel stopped working, and the lesson depended on live demonstrations.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The Youth Facilitator told Mrs. Susuma Sahu, a Sanskrit teacher, who called a technician straight away. The panel was fixed within minutes.</p></dd></div><div><dt class="label">What changed</dt><dd><p>The session went ahead and the girls learned through live demonstrations as planned. Small acts like this, from teachers who see the sessions as part of their school, keep learning going.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Priyanka Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+      <article class="story" id="story-sabita">
+        <figure class="story-media"><div class="img"><img src="../assets/img/stories/sabita.webp" alt="Community members gathered for an International Day of the Girl Child event under a banner." loading="lazy" style="object-position:50% 40%;"></div><figcaption>International Day of the Girl Child in Olapur village.</figcaption></figure>
+        <div class="story-body">
+          <span class="label kind">Link &#183; Community engagement</span>
+          <h4 class="h1">Finding her voice for girls&#8217; rights</h4>
+          <p class="who">Sabita Maharana, 40, Olapur village, Chikiti block, Ganjam</p>
+          <figure class="quote"><blockquote>Initially, I felt shy and afraid to speak in front of the people in my village. With this support, I gained the courage to participate. This experience taught me that expressing our thoughts and sharing our opinions about girls&#8217; rights is important.</blockquote><figcaption class="label">Sabita</figcaption></figure>
+          <dl class="arc"><div><dt class="label">The challenge</dt><dd><p>At Olapur&#8217;s International Day of the Girl Child event, villagers were reluctant to speak about girls&#8217; rights in front of neighbours they knew, even with the Anganwadi worker there.</p></dd></div><div><dt class="label">What happened</dt><dd><p>The Youth Facilitator changed her approach. She wrote prompts on a drawing sheet so people knew what they might say, explained the activity simply and encouraged people one by one, without pressure. Sabita came forward and spoke.</p></dd></div><div><dt class="label">What changed</dt><dd><p>One woman speaking up opened the conversation for others. Changing norms for girls means making it comfortable for the women around them to talk about girls&#8217; education, safety and rights.</p></dd></div></dl>
+          <p class="credit small muted">Recorded by Bandana Sahu, Youth Facilitator, My Education, My Right &#183; Odisha.</p>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 

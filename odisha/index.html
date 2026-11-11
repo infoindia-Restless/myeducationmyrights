@@ -419,6 +419,53 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .cards-photo .img { aspect-ratio:auto; flex:1; min-height:320px; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
 @media (max-width:860px) { .cards.single { grid-template-columns:1fr; } .cards-photo .img { min-height:240px; } }
 .steps-tight { grid-template-columns:1fr; gap:var(--s6); }
+.story-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s8); border-top:3px solid var(--ink); padding-top:var(--s4); margin-bottom:var(--s16); }
+.story-index > div > .label { margin:0 0 var(--s3); color:var(--learn-text); }
+.story-index ol { list-style:none; margin:0; padding:0; }
+.story-index li a { display:block; padding:var(--s3) 0; border-bottom:1px solid var(--hairline); text-decoration:none; }
+.story-index li a b { display:block; font:700 17px/22px var(--font-display); }
+.story-index li a span { font-size:14px; line-height:20px; color:var(--ink-muted); }
+.story-index li a:hover b { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:3px; text-decoration-color:var(--highlight); }
+.story-group { margin:var(--s16) 0 var(--s8); scroll-margin-top:96px; }
+.story-group:first-of-type { margin-top:0; }
+.story-group .display-l { margin-bottom:var(--s3); }
+.story-media .panel.teal { background:var(--learn); color:var(--on-learn); }
+.story-media .panel.navy { background:var(--navy); color:var(--on-navy); }
+@media (max-width:860px) { .story-index { grid-template-columns:1fr; gap:var(--s6); } }
+/* stories of change */
+.stories { display:grid; gap:var(--s16); }
+.story { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); align-items:start; border-top:3px solid var(--ink); padding-top:var(--s8); scroll-margin-top:96px; }
+.story.flip { grid-template-columns:minmax(0,7fr) minmax(0,5fr); }
+.story.flip .story-media { order:2; }
+.story-media { margin:0; position:sticky; top:96px; }
+.story-media .img { position:relative; aspect-ratio:4/5; overflow:hidden; clip-path:polygon(14% 0,100% 0,100% 100%,0 100%); background:var(--learn); }
+.story.flip .story-media .img { clip-path:polygon(0 0,86% 0,100% 100%,0 100%); }
+.story-media .img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.story-media .img::after { content:""; position:absolute; left:0; right:0; bottom:0; height:10px; background:var(--highlight); }
+.story-media .panel { display:flex; flex-direction:column; justify-content:flex-end; gap:var(--s4); padding:var(--s8) var(--s6) var(--s8) 22%; background:var(--lead); color:var(--on-lead); }
+.story-media .panel p { margin:0; font:italic 600 clamp(24px, 2.6vw, 32px)/1.2 var(--font-serif); text-wrap:balance; }
+.story-media .panel .label { opacity:.9; }
+.story-media figcaption { margin-top:var(--s3); font-size:14px; line-height:20px; color:var(--ink-muted); }
+.story-body .label.kind { color:var(--learn-text); }
+.story-body .h1 { margin:var(--s2) 0 var(--s3); }
+.story-body .who { margin:0; color:var(--ink-muted); font-size:16px; line-height:24px; }
+.story .quote { margin:var(--s8) 0; }
+.story .quote blockquote { font-size:clamp(21px, 2.4vw, 26px); }
+.arc { margin:0; border-top:1px solid var(--hairline); }
+.arc > div { display:grid; grid-template-columns:9.5em minmax(0,1fr); gap:var(--s6); padding:var(--s4) 0; border-bottom:1px solid var(--hairline); }
+.arc dt { color:var(--learn-text); padding-top:3px; }
+.arc dd { margin:0; font-size:16px; line-height:24px; }
+.arc dd p { margin:0 0 var(--s3); max-width:38em; }
+.arc dd p:last-child { margin-bottom:0; }
+.story .credit { margin:var(--s4) 0 0; }
+@media (max-width:860px) {
+  .story, .story.flip { grid-template-columns:1fr; gap:var(--s6); }
+  .story.flip .story-media { order:0; }
+  .story-media { position:static; }
+  .story-media .img, .story.flip .story-media .img { aspect-ratio:4/3; clip-path:polygon(10% 0,100% 0,100% 100%,0 100%); }
+  .story-media .panel { aspect-ratio:auto; min-height:220px; padding-left:16%; }
+  .arc > div { grid-template-columns:1fr; gap:var(--s2); }
+}
 </style>
 <style>[hidden]{display:none!important} body{margin:0} .skip{position:absolute;left:-999px;top:0} .skip:focus{left:16px;top:16px;z-index:50;background:var(--paper);padding:8px 12px}</style>
 </head>
@@ -445,7 +492,7 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
       <h1 class="ptitle-hero">My Education,<br><em>My Right</em></h1>
       <div class="row" style="margin-bottom:var(--s6);"><span class="tag filled"><span class="slash"></span>Odisha <small>Ganjam</small></span></div>
       <p class="lead" style="margin-bottom:var(--s4);">Adolescent girls from tribal and marginalised communities in Classes 8 to 10 stay in education and build the knowledge, confidence, skills and aspirations to pursue STEM and beyond.</p>
-      <p class="muted small" style="margin:0 0 var(--s8);">Implemented by Restless Development India with support from the L&#8217;Or&#233;al Fund for Women, January 2025 to December 2026. Results below are from Year 1 (January to November 2025). The Year 2 endline is under way.</p>
+      <p class="muted small" style="margin:0 0 var(--s8);">Implemented by Restless Development India with support from the L&#8217;Or&#233;al Fund for Women. Phase 1 ran from January 2023 to June 2024; Phase 2 runs from January 2025 to December 2026. Results below are from Year 1 of Phase 2 (January to November 2025). The Year 2 endline is under way.</p>
       <div class="row gap"><a class="btn" href="#odisha-findings">See the findings</a><a class="btn outline" href="#odisha-legacy">What the programme leaves</a></div>
     </div>
     <figure class="photo">
@@ -483,7 +530,7 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
     <div class="chart-legend"><span><i class="dot pre"></i>Pre test, Jul 2025 (n = 2,016)</span><span><i class="dot post"></i>Post test, Dec 2025 (n = 1,998)</span></div>
     <div class="chart-wrap"><div class="chart" role="table" aria-label="Pre and post test results"></div></div>
     <p class="small muted chart-note">Selected items. Source: MEMR Year 1 Pre and Post Intervention Test. pp = percentage points.</p>
-    <p class="endline"><span class="chip">Under way</span>Year 2 endline. Results for the full programme, January 2025 to December 2026, will be added when the analysis is complete.</p>
+    <p class="endline"><span class="chip">Under way</span>Year 2 endline. Results for the whole of Phase 2, January 2025 to December 2026, will be added when the analysis is complete.</p>
   </div>
 </section>
 
@@ -542,10 +589,25 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
   </div>
 </section>
 
+<section class="doors-sec" id="odisha-stories" style="padding-top:var(--s16);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Stories of change</p><h2 class="h1">In their own words</h2></div>
+      <p class="lead muted">15 stories documented by Youth Facilitators in Ganjam: how girls, families and schools changed.</p>
+    </div>
+    <div class="doors">
+      <a class="door" href="../voices/#story-subhashree"><span class="label">Learn &#183; Career awareness</span><span class="h2">Dancing towards her dream</span><p>With her parents now behind her, Subhashree, 15, trains in Odissi and performs on stage while staying in school.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
+      <a class="door" href="../voices/#story-monali"><span class="label">Learn &#183; Coding</span><span class="h2">From no computer knowledge to a national stage</span><p>Monali and Sonali learned Scratch from scratch, and their project was selected for Coolest Projects India.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
+      <a class="door" href="../voices/#story-headmaster"><span class="label">Link &#183; School leadership</span><span class="h2">A school leader&#8217;s journey of change</span><p>A cautious headmaster in Berhampur became the programme&#8217;s champion, and took his students to the Govt. ITI.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
+    </div>
+    <div class="row" style="margin-top:var(--s8);"><a class="btn outline" href="../voices/#stories">Read all 15 stories</a></div>
+  </div>
+</section>
+
 <section id="odisha-legacy">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow label"><span class="slash"></span>January 2025 to December 2026</p><h2 class="h1">What the programme <span class="hl">leaves</span> behind</h2></div>
+      <div><p class="eyebrow label"><span class="slash"></span>Phase 1: Jan 2023 to Jun 2024 &#183; Phase 2: Jan 2025 to Dec 2026</p><h2 class="h1">What the programme <span class="hl">leaves</span> behind</h2></div>
       <p class="lead muted">My Education, My Right · Odisha closes in December 2026. These are the tools, people and relationships it has built, ready for schools, government and new partners to use.</p>
     </div>
     <ul class="legacy">
