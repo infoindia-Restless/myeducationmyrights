@@ -531,6 +531,49 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 }
 @media (prefers-reduced-motion: reduce) { .nav a { transition:none; } .nav a:hover { transform:none; } }
 </style>
+<style id="spacing-css">
+/* section rhythm: a little tighter, and tighter still where two sections share a background */
+section { padding-block:72px; }
+.doors-sec { padding-block:var(--s12) var(--s16); }
+section.join { padding-top:var(--s6) !important; }
+.ripple-grid .h1 { margin-bottom:var(--s4); }
+@media (max-width:720px) { section { padding-block:48px; } .doors-sec { padding-block:var(--s8) var(--s12); } section.join { padding-top:var(--s4) !important; } }
+@media (max-width:1000px) { .stairs { padding-top:140px; } .stair.s0 { --h:372px; } .stair.s1 { --h:410px; } .stair.s2 { --h:450px; } .stair.s3 { --h:490px; } .stair.s4 { --h:530px; } }
+@media (max-width:720px) { .hero { padding-bottom:var(--s12); } }
+</style>
+<style id="ripple-css">
+/* one girl to whole systems: concentric rings */
+.ripple-grid { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:var(--s12); align-items:center; }
+.ripple-fig { max-width:520px; width:100%; justify-self:center; }
+.ripple-fig svg { display:block; width:100%; height:auto; overflow:visible; }
+.ripple-fig .c3 { fill:var(--link); } .ripple-fig .c2 { fill:var(--lead); } .ripple-fig .c1 { fill:var(--learn); }
+.ripple-fig .rt { font:800 15px/1 var(--font-text); letter-spacing:.16em; }
+.ripple-fig .rt.dark { fill:#0e1a22; } .ripple-fig .rt.light { fill:#ffffff; } .ripple-fig .rt.center { text-anchor:middle; font-size:13px; }
+.ripple-fig .ico.dark { fill:#0e1a22; opacity:.55; } .ripple-fig .ico.light { fill:#ffffff; opacity:.7; }
+.ripple-fig .ring { transform-box:view-box; transform-origin:260px 260px; transition:opacity .35s ease; cursor:default; }
+.ripple-fig .wave { fill:none; stroke:#ffffff; stroke-width:3; opacity:0; transform-box:view-box; transform-origin:260px 260px; pointer-events:none; }
+#ripple .ripple-fig[data-focus="1"] .ring:not(.r1), #ripple .ripple-fig[data-focus="2"] .ring:not(.r2), #ripple .ripple-fig[data-focus="3"] .ring:not(.r3) { opacity:.3; }
+#ripple .ripple-fig[data-focus="2"] .ring.r1, #ripple .ripple-fig[data-focus="3"] .ring.r1, #ripple .ripple-fig[data-focus="3"] .ring.r2 { opacity:.55; }
+.levels { list-style:none; margin:var(--s8) 0 0; padding:0; border-top:3px solid var(--ink); }
+.levels li { display:grid; grid-template-columns:56px minmax(0,1fr); gap:var(--s4); padding:var(--s4) var(--s3) var(--s4) 0; border-bottom:1px solid var(--hairline); cursor:default; transition:background-color .25s ease; }
+.levels li b { font:800 30px/30px var(--font-display); font-stretch:112%; font-variant-numeric:tabular-nums; }
+.levels li[data-l="1"] b { color:var(--learn-text); } .levels li[data-l="2"] b { color:var(--lead-text); } .levels li[data-l="3"] b { color:#b07a12; }
+.levels li .h3 { margin:0 0 4px; }
+.levels li p { margin:0; font-size:16px; line-height:24px; color:var(--ink-muted); }
+.levels li.on { background:var(--chalk); }
+.levels li:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+/* growth, then the ripple keeps spreading */
+.ripple-anim .ring { transform:scale(0); opacity:0; }
+.ripple-anim .levels li { opacity:0; transform:translateY(16px); }
+.ripple-anim.grown .ring { transform:scale(1); opacity:1; transition:transform 1s cubic-bezier(.2,.8,.2,1.15), opacity .5s ease; }
+.ripple-anim.grown .ring.r2 { transition-delay:.7s; } .ripple-anim.grown .ring.r3 { transition-delay:1.4s; }
+.ripple-anim.grown .levels li { opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease, background-color .25s ease; }
+.ripple-anim.grown .levels li[data-l="2"] { transition-delay:.7s, .7s, 0s; } .ripple-anim.grown .levels li[data-l="3"] { transition-delay:1.4s, 1.4s, 0s; }
+.ripple-anim.grown .wave { animation:rp-wave 3.2s ease-out 2.6s infinite; } .ripple-anim.grown .wave.w2 { animation-delay:4.2s; }
+@keyframes rp-wave { 0% { transform:scale(1); opacity:.9; } 100% { transform:scale(2.6); opacity:0; } }
+#ripple.settled .ring { transition:opacity .35s ease !important; transition-delay:0s !important; }
+@media (max-width:860px) { .ripple-grid { grid-template-columns:1fr; gap:var(--s8); } .ripple-fig { max-width:360px; } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -752,6 +795,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section id="ripple">
+  <div class="wrap ripple-grid">
+    <div class="ripple-fig" aria-hidden="true">
+      <svg viewBox="0 0 520 520">
+        <defs>
+          <path id="rp-out" d="M 45 260 A 215 215 0 0 1 475 260"/>
+          <path id="rp-mid" d="M 120 260 A 140 140 0 0 1 400 260"/>
+        </defs>
+        <g class="ring r3" data-l="3"><circle cx="260" cy="260" r="250" class="c3"/><text class="rt dark"><textPath href="#rp-out" startOffset="50%" text-anchor="middle">THE SYSTEMS AROUND HER</textPath></text>
+          <g class="ico dark"><circle cx="78" cy="330" r="7"/><circle cx="442" cy="330" r="7"/><circle cx="130" cy="430" r="7"/><circle cx="390" cy="430" r="7"/><circle cx="260" cy="478" r="7"/></g></g>
+        <g class="ring r2" data-l="2"><circle cx="260" cy="260" r="175" class="c2"/><text class="rt light"><textPath href="#rp-mid" startOffset="50%" text-anchor="middle">HER SCHOOL AND COMMUNITY</textPath></text>
+          <g class="ico light"><circle cx="150" cy="330" r="6"/><circle cx="370" cy="330" r="6"/><circle cx="200" cy="395" r="6"/><circle cx="320" cy="395" r="6"/></g></g>
+        <g class="ring r1" data-l="1"><circle cx="260" cy="260" r="100" class="c1"/>
+          <g class="girl-mini" transform="translate(238 196) scale(.8)">
+            <path d="M25 21 C18 26 15 38 17 50" stroke="#1d1712" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M22 37 Q30 33.5 38 37 L43.5 85 Q30 89 16.5 85 Z" fill="#ffffff"/>
+            <path d="M37 37.5 L20 63 L24.5 65 L39.5 41 Z" fill="#e7a839"/>
+            <path d="M27 82 L26 108" stroke="#f4f1ea" stroke-width="7" stroke-linecap="round"/><path d="M33 82 L34 108" stroke="#f4f1ea" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="31" cy="22" r="11" fill="#8a5a3c"/>
+            <path d="M20.2 23.5 C18.6 13 26.5 9.4 32 9.6 C38.2 9.9 43.3 14.4 42.2 20 C38.5 15.8 33.6 15.6 28.5 17.4 C24.8 18.8 22.2 20.6 20.2 23.5 Z" fill="#1d1712"/>
+          </g>
+          <text x="260" y="330" class="rt light center">ONE GIRL</text></g>
+        <circle cx="260" cy="260" r="100" class="wave"/>
+        <circle cx="260" cy="260" r="100" class="wave w2"/>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow label"><span class="slash"></span>How change spreads</p>
+      <h2 class="h1">From one girl to whole <span class="hl">systems</span></h2>
+      <p class="lead muted">Change has to hold at every level, or it does not last past Class 10. It starts with one girl and widens until the systems around her change too.</p>
+      <ol class="levels">
+        <li data-l="1"><b>01</b><div><h3 class="h3">One girl</h3><p>She gains the knowledge, confidence and skills to stay in school and aim for STEM, and she knows her rights.</p></div></li>
+        <li data-l="2"><b>02</b><div><h3 class="h3">Her school and community</h3><p>Teachers, parents and peers back her learning, her safety and her ambitions.</p></div></li>
+        <li data-l="3"><b>03</b><div><h3 class="h3">The systems around her</h3><p>Education authorities, ITIs, colleges and employers open pathways and are held to account for every girl&#8217;s right to learn.</p></div></li>
+      </ol>
+    </div>
+  </div>
+<script>
+(function () {
+  var sec = document.getElementById("ripple"); if (!sec) return;
+  var fig = sec.querySelector(".ripple-fig"), items = sec.querySelectorAll(".levels li");
+  function focus(l) { fig.setAttribute("data-focus", l || ""); items.forEach(function (li) { li.classList.toggle("on", li.getAttribute("data-l") === l); }); }
+  items.forEach(function (li) { var l = li.getAttribute("data-l"); li.tabIndex = 0;
+    li.addEventListener("mouseenter", function () { focus(l); }); li.addEventListener("focus", function () { focus(l); });
+    li.addEventListener("mouseleave", function () { focus(""); }); li.addEventListener("blur", function () { focus(""); }); });
+  sec.querySelectorAll(".ring").forEach(function (g) { g.addEventListener("mouseenter", function () { focus(g.getAttribute("data-l")); }); g.addEventListener("mouseleave", function () { focus(""); }); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) { sec.classList.add("grown", "settled"); return; }
+  sec.classList.add("ripple-anim");
+  var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); sec.classList.add("grown"); setTimeout(function () { sec.classList.add("settled"); }, 2600); } }, { threshold: 0.3 });
+  io.observe(fig);
+})();
+</script>
+</section>
+
+
 <nav class="pager" aria-label="Next page"><div class="wrap"><a href="../impact/"><span class="label muted">Next</span><span class="h1">Impact</span><span class="arrow" aria-hidden="true">&#8594;</span></a></div></nav>
 </main>
 <footer class="site-foot">
@@ -911,6 +1010,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   root.querySelectorAll(".hl").forEach(function (h) { if (!h.closest(".hero-split")) { h.classList.add("rv-hl"); els.push(h); } });
   var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
   els.forEach(function (el) { rio.observe(el); });
+})();
+</script>
+<script id="spacing-js">
+(function () {
+  function bg(el) { var c = getComputedStyle(el).backgroundColor; return c === "rgba(0, 0, 0, 0)" || c === "transparent" ? "paper" : c; }
+  function fix(scope) {
+    var kids = [].filter.call(scope.children, function (e) { return e.tagName === "SECTION" || e.tagName === "HEADER"; });
+    for (var i = 1; i < kids.length; i++) {
+      var a = kids[i - 1], b = kids[i];
+      if (b.tagName !== "SECTION" || a.tagName === "HEADER") continue;
+      if (/hero-split|supporter-band/.test(a.className + " " + b.className)) continue;
+      if (bg(a) === bg(b)) b.classList.add("join");
+    }
+  }
+  var views = document.querySelectorAll(".view");
+  if (views.length) views.forEach(fix); else fix(document.querySelector("main") || document.body);
 })();
 </script>
 </body>

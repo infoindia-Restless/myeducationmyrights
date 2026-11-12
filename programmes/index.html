@@ -462,6 +462,16 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 }
 @media (prefers-reduced-motion: reduce) { .nav a { transition:none; } .nav a:hover { transform:none; } }
 </style>
+<style id="spacing-css">
+/* section rhythm: a little tighter, and tighter still where two sections share a background */
+section { padding-block:72px; }
+.doors-sec { padding-block:var(--s12) var(--s16); }
+section.join { padding-top:var(--s6) !important; }
+.ripple-grid .h1 { margin-bottom:var(--s4); }
+@media (max-width:720px) { section { padding-block:48px; } .doors-sec { padding-block:var(--s8) var(--s12); } section.join { padding-top:var(--s4) !important; } }
+@media (max-width:1000px) { .stairs { padding-top:140px; } .stair.s0 { --h:372px; } .stair.s1 { --h:410px; } .stair.s2 { --h:450px; } .stair.s3 { --h:490px; } .stair.s4 { --h:530px; } }
+@media (max-width:720px) { .hero { padding-bottom:var(--s12); } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -670,6 +680,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   root.querySelectorAll(".hl").forEach(function (h) { if (!h.closest(".hero-split")) { h.classList.add("rv-hl"); els.push(h); } });
   var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
   els.forEach(function (el) { rio.observe(el); });
+})();
+</script>
+<script id="spacing-js">
+(function () {
+  function bg(el) { var c = getComputedStyle(el).backgroundColor; return c === "rgba(0, 0, 0, 0)" || c === "transparent" ? "paper" : c; }
+  function fix(scope) {
+    var kids = [].filter.call(scope.children, function (e) { return e.tagName === "SECTION" || e.tagName === "HEADER"; });
+    for (var i = 1; i < kids.length; i++) {
+      var a = kids[i - 1], b = kids[i];
+      if (b.tagName !== "SECTION" || a.tagName === "HEADER") continue;
+      if (/hero-split|supporter-band/.test(a.className + " " + b.className)) continue;
+      if (bg(a) === bg(b)) b.classList.add("join");
+    }
+  }
+  var views = document.querySelectorAll(".view");
+  if (views.length) views.forEach(fix); else fix(document.querySelector("main") || document.body);
 })();
 </script>
 </body>
