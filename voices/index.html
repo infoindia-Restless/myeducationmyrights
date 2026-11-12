@@ -15,6 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-EM7862WSJM');
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="mailto:"]'); if (a) gtag('event', 'contact_click', { link_url: a.href, page_path: location.pathname }); });
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -893,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var root = document.getElementById("stories"); if (!root) return;
   var btns = root.querySelectorAll(".story-filters button"), cards = root.querySelectorAll(".scard");
   btns.forEach(function (b) { b.addEventListener("click", function () {
-    var g = b.getAttribute("data-group");
+    var g = b.getAttribute("data-group"); if (window.gtag) gtag("event", "story_filter", { story_group: g });
     btns.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
     cards.forEach(function (c) { c.hidden = g !== "all" && c.getAttribute("data-group") !== g; });
   }); });
@@ -902,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var id = (location.hash || "").slice(1), d = id.indexOf("story-") === 0 ? document.getElementById(id) : null;
     if (d && d.tagName !== "DIALOG") d = null;
     dialogs.forEach(function (x) { if (x.open && x !== d) { x.setAttribute("data-quiet", "1"); x.close(); } });
-    if (d && !d.open) { if (d.showModal) d.showModal(); else d.setAttribute("open", ""); d.scrollTop = 0; }
+    if (d && !d.open) { if (d.showModal) d.showModal(); else d.setAttribute("open", ""); d.scrollTop = 0; if (window.gtag) gtag("event", "story_open", { story_id: d.id.replace("story-", "") }); }
   }
   dialogs.forEach(function (d) {
     d.addEventListener("close", function () {

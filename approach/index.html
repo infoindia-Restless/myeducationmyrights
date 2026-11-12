@@ -15,6 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-EM7862WSJM');
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="mailto:"]'); if (a) gtag('event', 'contact_click', { link_url: a.href, page_path: location.pathname }); });
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -697,9 +698,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     girl.classList.remove("walking", "airborne"); cur = 0; scroller.scrollLeft = 0; place(0); light(0);
   }
   function start() { reset(); if (reduce) { cur = last; place(last); light(last); return; } var id = run; setTimeout(function () { if (id === run) climb(last, 700); }, 700); }
-  sec.querySelector(".replay").addEventListener("click", start);
+  sec.querySelector(".replay").addEventListener("click", function () { if (window.gtag) gtag("event", "toc_replay"); start(); });
   steps.forEach(function (s, i) {
-    function go() { climb(i, 250); }
+    function go() { if (window.gtag) gtag("event", "toc_step", { step: i }); climb(i, 250); }
     s.addEventListener("click", go);
     s.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
   });
