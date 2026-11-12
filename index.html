@@ -476,6 +476,20 @@ em.rot .rcaret { display:inline-block; width:.06em; height:.8em; margin-left:.06
 .count { font-variant-numeric:tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .js-motion .rv, .js-motion .rv-zoom { opacity:1; transform:none; transition:none; } .js-motion .rv-hl::before { transform:skewX(calc(var(--slant) * -1)); transition:none; } }
 </style>
+<style id="nav-css">
+/* menu: contrasting slanted buttons */
+.nav { gap:var(--s2); align-items:center; }
+.nav a { padding:9px 16px 8px; background:var(--ink); color:var(--paper); border:0; clip-path:polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%); transition:background-color .2s ease, color .2s ease, transform .2s ease; }
+.nav a:hover { background:var(--paper); color:var(--ink); transform:translateY(-1px); }
+.nav a[aria-current="page"] { background:var(--highlight); color:var(--on-link); }
+.nav a:focus-visible { outline:3px solid var(--focus-on-dark); outline-offset:2px; clip-path:none; }
+.menu-btn { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+@media (max-width:860px) {
+  .nav { gap:var(--s2); padding-top:var(--s3); align-items:stretch; }
+  .nav a { clip-path:none; padding:var(--s3) var(--s4); border-bottom:0; }
+}
+@media (prefers-reduced-motion: reduce) { .nav a { transition:none; } .nav a:hover { transform:none; } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -579,6 +593,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption>Girls with the prototypes they built, Ganjam.</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<section class="band-navy numbers-band" id="year-one">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Year 1 in numbers &#183; Ganjam</p><h2 class="h1">What one year of the programme looks like</h2></div>
+      <p class="lead" style="color:var(--on-navy-muted);">My Education, My Right &#183; Odisha, January to November 2025. Every figure comes from the Year 1 report.</p>
+    </div>
+    <div class="stats">
+      <div class="stat-cell"><span class="stat">2,260</span><p>Girls reached<span>In Classes 8 to 10, plus 600 boys</span></p></div>
+      <div class="stat-cell"><span class="stat">18</span><p>Schools<span>Across 9 blocks of Ganjam</span></p></div>
+      <div class="stat-cell"><span class="stat">252</span><p>Parents engaged<span>Through Parent Teacher Meetings</span></p></div>
+      <div class="stat-cell"><span class="stat">32</span><p>Prototypes built by girls<span>At ideathons and hackathons</span></p></div>
+    </div>
+    <div class="row" style="margin-top:var(--s8);"><a class="btn on-dark" href="impact/">See the Year 1 results</a></div>
   </div>
 </section>
 
@@ -732,14 +762,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (el.__parts || el.children.length) return !!el.__parts;
     var parts = el.textContent.split(NUM); if (parts.length < 3) return false;
     for (var k = 1; k < parts.length; k += 2) { var raw = parts[k]; if (!raw.includes(",") && +raw >= 1900 && +raw <= 2100) return false; }
+    el.__fixed = parts.map(function (p, k) { return k % 2 === 1 && /(Year|Phase|Class|Classes|Article|Step)\s*$/i.test(parts[k - 1]); });
     el.__parts = parts; el.classList.add("count"); paint(el, 0); return true;
   }
   function fmt(raw, x) { var dec = (raw.split(".")[1] || "").length, s = x.toFixed(dec); return raw.includes(",") ? Number(s).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s; }
-  function paint(el, e) { el.textContent = el.__parts.map(function (p, k) { return k % 2 ? fmt(p, parseFloat(p.replace(/,/g, "")) * e) : p; }).join(""); }
+  function paint(el, e) { el.textContent = el.__parts.map(function (p, k) { return k % 2 && !el.__fixed[k] ? fmt(p, parseFloat(p.replace(/,/g, "")) * e) : p; }).join(""); }
   function roll(el, dur) { if (!el.__parts || el.__done) return; el.__done = true; var t0 = null; dur = dur || 1600;
     (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur); paint(el, 1 - Math.pow(1 - p, 3)); if (p < 1) requestAnimationFrame(step); })(performance.now()); }
   var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { nio.unobserve(e.target); roll(e.target); } }); }, { threshold: 0.4 });
-  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b").forEach(function (el) { if (prep(el)) nio.observe(el); });
+  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b, .door .h2, .strip .wrap > span:not(.chip)").forEach(function (el) { if (prep(el)) nio.observe(el); });
   /* staircase evidence rolls when she lands on the step */
   document.querySelectorAll(".stair .out strong").forEach(function (el) {
     if (!prep(el)) return; var st = el.closest(".stair");
