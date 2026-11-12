@@ -625,23 +625,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduce || !("IntersectionObserver" in window)) return;
   document.documentElement.classList.add("js-motion");
-  /* 1. rolling numbers */
-  var nums = document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b");
-  var re = /^(\D*?)(\d[\d,]*(?:\.\d+)?)(\D*)$/;
-  function run(el) {
-    var m = el.__m, end = m.v, dur = 1600, t0 = null;
-    function fmt(x) { var s = m.dec ? x.toFixed(m.dec) : String(Math.round(x)); if (m.comma) s = Number(s).toLocaleString("en-US", { minimumFractionDigits: m.dec, maximumFractionDigits: m.dec }); return m.pre + s + m.post; }
-    function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(end * e); if (p < 1) requestAnimationFrame(step); }
-    requestAnimationFrame(step);
+  /* 1. rolling numbers: every figure in the element rolls; anything with a year is left alone */
+  var NUM = /(\d[\d,]*(?:\.\d+)?)/;
+  function prep(el) {
+    if (el.__parts || el.children.length) return !!el.__parts;
+    var parts = el.textContent.split(NUM); if (parts.length < 3) return false;
+    for (var k = 1; k < parts.length; k += 2) { var raw = parts[k]; if (!raw.includes(",") && +raw >= 1900 && +raw <= 2100) return false; }
+    el.__parts = parts; el.classList.add("count"); paint(el, 0); return true;
   }
-  var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { nio.unobserve(e.target); run(e.target); } }); }, { threshold: 0.4 });
-  nums.forEach(function (el) {
-    if (el.children.length) return;
-    var txt = el.textContent.trim(), m = txt.match(re); if (!m) return;
-    var raw = m[2], v = parseFloat(raw.replace(/,/g, ""));
-    if (!raw.includes(",") && v >= 1900 && v <= 2100) return;
-    el.__m = { pre: m[1], post: m[3], v: v, comma: raw.includes(","), dec: (raw.split(".")[1] || "").length };
-    el.classList.add("count"); el.textContent = el.__m.pre + "0" + el.__m.post; nio.observe(el);
+  function fmt(raw, x) { var dec = (raw.split(".")[1] || "").length, s = x.toFixed(dec); return raw.includes(",") ? Number(s).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }) : s; }
+  function paint(el, e) { el.textContent = el.__parts.map(function (p, k) { return k % 2 ? fmt(p, parseFloat(p.replace(/,/g, "")) * e) : p; }).join(""); }
+  function roll(el, dur) { if (!el.__parts || el.__done) return; el.__done = true; var t0 = null; dur = dur || 1600;
+    (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur); paint(el, 1 - Math.pow(1 - p, 3)); if (p < 1) requestAnimationFrame(step); })(performance.now()); }
+  var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { nio.unobserve(e.target); roll(e.target); } }); }, { threshold: 0.4 });
+  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b").forEach(function (el) { if (prep(el)) nio.observe(el); });
+  /* staircase evidence rolls when she lands on the step */
+  document.querySelectorAll(".stair .out strong").forEach(function (el) {
+    if (!prep(el)) return; var st = el.closest(".stair");
+    var mo = new MutationObserver(function () { if (st.classList.contains("on")) { mo.disconnect(); roll(el, 1200); } });
+    mo.observe(st, { attributes: true, attributeFilter: ["class"] });
+  });
+  /* before-and-after chart: the after dot travels out from the before value */
+  document.querySelectorAll(".chart").forEach(function (chart) {
+    var rows = [].slice.call(chart.querySelectorAll(".crow")).map(function (r) {
+      var m = (r.querySelector(".track").getAttribute("aria-label") || "").match(/(\d+)% before, (\d+)% after/); if (!m) return null;
+      var o = { pre: +m[1], post: +m[2], seg: r.querySelector(".seg"), dot: r.querySelector(".p.post"), v: r.querySelector(".v.post"), d: r.querySelector(".delta") };
+      o.seg.style.width = "0%"; o.dot.style.left = o.v.style.left = o.pre + "%"; o.v.textContent = o.pre; o.d.textContent = "+0 pp"; return o;
+    }).filter(Boolean);
+    if (!rows.length) return;
+    var cio = new IntersectionObserver(function (es) { if (!es[0].isIntersecting) return; cio.disconnect();
+      rows.forEach(function (o, k) { var t0 = null, dur = 1300, delay = k * 90;
+        function step(t) { if (!t0) t0 = t + delay; var p = Math.max(0, Math.min(1, (t - t0) / dur)), e = 1 - Math.pow(1 - p, 3), x = o.pre + (o.post - o.pre) * e;
+          o.seg.style.width = (x - o.pre) + "%"; o.dot.style.left = o.v.style.left = x + "%"; o.v.textContent = Math.round(x); o.d.textContent = "+" + Math.round(x - o.pre) + " pp";
+          if (p < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step); });
+    }, { threshold: 0.25 });
+    cio.observe(chart);
   });
   /* 2. scroll reveals on the home page */
   var root = document.querySelector(".hero-split") ? document.body : null; if (!root) return;
