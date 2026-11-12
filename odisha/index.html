@@ -19,6 +19,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<style id="phase1-css">
+/* programme journey: two phases on one time axis */
+.journey { border-top:3px solid var(--ink); padding-top:var(--s6); }
+.jr-axis { position:relative; height:18px; font:700 12px/16px var(--font-text); letter-spacing:.12em; color:var(--ink-muted); font-variant-numeric:tabular-nums; }
+.jr-axis span { position:absolute; top:0; }
+.jr-track { position:relative; height:22px; margin:var(--s2) 0 var(--s6); background:linear-gradient(90deg, var(--hairline) 1px, transparent 1px) 0 0 / 25% 100%; border-bottom:1px solid var(--hairline); }
+.jr-seg { position:absolute; top:4px; height:14px; transform:skewX(calc(var(--slant) * -1)); }
+.jr-seg.p1 { left:0; width:37.5%; background:var(--ink-muted); }
+.jr-seg.p2 { left:50%; width:50%; background:var(--ink); }
+.jr-now { position:absolute; top:-6px; bottom:-6px; width:4px; margin-left:-2px; background:var(--highlight); }
+.jr-now::after { content:"Now"; position:absolute; right:8px; top:-18px; font:700 11px/14px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); }
+.jr-phases { display:grid; grid-template-columns:minmax(0,3fr) minmax(0,1fr) minmax(0,4fr); }
+.jr-gap { align-self:start; padding:var(--s2) var(--s3) 0; font-size:13px; line-height:18px; color:var(--ink-muted); text-align:center; }
+.jr-phase { display:flex; flex-direction:column; gap:var(--s3); min-width:0; padding-right:var(--s6); }
+.jr-phase .label { color:var(--ink-muted); }
+.jr-phase.p2 .label { color:var(--learn-text); }
+.jr-phase p { margin:0; font-size:16px; line-height:24px; color:var(--ink-muted); max-width:34em; }
+.jr-nums { display:flex; flex-wrap:wrap; gap:var(--s8); border-top:1px solid var(--hairline); padding-top:var(--s3); margin-top:auto; }
+.jr-nums b { display:block; font:800 34px/34px var(--font-display); font-stretch:112%; font-variant-numeric:tabular-nums; }
+.jr-nums span { font-size:13px; line-height:18px; color:var(--ink-muted); }
+.jr-phase .by { font-size:13px; line-height:18px; color:var(--ink-muted); }
+.jr-phase .go { font:600 15px/20px var(--font-text); text-decoration:none; }
+.jr-phase .go:hover { text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--highlight); text-decoration-thickness:2px; }
+@media (max-width:760px) {
+  .jr-phases { grid-template-columns:1fr; gap:var(--s8); }
+  .jr-gap { display:none; }
+  .jr-phase { padding-right:0; }
+  .jr-phase.p2 { border-top:1px solid var(--hairline); padding-top:var(--s6); }
+}
+
+/* phase 1 section */
+.p1-top { display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:var(--s12); align-items:stretch; }
+.p1-top .photo .img { aspect-ratio:16/9; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
+.p1-stats { list-style:none; margin:0; padding:0; border-top:3px solid var(--ink); display:grid; }
+.p1-stats li { display:grid; grid-template-columns:minmax(0,auto) minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s3) 0; border-bottom:1px solid var(--hairline); }
+.p1-stats .stat { font-size:clamp(38px, 4.4vw, 54px); min-width:3.2em; }
+.p1-stats p { margin:0; font:600 15px/20px var(--font-text); }
+.p1-stats p span { display:block; font-weight:400; font-size:14px; color:var(--ink-muted); }
+.p1-asof { margin:var(--s3) 0 0; }
+.p1-built { list-style:none; margin:var(--s16) 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:var(--s8); }
+.p1-built li { border-top:3px solid var(--ink); padding:var(--s4) 0 var(--s8); display:flex; flex-direction:column; gap:var(--s2); min-width:0; }
+.p1-built .label { color:var(--learn-text); }
+.p1-built p { margin:0; font-size:16px; line-height:24px; color:var(--ink-muted); }
+.p1-strip { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,6fr); gap:var(--s4); margin:var(--s8) 0 0; }
+.p1-strip figure { margin:0; min-width:0; }
+.p1-strip .img { position:relative; height:clamp(170px, 22vw, 280px); overflow:hidden; background:var(--chalk); }
+.p1-strip figure:first-child .img { clip-path:polygon(13% 0,100% 0,100% 100%,0 100%); }
+.p1-strip .img img { width:100%; height:100%; object-fit:cover; }
+.p1-strip figcaption { margin-top:var(--s2); font-size:14px; line-height:20px; color:var(--ink-muted); }
+.p1-yrc { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); align-items:start; margin-top:var(--s16); }
+.p1-yrc .photo .img { aspect-ratio:4/5; }
+.p1-yrc .prose p { color:var(--ink-muted); font-size:17px; line-height:27px; }
+.p1-yrc .worked { margin:var(--s6) 0 0; }
+.recog { margin-top:var(--s8); background:var(--navy); color:var(--on-navy); padding:var(--s8); clip-path:polygon(0 0, calc(100% - 32px) 0, 100% 181px, 100% 100%, 0 100%); }
+.recog .label { color:var(--link); display:block; margin-bottom:var(--s3); }
+.recog p { margin:var(--s3) 0 0; color:var(--on-navy-muted); font-size:16px; line-height:24px; max-width:36em; }
+.p1-table { margin-top:var(--s16); display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); }
+.p1-table table { width:100%; border-collapse:collapse; border-top:3px solid var(--ink); font-variant-numeric:tabular-nums; }
+.p1-table th, .p1-table td { text-align:left; padding:10px var(--s3) 10px 0; border-bottom:1px solid var(--hairline); font-size:15px; line-height:20px; vertical-align:baseline; }
+.p1-table td.n { text-align:right; font:800 20px/20px var(--font-display); font-stretch:112%; padding-right:0; white-space:nowrap; }
+.p1-table tr.grp th { padding-top:var(--s6); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--learn-text); border-bottom:1px solid var(--ink); }
+.p1-table caption { caption-side:bottom; text-align:left; padding-top:var(--s3); font-size:14px; line-height:20px; color:var(--ink-muted); }
+@media (max-width:960px) { .p1-built { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:860px) { .p1-top, .p1-yrc, .p1-table { grid-template-columns:1fr; gap:var(--s8); } .p1-yrc .photo .img { aspect-ratio:4/3; clip-path:polygon(16.5% 0,100% 0,100% 100%,0 100%); } }
+@media (max-width:600px) { .p1-built { grid-template-columns:1fr; } .p1-strip { grid-template-columns:1fr 1fr; } .p1-strip figure:last-child { grid-column:1 / -1; } }
+
+/* reports and downloads */
+.reports { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s8); border-top:3px solid var(--ink); padding-top:var(--s6); }
+.report { display:grid; grid-template-columns:132px minmax(0,1fr); gap:var(--s6); align-items:start; text-decoration:none; min-width:0; }
+.report .cover { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--navy); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 102px, 100% 100%, 0 100%); }
+.report .cover img { width:100%; height:62%; object-fit:cover; position:absolute; left:0; bottom:0; }
+.report .cover b { position:absolute; left:10px; top:10px; right:20px; font:800 12px/1.05 var(--font-display); font-stretch:112%; color:#ffffff; text-transform:uppercase; letter-spacing:.02em; }
+.report .cover.alt { background:var(--learn); }
+.report .label { color:var(--learn-text); display:block; margin-bottom:var(--s2); }
+.report .h3 { margin-bottom:var(--s2); }
+.report p { margin:0 0 var(--s3); font-size:15px; line-height:22px; color:var(--ink-muted); }
+.report .go { font:600 15px/20px var(--font-text); }
+.report:hover .h3 { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; text-decoration-color:var(--highlight); }
+@media (max-width:860px) { .reports { grid-template-columns:1fr; } }
+@media (max-width:420px) { .report { grid-template-columns:96px minmax(0,1fr); gap:var(--s4); } }
+</style>
 <title>My Education, My Right · Odisha | My Education, My Rights</title>
 <meta name="description" content="My Education, My Right in Ganjam, Odisha, supported by Fondation L'Oréal through the L'Oréal Fund for Women: girls in Classes 8 to 10 staying in school and building STEM skills.">
 <link rel="canonical" href="https://myeducationmyrights.info/odisha/">
@@ -566,8 +648,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="ptitle-hero">My Education,<br><em>My Right</em></h1>
       <div class="row" style="margin-bottom:var(--s6);"><span class="tag filled"><span class="slash"></span>Odisha <small>Ganjam</small></span></div>
       <p class="lead" style="margin-bottom:var(--s4);">Adolescent girls from tribal and marginalised communities in Classes 8 to 10 stay in education and build the knowledge, confidence, skills and aspirations to pursue STEM and beyond.</p>
-      <p class="muted small" style="margin:0 0 var(--s8);">A Restless Development India programme supported by <a href="https://www.fondationloreal.com/" target="_blank" rel="noopener">Fondation L&#8217;Or&#233;al</a> through the L&#8217;Or&#233;al Fund for Women. Phase 1, January 2023 to June 2024, was implemented by Student Partnership Worldwide India Project Trust; Phase 2, January 2025 to December 2026, is implemented by VIEWS. Results below are from Year 1 of Phase 2 (January to December 2025). The Year 2 endline is under way.</p>
-      <div class="row gap"><a class="btn" href="#odisha-findings">See the findings</a><a class="btn outline" href="#odisha-legacy">What the programme leaves</a></div>
+      <p class="muted small" style="margin:0 0 var(--s8);">A Restless Development India programme supported by <a href="https://www.fondationloreal.com/" target="_blank" rel="noopener">Fondation L&#8217;Or&#233;al</a> through the L&#8217;Or&#233;al Fund for Women. Phase 1, January 2023 to June 2024, was implemented by Student Partnership Worldwide India Project Trust; Phase 2, January 2025 to December 2026, is implemented by VIEWS. Below: where the work started in Phase 1, and Year 1 results from Phase 2 (January to December 2025). The Year 2 endline is under way.</p>
+      <div class="row gap"><a class="btn" href="#odisha-findings">See the findings</a><a class="btn outline" href="#odisha-phase1">Where it started</a><a class="btn outline" href="#odisha-legacy">What the programme leaves</a></div>
     </div>
     <figure class="photo">
       <div class="img"><img src="../assets/img/lead.webp" alt="A girl leading a session while classmates sit in a circle"></div>
@@ -576,10 +658,135 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section class="bg-chalk" id="odisha-journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>The journey in Odisha</p><h2 class="h1">Two phases, one <span class="hl">programme</span></h2></div>
+      <p class="lead muted">My Education, My Right &#183; Odisha began in Ganjam in January 2023. Phase 1 laid the groundwork in schools and communities. Phase 2 deepened it in 18 government high schools and measured what changed.</p>
+    </div>
+    <div class="journey">
+      <div class="jr-axis" aria-hidden="true"><span style="left:0">2023</span><span style="left:25%">2024</span><span style="left:50%">2025</span><span style="left:75%">2026</span></div>
+      <div class="jr-track" aria-hidden="true"><span class="jr-seg p1"></span><span class="jr-seg p2"></span><span class="jr-now" style="left:96.5%"></span></div>
+      <div class="jr-phases">
+        <div class="jr-phase p1">
+          <span class="label">Phase 1 &#183; Jan 2023 to Jun 2024</span>
+          <h3 class="h2">Where it started</h3>
+          <p>Girls in 16 schools began life skills and STEM sessions, Youth Champions took campaigns for girls&#8217; re-enrolment into their communities, and the first Youth Resource Centre opened.</p>
+          <div class="jr-nums"><div><b>3,262</b><span>girls in sessions</span></div><div><b>16</b><span>schools</span></div><div><b>213</b><span>girls in STEM clubs</span></div></div>
+          <span class="by">As reported in December 2023. Implemented by Student Partnership Worldwide India Project Trust.</span>
+          <a class="go" href="#odisha-phase1">Phase 1 in detail &#8594;</a>
+        </div>
+        <div class="jr-gap" aria-hidden="true">Jul to Dec 2024</div>
+        <div class="jr-phase p2">
+          <span class="label">Phase 2 &#183; Jan 2025 to Dec 2026</span>
+          <h3 class="h2">Deepening and measuring</h3>
+          <p>18 government high schools in 9 blocks, chosen with the education department. Model schools piloted mentorship, STEM clubs and STEM for social good, and pre and post tests tracked about 2,000 girls.</p>
+          <div class="jr-nums"><div><b>2,260</b><span>girls in Year 1</span></div><div><b>18</b><span>schools</span></div><div><b>32</b><span>prototypes built</span></div></div>
+          <span class="by">Implemented by VIEWS. Year 2 endline under way.</span>
+          <a class="go" href="#odisha-year1">Year 1 results &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="odisha-phase1">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Phase 1 &#183; Jan 2023 to Jun 2024</p><h2 class="h1">Where it <span class="hl">started</span></h2></div>
+      <p class="lead muted">In the first phase, girls in 16 schools in Ganjam began sessions on self, gender and STEM. Young people from their own communities became Youth Champions and campaigned for girls to return to school, and a Youth Resource Centre gave them computers, books and a place of their own.</p>
+    </div>
+    <div class="p1-top">
+      <figure class="photo">
+        <div class="img"><img src="../assets/img/phase1/cover.webp" alt="Girls in green school uniforms hold up sheets they wrote during a session on gender equality, with two facilitators" loading="lazy"></div>
+        <figcaption>Girls share their work from a session on gender equality, Ganjam, 2023.</figcaption>
+      </figure>
+      <div>
+        <ul class="p1-stats">
+          <li><span class="stat">3,262</span><p>Girls in sessions<span>Plus 1,157 boys and 3 students with disabilities</span></p></li>
+          <li><span class="stat">16</span><p>Schools<span>Headmasters and 184 teachers oriented</span></p></li>
+          <li><span class="stat">33</span><p>Young leaders<span>26 girls and 7 boys trained</span></p></li>
+          <li><span class="stat">213</span><p>Girls in STEM clubs<span>Across 5 clubs</span></p></li>
+        </ul>
+        <p class="small muted p1-asof">As reported in December 2023, midway through Phase 1.</p>
+      </div>
+    </div>
+
+    <ul class="p1-built">
+      <li><span class="label">Lead</span><h3 class="h3">Youth Champions</h3><p>Young people from the community, trained on STEM education and on running campaigns that bring families round to girls&#8217; education and career choices.</p></li>
+      <li><span class="label">Learn</span><h3 class="h3">Sessions in every school</h3><p>Youth Facilitators rolled out the Self modules in most schools, and the Gender module began in some, after profiling every participating student.</p></li>
+      <li><span class="label">Link</span><h3 class="h3">Headmasters and teachers on side</h3><p>Orientations in all 16 schools set out the programme, its outcomes and the support schools would give.</p></li>
+      <li><span class="label">Learn</span><h3 class="h3">STEM clubs and hands on learning</h3><p>Five girls&#8217; STEM clubs, workshops, experiments and competitions on local problems, with guest speakers and industry visits.</p></li>
+      <li><span class="label">Lead</span><h3 class="h3">Campaigns for re-enrolment</h3><p>Youth Champions led community campaigns for girls to return to school and events to stop girls dropping out.</p></li>
+      <li><span class="label">Link</span><h3 class="h3">Families and community</h3><p>World Youth Skills Day, International Youth Day and World Contraception Day 2023 reached 808 young people and 2,261 parents and community members.</p></li>
+    </ul>
+
+    <div class="p1-strip">
+      <figure><div class="img"><img src="../assets/img/phase1/class.webp" alt="A girl stands at the front of a classroom while classmates sit at their desks" loading="lazy"></div><figcaption>A session in a Ganjam classroom.</figcaption></figure>
+      <figure><div class="img"><img src="../assets/img/phase1/wysd.webp" alt="Young women in uniform hold posters for World Youth Skills Day beside a Restless Development banner" loading="lazy"></div><figcaption>World Youth Skills Day, July 2023.</figcaption></figure>
+      <figure><div class="img"><img src="../assets/img/phase1/exam.webp" alt="Girls in orange and white uniforms writing at rows of desks" loading="lazy"></div><figcaption>Girls at work in a partner school.</figcaption></figure>
+    </div>
+
+    <div class="p1-yrc">
+      <figure class="photo">
+        <div class="img"><img src="../assets/img/phase1/yrc.webp" alt="Two girls sitting on a mat share a phone screen and smile" loading="lazy"></div>
+        <figcaption>At the Youth Resource Centre.</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow label"><span class="slash"></span>Youth Resource Centre</p>
+        <h3 class="h1">A space of their own</h3>
+        <div class="prose" style="margin-top:var(--s6);">
+          <p>The Youth Resource Centre opened in Phase 1 with computers, books and trained peer educators. Girls from nearby schools and communities came to practise what they learned in class and to keep learning when school could not reach them.</p>
+        </div>
+        <ul class="worked">
+          <li><span class="slash"></span>Basics of computers, communication and writing, chosen with parents.</li>
+          <li><span class="slash"></span>Story writing and extempore, and life skills for confidence and negotiating with gatekeepers.</li>
+          <li><span class="slash"></span>A safe place to plan community campaigns, and to host meetings with parents and community leaders.</li>
+        </ul>
+        <div class="recog">
+          <span class="label">Recognised</span>
+          <h4 class="h2">The District Education Department backed the work</h4>
+          <p>Within its first year, the programme was commended by the District Education Department, which gave permission to take it into more schools in Ganjam. Phase 2&#8217;s 18 schools were chosen with the department.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p1-table">
+      <div>
+        <p class="eyebrow label"><span class="slash"></span>Phase 1 in numbers</p>
+        <h3 class="h1">The full count</h3>
+        <p class="muted" style="margin:var(--s4) 0 var(--s6);max-width:30em;">Every figure from the Phase 1 newsletter, as reported in December 2023.</p>
+        <a class="btn" href="../assets/reports/my-education-my-right-odisha-phase-1-dec-2023.pdf" target="_blank" rel="noopener">Download the newsletter, PDF</a>
+      </div>
+      <table>
+        <caption>Source: My Education, My Right &#183; Odisha Phase 1 newsletter, December 2023.</caption>
+        <tbody>
+          <tr class="grp"><th colspan="2" scope="colgroup">Young leaders</th></tr>
+          <tr><th scope="row">Girls</th><td class="n">26</td></tr>
+          <tr><th scope="row">Boys</th><td class="n">7</td></tr>
+          <tr class="grp"><th colspan="2" scope="colgroup">Schools</th></tr>
+          <tr><th scope="row">Schools with headmaster and teacher orientation</th><td class="n">16</td></tr>
+          <tr><th scope="row">Women teachers oriented</th><td class="n">97</td></tr>
+          <tr><th scope="row">Men teachers oriented</th><td class="n">87</td></tr>
+          <tr><th scope="row">Schools where student sessions began</th><td class="n">16</td></tr>
+          <tr><th scope="row">Girls in sessions</th><td class="n">3,262</td></tr>
+          <tr><th scope="row">Boys in sessions</th><td class="n">1,157</td></tr>
+          <tr><th scope="row">Students with disabilities in sessions</th><td class="n">3</td></tr>
+          <tr><th scope="row">STEM clubs formed</th><td class="n">5</td></tr>
+          <tr><th scope="row">Girls in STEM clubs</th><td class="n">213</td></tr>
+          <tr class="grp"><th colspan="2" scope="colgroup">Community events &#183; World Youth Skills Day, International Youth Day, World Contraception Day 2023</th></tr>
+          <tr><th scope="row">Young people reached</th><td class="n">808</td></tr>
+          <tr><th scope="row">Parents and community members reached</th><td class="n">2,261</td></tr>
+          <tr><th scope="row">Government stakeholders reached</th><td class="n">110</td></tr>
+          <tr><th scope="row">Other stakeholders reached</th><td class="n">21</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 <section class="bg-chalk" id="odisha-year1">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow label"><span class="slash"></span>Year 1 at a glance</p><h2 class="h1">18 schools, 9 blocks, one year</h2></div>
+      <div><p class="eyebrow label"><span class="slash"></span>Phase 2 &#183; Year 1 at a glance</p><h2 class="h1">18 schools, 9 blocks, one year</h2></div>
       <p class="lead muted">Ten outreach schools, two tribal schools and six model schools piloting mentorship, STEM clubs and STEM for social good.</p>
     </div>
     <div class="stats eight">
@@ -689,8 +896,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><span class="label">People</span><h3 class="h3">Trained Youth Facilitators</h3><p>Six facilitators skilled in participatory sessions, coding, ideathons, hackathons and prototype making.</p></li>
       <li><span class="label">Tested models</span><h3 class="h3">Three school prototypes</h3><p>Mentorship and role models, STEM clubs with project based learning, and STEM for social good, piloted in model schools.</p></li>
       <li><span class="label">Evidence</span><h3 class="h3">A pre and post assessment</h3><p>A tested tool across STEM interest, critical thinking, perseverance and SRH knowledge, with Year 1 results for about 2,000 girls and a Year 2 endline under way.</p></li>
-      <li><span class="label">Relationships</span><h3 class="h3">Schools, officials and institutions</h3><p>18 schools chosen with the education department, block education officers, and links to the Govt. ITI in Berhampur.</p></li>
+      <li><span class="label">Relationships</span><h3 class="h3">Schools, officials and institutions</h3><p>Recognition from the District Education Department in Phase 1, 18 schools chosen with the department in Phase 2, block education officers, and links to the Govt. ITI in Berhampur.</p></li>
       <li><span class="label">Families</span><h3 class="h3">Parents as allies</h3><p>Parent Teacher Meetings that proved a lever for changing norms around girls' education.</p></li>
+      <li><span class="label">Spaces</span><h3 class="h3">A Youth Resource Centre</h3><p>Opened in Phase 1 with computers, books and peer educators, and used for campaigns and parent meetings.</p></li>
+      <li><span class="label">Clubs</span><h3 class="h3">Girls&#8217; STEM clubs</h3><p>Five clubs with 213 girls formed in Phase 1, the model that Phase 2 schools built on.</p></li>
+      <li><span class="label">Champions</span><h3 class="h3">Youth Champions in the community</h3><p>26 young women and 7 young men trained in Phase 1 to lead campaigns for girls&#8217; re-enrolment.</p></li>
     </ul>
     <div class="open-box">
       <div><p class="label" style="margin:0 0 var(--s3);">Open for partnership</p><h3 class="h2">Take this work into more schools, districts and states</h3></div>
@@ -739,6 +949,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul>
         <li><a href="../programmes/">Programmes</a></li>
         <li><a href="../odisha/">My Education, My Right · Odisha</a></li>
+        <li><a href="../voices/#reports">Reports</a></li>
         <li><a href="../approach/">Our approach</a></li>
         <li><a href="../impact/">Impact</a></li>
         <li><a href="../voices/">Voices</a></li>

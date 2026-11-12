@@ -19,6 +19,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<style id="phase1-css">
+/* programme journey: two phases on one time axis */
+.journey { border-top:3px solid var(--ink); padding-top:var(--s6); }
+.jr-axis { position:relative; height:18px; font:700 12px/16px var(--font-text); letter-spacing:.12em; color:var(--ink-muted); font-variant-numeric:tabular-nums; }
+.jr-axis span { position:absolute; top:0; }
+.jr-track { position:relative; height:22px; margin:var(--s2) 0 var(--s6); background:linear-gradient(90deg, var(--hairline) 1px, transparent 1px) 0 0 / 25% 100%; border-bottom:1px solid var(--hairline); }
+.jr-seg { position:absolute; top:4px; height:14px; transform:skewX(calc(var(--slant) * -1)); }
+.jr-seg.p1 { left:0; width:37.5%; background:var(--ink-muted); }
+.jr-seg.p2 { left:50%; width:50%; background:var(--ink); }
+.jr-now { position:absolute; top:-6px; bottom:-6px; width:4px; margin-left:-2px; background:var(--highlight); }
+.jr-now::after { content:"Now"; position:absolute; right:8px; top:-18px; font:700 11px/14px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); }
+.jr-phases { display:grid; grid-template-columns:minmax(0,3fr) minmax(0,1fr) minmax(0,4fr); }
+.jr-gap { align-self:start; padding:var(--s2) var(--s3) 0; font-size:13px; line-height:18px; color:var(--ink-muted); text-align:center; }
+.jr-phase { display:flex; flex-direction:column; gap:var(--s3); min-width:0; padding-right:var(--s6); }
+.jr-phase .label { color:var(--ink-muted); }
+.jr-phase.p2 .label { color:var(--learn-text); }
+.jr-phase p { margin:0; font-size:16px; line-height:24px; color:var(--ink-muted); max-width:34em; }
+.jr-nums { display:flex; flex-wrap:wrap; gap:var(--s8); border-top:1px solid var(--hairline); padding-top:var(--s3); margin-top:auto; }
+.jr-nums b { display:block; font:800 34px/34px var(--font-display); font-stretch:112%; font-variant-numeric:tabular-nums; }
+.jr-nums span { font-size:13px; line-height:18px; color:var(--ink-muted); }
+.jr-phase .by { font-size:13px; line-height:18px; color:var(--ink-muted); }
+.jr-phase .go { font:600 15px/20px var(--font-text); text-decoration:none; }
+.jr-phase .go:hover { text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--highlight); text-decoration-thickness:2px; }
+@media (max-width:760px) {
+  .jr-phases { grid-template-columns:1fr; gap:var(--s8); }
+  .jr-gap { display:none; }
+  .jr-phase { padding-right:0; }
+  .jr-phase.p2 { border-top:1px solid var(--hairline); padding-top:var(--s6); }
+}
+
+/* phase 1 section */
+.p1-top { display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:var(--s12); align-items:stretch; }
+.p1-top .photo .img { aspect-ratio:16/9; clip-path:polygon(9% 0,100% 0,100% 100%,0 100%); }
+.p1-stats { list-style:none; margin:0; padding:0; border-top:3px solid var(--ink); display:grid; }
+.p1-stats li { display:grid; grid-template-columns:minmax(0,auto) minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s3) 0; border-bottom:1px solid var(--hairline); }
+.p1-stats .stat { font-size:clamp(38px, 4.4vw, 54px); min-width:3.2em; }
+.p1-stats p { margin:0; font:600 15px/20px var(--font-text); }
+.p1-stats p span { display:block; font-weight:400; font-size:14px; color:var(--ink-muted); }
+.p1-asof { margin:var(--s3) 0 0; }
+.p1-built { list-style:none; margin:var(--s16) 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:var(--s8); }
+.p1-built li { border-top:3px solid var(--ink); padding:var(--s4) 0 var(--s8); display:flex; flex-direction:column; gap:var(--s2); min-width:0; }
+.p1-built .label { color:var(--learn-text); }
+.p1-built p { margin:0; font-size:16px; line-height:24px; color:var(--ink-muted); }
+.p1-strip { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,6fr); gap:var(--s4); margin:var(--s8) 0 0; }
+.p1-strip figure { margin:0; min-width:0; }
+.p1-strip .img { position:relative; height:clamp(170px, 22vw, 280px); overflow:hidden; background:var(--chalk); }
+.p1-strip figure:first-child .img { clip-path:polygon(13% 0,100% 0,100% 100%,0 100%); }
+.p1-strip .img img { width:100%; height:100%; object-fit:cover; }
+.p1-strip figcaption { margin-top:var(--s2); font-size:14px; line-height:20px; color:var(--ink-muted); }
+.p1-yrc { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); align-items:start; margin-top:var(--s16); }
+.p1-yrc .photo .img { aspect-ratio:4/5; }
+.p1-yrc .prose p { color:var(--ink-muted); font-size:17px; line-height:27px; }
+.p1-yrc .worked { margin:var(--s6) 0 0; }
+.recog { margin-top:var(--s8); background:var(--navy); color:var(--on-navy); padding:var(--s8); clip-path:polygon(0 0, calc(100% - 32px) 0, 100% 181px, 100% 100%, 0 100%); }
+.recog .label { color:var(--link); display:block; margin-bottom:var(--s3); }
+.recog p { margin:var(--s3) 0 0; color:var(--on-navy-muted); font-size:16px; line-height:24px; max-width:36em; }
+.p1-table { margin-top:var(--s16); display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); }
+.p1-table table { width:100%; border-collapse:collapse; border-top:3px solid var(--ink); font-variant-numeric:tabular-nums; }
+.p1-table th, .p1-table td { text-align:left; padding:10px var(--s3) 10px 0; border-bottom:1px solid var(--hairline); font-size:15px; line-height:20px; vertical-align:baseline; }
+.p1-table td.n { text-align:right; font:800 20px/20px var(--font-display); font-stretch:112%; padding-right:0; white-space:nowrap; }
+.p1-table tr.grp th { padding-top:var(--s6); font:700 12px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--learn-text); border-bottom:1px solid var(--ink); }
+.p1-table caption { caption-side:bottom; text-align:left; padding-top:var(--s3); font-size:14px; line-height:20px; color:var(--ink-muted); }
+@media (max-width:960px) { .p1-built { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:860px) { .p1-top, .p1-yrc, .p1-table { grid-template-columns:1fr; gap:var(--s8); } .p1-yrc .photo .img { aspect-ratio:4/3; clip-path:polygon(16.5% 0,100% 0,100% 100%,0 100%); } }
+@media (max-width:600px) { .p1-built { grid-template-columns:1fr; } .p1-strip { grid-template-columns:1fr 1fr; } .p1-strip figure:last-child { grid-column:1 / -1; } }
+
+/* reports and downloads */
+.reports { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s8); border-top:3px solid var(--ink); padding-top:var(--s6); }
+.report { display:grid; grid-template-columns:132px minmax(0,1fr); gap:var(--s6); align-items:start; text-decoration:none; min-width:0; }
+.report .cover { position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--navy); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 102px, 100% 100%, 0 100%); }
+.report .cover img { width:100%; height:62%; object-fit:cover; position:absolute; left:0; bottom:0; }
+.report .cover b { position:absolute; left:10px; top:10px; right:20px; font:800 12px/1.05 var(--font-display); font-stretch:112%; color:#ffffff; text-transform:uppercase; letter-spacing:.02em; }
+.report .cover.alt { background:var(--learn); }
+.report .label { color:var(--learn-text); display:block; margin-bottom:var(--s2); }
+.report .h3 { margin-bottom:var(--s2); }
+.report p { margin:0 0 var(--s3); font-size:15px; line-height:22px; color:var(--ink-muted); }
+.report .go { font:600 15px/20px var(--font-text); }
+.report:hover .h3 { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; text-decoration-color:var(--highlight); }
+@media (max-width:860px) { .reports { grid-template-columns:1fr; } }
+@media (max-width:420px) { .report { grid-template-columns:96px minmax(0,1fr); gap:var(--s4); } }
+</style>
 <title>Programmes | My Education, My Rights</title>
 <meta name="description" content="My Education, My Right in Ganjam, Odisha, supported by Fondation L'Oréal: the featured programme on the My Education, My Rights platform.">
 <link rel="canonical" href="https://myeducationmyrights.info/programmes/">
@@ -502,14 +584,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="sec-head">
       <div><p class="eyebrow label"><span class="slash"></span>Programmes</p><h2 class="h1">Where the work begins: Ganjam, Odisha</h2></div>
-      <p class="lead muted">My Education, My Rights brings together Restless Development India&#8217;s education and STEM work. It begins in Ganjam, Odisha, where girls in 18 schools are learning, leading and linking to opportunity.</p>
+      <p class="lead muted">My Education, My Rights brings together Restless Development India&#8217;s education and STEM work. It began in Ganjam, Odisha, in January 2023. Over two phases, girls in Ganjam&#8217;s schools have been learning, leading and linking to opportunity.</p>
     </div>
     <div class="cards single">
       <article class="pcard featured">
         <div class="pbar"><i></i><i></i><i></i></div>
         <div class="row"><span class="tag on-dark"><span class="slash"></span>Odisha <small>Ganjam</small></span></div>
         <h3 class="ptitle">My Education,<br><em>My Right</em></h3>
-        <p>Girls in Classes 8 to 10 from tribal and marginalised communities stay in school and build STEM skills. Supported by Fondation L&#8217;Or&#233;al.</p>
+        <p>Girls in Classes 8 to 10 from tribal and marginalised communities stay in school and build STEM skills. Two phases since January 2023, supported by Fondation L&#8217;Or&#233;al.</p>
         <div class="pnums"><div><b>2,260</b><span>girls in Year 1</span></div><div><b>18</b><span>schools in 9 blocks</span></div></div>
         <div><a class="btn on-dark" href="../odisha/">Visit the programme</a></div>
       </article>
@@ -521,6 +603,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section class="">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>The journey in Odisha</p><h2 class="h1">Two phases, one <span class="hl">programme</span></h2></div>
+      <p class="lead muted">My Education, My Right &#183; Odisha began in Ganjam in January 2023. Phase 1 laid the groundwork in schools and communities. Phase 2 deepened it in 18 government high schools and measured what changed.</p>
+    </div>
+    <div class="journey">
+      <div class="jr-axis" aria-hidden="true"><span style="left:0">2023</span><span style="left:25%">2024</span><span style="left:50%">2025</span><span style="left:75%">2026</span></div>
+      <div class="jr-track" aria-hidden="true"><span class="jr-seg p1"></span><span class="jr-seg p2"></span><span class="jr-now" style="left:96.5%"></span></div>
+      <div class="jr-phases">
+        <div class="jr-phase p1">
+          <span class="label">Phase 1 &#183; Jan 2023 to Jun 2024</span>
+          <h3 class="h2">Where it started</h3>
+          <p>Girls in 16 schools began life skills and STEM sessions, Youth Champions took campaigns for girls&#8217; re-enrolment into their communities, and the first Youth Resource Centre opened.</p>
+          <div class="jr-nums"><div><b>3,262</b><span>girls in sessions</span></div><div><b>16</b><span>schools</span></div><div><b>213</b><span>girls in STEM clubs</span></div></div>
+          <span class="by">As reported in December 2023. Implemented by Student Partnership Worldwide India Project Trust.</span>
+          <a class="go" href="../odisha/#odisha-phase1">Phase 1 in detail &#8594;</a>
+        </div>
+        <div class="jr-gap" aria-hidden="true">Jul to Dec 2024</div>
+        <div class="jr-phase p2">
+          <span class="label">Phase 2 &#183; Jan 2025 to Dec 2026</span>
+          <h3 class="h2">Deepening and measuring</h3>
+          <p>18 government high schools in 9 blocks, chosen with the education department. Model schools piloted mentorship, STEM clubs and STEM for social good, and pre and post tests tracked about 2,000 girls.</p>
+          <div class="jr-nums"><div><b>2,260</b><span>girls in Year 1</span></div><div><b>18</b><span>schools</span></div><div><b>32</b><span>prototypes built</span></div></div>
+          <span class="by">Implemented by VIEWS. Year 2 endline under way.</span>
+          <a class="go" href="../odisha/#odisha-year1">Year 1 results &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <nav class="pager" aria-label="Next page"><div class="wrap"><a href="../approach/"><span class="label muted">Next</span><span class="h1">Our approach</span><span class="arrow" aria-hidden="true">&#8594;</span></a></div></nav>
 </main>
 <footer class="site-foot">
@@ -539,6 +652,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul>
         <li><a href="../programmes/">Programmes</a></li>
         <li><a href="../odisha/">My Education, My Right · Odisha</a></li>
+        <li><a href="../voices/#reports">Reports</a></li>
         <li><a href="../approach/">Our approach</a></li>
         <li><a href="../impact/">Impact</a></li>
         <li><a href="../voices/">Voices</a></li>
