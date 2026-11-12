@@ -495,6 +495,48 @@ body:has(dialog.story-dialog[open]) { overflow:hidden; }
   .sd-nav { margin:0 var(--s4) var(--s6); gap:var(--s4); }
   .sd-nav a { font-size:16px; line-height:22px; }
 }
+/* in the news */
+.press-stats { display:flex; flex-wrap:wrap; gap:var(--s2) var(--s8); margin:0 0 var(--s8); padding-top:var(--s4); border-top:3px solid var(--ink); }
+.press-stats div { display:flex; align-items:baseline; gap:var(--s2); }
+.press-stats b { font:800 36px/36px var(--font-display); font-stretch:112%; font-variant-numeric:tabular-nums; }
+.press-stats span { font-size:15px; color:var(--ink-muted); }
+.press-events { list-style:none; margin:0; padding:0; display:grid; gap:var(--s12); }
+.pev { display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr); gap:var(--s8); padding-top:var(--s6); border-top:1px solid var(--hairline); }
+.pev .when { display:block; font:800 13px/16px var(--font-text); letter-spacing:.12em; text-transform:uppercase; color:var(--learn-text); margin-bottom:var(--s2); }
+.pev h3 { margin:0 0 4px; font:700 24px/28px var(--font-display); text-wrap:balance; }
+.pev .where { margin:0 0 var(--s3); color:var(--ink-muted); font-size:15px; }
+.pev .what { margin:0 0 var(--s4); font-size:16px; line-height:24px; }
+.pev .outlets { margin:0; font-size:14px; line-height:20px; color:var(--ink-muted); }
+.pev .outlets b { color:var(--ink); }
+.pev .tv { display:inline-flex; align-items:center; gap:var(--s2); margin-top:var(--s3); font:600 15px/20px var(--font-text); text-underline-offset:3px; }
+.pev .tv::before { content:"\25B6"; display:inline-grid; place-items:center; width:26px; height:26px; background:var(--lead-deep); color:#fff; font-size:10px; }
+.clips { display:grid; grid-template-columns:repeat(auto-fill, minmax(132px,1fr)); gap:var(--s3); align-content:start; }
+.clip { display:flex; flex-direction:column; gap:6px; padding:0; border:0; background:none; color:var(--ink); text-align:left; cursor:zoom-in; min-width:0; }
+.clip .ci { position:relative; aspect-ratio:4/5; overflow:hidden; background:#fff; box-shadow:0 0 0 1px var(--hairline); }
+.clip img { width:100%; height:100%; object-fit:cover; object-position:50% 0; transition:transform .3s ease; }
+.clip:hover img { transform:scale(1.04); }
+.clip b { font:700 14px/18px var(--font-display); }
+.clip small { display:block; font-size:12px; line-height:16px; color:var(--ink-muted); font-variant-numeric:tabular-nums; }
+.clip:focus-visible { outline:2px solid var(--focus); outline-offset:3px; }
+@media (prefers-reduced-motion: reduce) { .clip img { transition:none; } }
+@media (max-width:860px) {
+  .pev { grid-template-columns:1fr; gap:var(--s4); }
+  .clips { display:flex; overflow-x:auto; gap:var(--s3); padding-bottom:6px; scroll-snap-type:x mandatory; }
+  .clip { flex:0 0 132px; scroll-snap-align:start; }
+}
+.press-viewer { width:min(980px, calc(100vw - 32px)); max-width:none; max-height:calc(100dvh - 32px); margin:auto; padding:0; border:0; border-top:6px solid var(--link); background:var(--paper); color:var(--ink); overflow:hidden; display:none; flex-direction:column; }
+.press-viewer[open] { display:flex; }
+.press-viewer::backdrop { background:rgba(14,26,34,.82); }
+.pv-bar { display:flex; align-items:center; justify-content:space-between; gap:var(--s4); padding:var(--s3) var(--s4) var(--s3) var(--s6); border-bottom:1px solid var(--hairline); }
+.pv-cap b { font:700 17px/22px var(--font-display); }
+.pv-cap span { display:block; font-size:13px; line-height:18px; color:var(--ink-muted); }
+.pv-ctl { display:flex; gap:var(--s2); flex:none; }
+.pv-ctl button { width:40px; height:40px; display:grid; place-items:center; border:2px solid var(--ink); background:transparent; color:var(--ink); font:400 22px/1 var(--font-text); cursor:pointer; }
+.pv-ctl button:hover { background:var(--ink); color:var(--paper); }
+.pv-img { flex:1; min-height:0; overflow:auto; background:#e9eef0; display:flex; justify-content:center; align-items:flex-start; padding:var(--s4); }
+.pv-img img { max-width:100%; height:auto; box-shadow:0 1px 6px rgba(0,0,0,.18); }
+@media (max-width:600px) { .press-viewer { width:100vw; max-height:100dvh; height:100dvh; } .pv-bar { padding:var(--s2) var(--s3); } .pv-img { padding:var(--s2); } }
+/* end in the news */
 /* stories of change */
 .stories { display:grid; gap:var(--s16); }
 .story { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s12); align-items:start; border-top:3px solid var(--ink); padding-top:var(--s8); scroll-margin-top:96px; }
@@ -556,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="crumbs small"><a href="../">Home</a> &#8250; Voices</p>
   <h1 class="display-l">In their own words and <span class="hl">work</span></h1>
   <p class="lead muted">Stories of change, findings and the things girls built across the programmes on the platform.</p>
-  <div class="row gap" style="margin-top:var(--s6);"><a class="btn" href="#stories">Read 15 stories of change</a></div>
+  <div class="row gap" style="margin-top:var(--s6);"><a class="btn" href="#stories">Read 15 stories of change</a> <a class="btn outline" href="#press">In the news</a></div>
 </div></header>
 <section>
   <div class="wrap">
@@ -918,6 +960,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 </section>
+
+<section id="press">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>In the news &#183; Odisha</p><h2 class="h1">What the local press reported</h2></div>
+      <p class="lead muted">Odia newspapers, news sites and TV have covered the community events girls, families and Youth Facilitators led in Ganjam. Tap a clipping to read it.</p>
+    </div>
+    <div class="press-stats"><div><b>20</b><span>pieces of coverage</span></div><div><b>5</b><span>community events</span></div><div><b>2025 to 2026</b><span>in print, online and on TV</span></div></div>
+    <ol class="press-events">
+      <li class="pev" id="press-girl-child-2026">
+        <div><span class="when">11 Oct 2026</span><h3>International Day of the Girl Child</h3><p class="where">Olapur village, Chikiti block</p><p class="what">Villagers, the Anganwadi worker and local women came together to talk about girls&#8217; education, safety and rights. It is the event in <a href="#story-sabita">Sabita&#8217;s story</a>.</p><p class="outlets"><b>1 piece of coverage:</b> Matira Khabar.</p></div>
+        <div class="clips"><button type="button" class="clip" data-full="../assets/img/press/2026-10-12-matira-khabar.webp" data-cap="Matira Khabar" data-sub="12 Oct 2026 &#183; International Day of the Girl Child"><span class="ci"><img src="../assets/img/press/2026-10-12-matira-khabar-thumb.webp" alt="Matira Khabar clipping, 12 Oct 2026" loading="lazy"></span><b>Matira Khabar</b><small>12 Oct 2026</small></button></div>
+      </li>
+      <li class="pev" id="press-child-labour-2026">
+        <div><span class="when">12 Jun 2026</span><h3>World Day Against Child Labour</h3><p class="where">Sheragada block</p><p class="what">Students from government schools across Sheragada block took part in a two-day drawing competition on child labour, with prizes given by the Block Development Officer. Around 80 people took part, including the Child Development Project Officer, teachers and Youth Facilitators.</p><p class="outlets"><b>10 pieces of coverage:</b> Dharitri, Ishwar, Kalinga Focus, Matira Jagruti, Prajatantra, Prameya, Rupalia News, Sambad and 2 more local outlets.</p></div>
+        <div class="clips"><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-sambad.webp" data-cap="Sambad" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-sambad-thumb.webp" alt="Sambad clipping, 13 Jun 2026" loading="lazy"></span><b>Sambad</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-dharitri.webp" data-cap="Dharitri" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-dharitri-thumb.webp" alt="Dharitri clipping, 13 Jun 2026" loading="lazy"></span><b>Dharitri</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-prameya.webp" data-cap="Prameya" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-prameya-thumb.webp" alt="Prameya clipping, 13 Jun 2026" loading="lazy"></span><b>Prameya</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-prajatantra.webp" data-cap="Prajatantra" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-prajatantra-thumb.webp" alt="Prajatantra clipping, 13 Jun 2026" loading="lazy"></span><b>Prajatantra</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-kalinga-focus.webp" data-cap="Kalinga Focus" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-kalinga-focus-thumb.webp" alt="Kalinga Focus clipping, 13 Jun 2026" loading="lazy"></span><b>Kalinga Focus</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-ishwar.webp" data-cap="Ishwar" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-ishwar-thumb.webp" alt="Ishwar clipping, 13 Jun 2026" loading="lazy"></span><b>Ishwar</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-matira-jagruti.webp" data-cap="Matira Jagruti" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-matira-jagruti-thumb.webp" alt="Matira Jagruti clipping, 13 Jun 2026" loading="lazy"></span><b>Matira Jagruti</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-rupalia.webp" data-cap="Rupalia News" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-rupalia-thumb.webp" alt="Rupalia News clipping, 13 Jun 2026" loading="lazy"></span><b>Rupalia News</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-13-local-1.webp" data-cap="Local press" data-sub="13 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-13-local-1-thumb.webp" alt="Local press clipping, 13 Jun 2026" loading="lazy"></span><b>Local press</b><small>13 Jun 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-06-14-local-2.webp" data-cap="Local press" data-sub="14 Jun 2026 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2026-06-14-local-2-thumb.webp" alt="Local press clipping, 14 Jun 2026" loading="lazy"></span><b>Local press</b><small>14 Jun 2026</small></button></div>
+      </li>
+      <li class="pev" id="press-womens-day-2026">
+        <div><span class="when">8 Mar 2026</span><h3>International Women&#8217;s Day</h3><p class="where">Digapahandi block</p><p class="what">Women from self-help groups shared their experiences of empowerment, and local frontline workers were honoured for their service, with Youth Facilitators supporting the event.</p><p class="outlets"><b>2 pieces of coverage:</b> Chetana Media, Dharitri.</p></div>
+        <div class="clips"><button type="button" class="clip" data-full="../assets/img/press/2026-03-08-dharitri.webp" data-cap="Dharitri" data-sub="8 Mar 2026 &#183; International Women&#8217;s Day"><span class="ci"><img src="../assets/img/press/2026-03-08-dharitri-thumb.webp" alt="Dharitri clipping, 8 Mar 2026" loading="lazy"></span><b>Dharitri</b><small>8 Mar 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-03-08-chetana-media.webp" data-cap="Chetana Media" data-sub="8 Mar 2026 &#183; International Women&#8217;s Day"><span class="ci"><img src="../assets/img/press/2026-03-08-chetana-media-thumb.webp" alt="Chetana Media clipping, 8 Mar 2026" loading="lazy"></span><b>Chetana Media</b><small>8 Mar 2026</small></button></div>
+      </li>
+      <li class="pev" id="press-national-girl-child-2026">
+        <div><span class="when">24 Jan 2026</span><h3>National Girl Child Day</h3><p class="where">Tarinipalli village, Ganjam block</p><p class="what">A community discussion on the rights of the girl child, organised with Youth for Village and supported by the L&#8217;Or&#233;al Fund for Women. Local officials, an ASHA worker and the Digdarshan Foundation joined the conversation.</p><p class="outlets"><b>5 pieces of coverage:</b> Dharitri, Manthana, Sambad, The Sakala, and on TV.</p><a class="tv" href="https://youtu.be/k_0mlFnWyX0" target="_blank" rel="noopener">Watch the TV report on Dig Darshan News</a></div>
+        <div class="clips"><button type="button" class="clip" data-full="../assets/img/press/2026-01-25-sambad.webp" data-cap="Sambad" data-sub="25 Jan 2026 &#183; National Girl Child Day"><span class="ci"><img src="../assets/img/press/2026-01-25-sambad-thumb.webp" alt="Sambad clipping, 25 Jan 2026" loading="lazy"></span><b>Sambad</b><small>25 Jan 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-01-25-dharitri.webp" data-cap="Dharitri" data-sub="25 Jan 2026 &#183; National Girl Child Day"><span class="ci"><img src="../assets/img/press/2026-01-25-dharitri-thumb.webp" alt="Dharitri clipping, 25 Jan 2026" loading="lazy"></span><b>Dharitri</b><small>25 Jan 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-01-25-sakala.webp" data-cap="The Sakala" data-sub="25 Jan 2026 &#183; National Girl Child Day"><span class="ci"><img src="../assets/img/press/2026-01-25-sakala-thumb.webp" alt="The Sakala clipping, 25 Jan 2026" loading="lazy"></span><b>The Sakala</b><small>25 Jan 2026</small></button><button type="button" class="clip" data-full="../assets/img/press/2026-01-25-manthana.webp" data-cap="Manthana" data-sub="25 Jan 2026 &#183; National Girl Child Day"><span class="ci"><img src="../assets/img/press/2026-01-25-manthana-thumb.webp" alt="Manthana clipping, 25 Jan 2026" loading="lazy"></span><b>Manthana</b><small>25 Jan 2026</small></button></div>
+      </li>
+      <li class="pev" id="press-child-labour-2025">
+        <div><span class="when">12 Jun 2025</span><h3>World Day Against Child Labour</h3><p class="where">near Khallikot, Ganjam</p><p class="what">A community drama and discussion raised awareness of child labour. 78 local women took part.</p><p class="outlets"><b>2 pieces of coverage:</b> Pragativadi, Samaya.</p></div>
+        <div class="clips"><button type="button" class="clip" data-full="../assets/img/press/2025-06-14-samaya.webp" data-cap="Samaya" data-sub="14 Jun 2025 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2025-06-14-samaya-thumb.webp" alt="Samaya clipping, 14 Jun 2025" loading="lazy"></span><b>Samaya</b><small>14 Jun 2025</small></button><button type="button" class="clip" data-full="../assets/img/press/2025-06-17-pragativadi.webp" data-cap="Pragativadi" data-sub="17 Jun 2025 &#183; World Day Against Child Labour"><span class="ci"><img src="../assets/img/press/2025-06-17-pragativadi-thumb.webp" alt="Pragativadi clipping, 17 Jun 2025" loading="lazy"></span><b>Pragativadi</b><small>17 Jun 2025</small></button></div>
+      </li>
+    </ol>
+  </div>
+  <dialog class="press-viewer" aria-label="Press clipping">
+    <div class="pv-bar"><div class="pv-cap"><b></b><span></span></div><div class="pv-ctl"><button type="button" class="pv-prev" aria-label="Previous clipping">&#8592;</button><button type="button" class="pv-next" aria-label="Next clipping">&#8594;</button><button type="button" class="pv-close" aria-label="Close">&#215;</button></div></div>
+    <div class="pv-img"><img alt=""></div>
+  </dialog>
+<script>
+(function () {
+  var sec = document.getElementById("press"); if (!sec) return;
+  var clips = [].slice.call(sec.querySelectorAll(".clip")), dlg = sec.querySelector(".press-viewer"), img = dlg.querySelector(".pv-img img"), cap = dlg.querySelector(".pv-cap b"), sub = dlg.querySelector(".pv-cap span"), i = 0, opener = null;
+  function show(k) {
+    i = (k + clips.length) % clips.length; var c = clips[i];
+    img.src = c.getAttribute("data-full") || c.querySelector("img").src; img.alt = c.getAttribute("data-cap") + " clipping, " + c.getAttribute("data-sub");
+    cap.textContent = c.getAttribute("data-cap"); sub.innerHTML = c.getAttribute("data-sub"); dlg.querySelector(".pv-img").scrollTop = 0;
+    if (window.gtag) gtag("event", "press_open", { outlet: c.getAttribute("data-cap"), clip_date: c.querySelector("small").textContent });
+  }
+  clips.forEach(function (c, k) { c.addEventListener("click", function () { opener = c; show(k); if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); }); });
+  dlg.querySelector(".pv-prev").addEventListener("click", function () { show(i - 1); });
+  dlg.querySelector(".pv-next").addEventListener("click", function () { show(i + 1); });
+  dlg.querySelector(".pv-close").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(i + 1); if (e.key === "ArrowLeft") show(i - 1); });
+  dlg.addEventListener("close", function () { if (opener) opener.focus({ preventScroll: true }); });
+})();
+</script>
+</section>
+
 
 <nav class="pager" aria-label="Next page"><div class="wrap"><a href="../partner/"><span class="label muted">Next</span><span class="h1">Partner with us</span><span class="arrow" aria-hidden="true">&#8594;</span></a></div></nav>
 </main>
