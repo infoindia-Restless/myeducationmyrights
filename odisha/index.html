@@ -843,7 +843,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function roll(el, dur) { if (!el.__parts || el.__done) return; el.__done = true; var t0 = null; dur = dur || 1600;
     (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur); paint(el, 1 - Math.pow(1 - p, 3)); if (p < 1) requestAnimationFrame(step); })(performance.now()); }
   var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { nio.unobserve(e.target); roll(e.target); } }); }, { threshold: 0.4 });
-  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b, .door .h2, .strip .wrap > span:not(.chip)").forEach(function (el) { if (prep(el)) nio.observe(el); });
+  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b, .door .h2, .xc-title, .strip .wrap > span:not(.chip)").forEach(function (el) { if (prep(el)) nio.observe(el); });
   /* staircase evidence rolls when she lands on the step */
   document.querySelectorAll(".stair .out strong").forEach(function (el) {
     if (!prep(el)) return; var st = el.closest(".stair");
@@ -869,13 +869,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   /* 2. scroll reveals on the home page */
   var root = document.querySelector(".hero-split") ? document.body : null; if (!root) return;
-  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
+  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
   var els = [];
   groups.forEach(function (sel) { root.querySelectorAll(sel).forEach(function (el) {
     if (el.closest(".hero-split") || el.classList.contains("rv")) return;
     var sibs = [].filter.call(el.parentNode.children, function (c) { return c.matches(sel); });
     el.style.setProperty("--rd", Math.min(sibs.indexOf(el) * 0.09, 0.6) + "s");
-    el.classList.add(el.matches(".pillar, .cards > *, .stat-cell, .doors > *") ? "rv-zoom" : "rv"); els.push(el);
+    el.classList.add(el.matches(".pillar, .cards > *, .stat-cell, .doors > *, .xcards > *") ? "rv-zoom" : "rv"); els.push(el);
   }); });
   root.querySelectorAll(".hl").forEach(function (h) { if (!h.closest(".hero-split")) { h.classList.add("rv-hl"); els.push(h); } });
   var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });

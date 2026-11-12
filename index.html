@@ -500,6 +500,32 @@ section.join { padding-top:var(--s6) !important; }
 @media (max-width:1000px) { .stairs { padding-top:140px; } .stair.s0 { --h:372px; } .stair.s1 { --h:410px; } .stair.s2 { --h:450px; } .stair.s3 { --h:490px; } .stair.s4 { --h:530px; } }
 @media (max-width:720px) { .hero { padding-bottom:var(--s12); } }
 </style>
+<style id="explore-css">
+/* explore the platform: photo cards */
+.xsec .sec-head { margin-bottom:var(--s8); }
+.xcards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--s6); }
+.xcard { --bg:var(--learn); --fg:#ffffff; display:flex; flex-direction:column; min-width:0; text-decoration:none; color:var(--fg); background:var(--bg); clip-path:polygon(0 0, calc(100% - 30px) 0, 100% 170px, 100% 100%, 0 100%); transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
+.xcard.xc-lead { --bg:var(--lead-deep); }
+.xcard.xc-link { --bg:var(--link); --fg:var(--on-link); }
+.xcard.xc-navy { --bg:var(--navy); }
+.xc-img { position:relative; display:block; aspect-ratio:4/3; overflow:hidden; background:#0e1a22; }
+.xc-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+.xc-img::after { content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background:var(--highlight); }
+.xcard.xc-link .xc-img::after { background:var(--navy); }
+.xc-body { display:flex; flex-direction:column; gap:var(--s2); padding:var(--s6) var(--s6) var(--s6); flex:1; }
+.xc-body .label { opacity:.9; }
+.xc-title { font:800 26px/1.05 var(--font-display); font-stretch:108%; letter-spacing:-.01em; text-wrap:balance; }
+.xc-text { font-size:15px; line-height:22px; opacity:.92; }
+.xc-go { margin-top:auto; padding-top:var(--s4); display:inline-flex; align-items:center; gap:var(--s2); font:700 15px/20px var(--font-text); }
+.xc-go::after { content:"\2192"; transition:transform .25s ease; }
+.xcard:hover { transform:translateY(-6px); }
+.xcard:hover .xc-img img { transform:scale(1.07); }
+.xcard:hover .xc-go::after { transform:translateX(5px); }
+.xcard:focus-visible { outline:3px solid var(--focus); outline-offset:3px; clip-path:none; }
+@media (max-width:1060px) { .xcards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:560px) { .xcards { grid-template-columns:1fr; } .xc-img { aspect-ratio:16/9; } }
+@media (prefers-reduced-motion: reduce) { .xcard, .xc-img img, .xc-go::after { transition:none; } .xcard:hover { transform:none; } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -622,13 +648,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="doors-sec">
+<section class="doors-sec xsec">
   <div class="wrap">
-    <p class="eyebrow label"><span class="slash"></span>Explore the platform</p>
-    <div class="doors">
-      <a class="door" href="approach/"><span class="label">Our approach</span><span class="h2">Learn. Lead. Link.</span><p>What she knows, what she does with it, and who backs her: why it takes all three.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
-      <a class="door" href="impact/"><span class="label">Impact</span><span class="h2">2,260 girls in Year 1</span><p>What changed for girls in Odisha, measured before and after.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
-      <a class="door" href="voices/"><span class="label">Voices</span><span class="h2">32 prototypes, built by girls</span><p>Reports, findings and the things girls made.</p><span class="arrow" aria-hidden="true">&#8594;</span></a>
+    <div class="sec-head">
+      <div><p class="eyebrow label"><span class="slash"></span>Explore the platform</p><h2 class="h1">See the work up <span class="hl">close</span></h2></div>
+      <p class="lead muted">How the approach works, what changed for girls, their stories in their own words, and what the local press reported.</p>
+    </div>
+    <div class="xcards">
+      <a class="xcard xc-learn" href="approach/"><span class="xc-img"><img src="assets/img/lead.webp" alt="A girl leading a session for classmates sitting in a circle" loading="lazy"></span><span class="xc-body"><span class="label">Our approach</span><span class="xc-title">Learn. Lead. Link.</span><span class="xc-text">What she knows, what she does with it, and who backs her.</span><span class="xc-go">See how it works</span></span></a>
+      <a class="xcard xc-lead" href="impact/"><span class="xc-img"><img src="assets/img/scratch.webp" alt="A girl coding in Scratch on the classroom screen" loading="lazy"></span><span class="xc-body"><span class="label">Impact</span><span class="xc-title">2,260 girls in Year 1</span><span class="xc-text">What changed for girls in Odisha, measured before and after.</span><span class="xc-go">See the results</span></span></a>
+      <a class="xcard xc-link" href="voices/"><span class="xc-img"><img src="assets/img/show.webp" alt="Girls standing with the prototypes they built" loading="lazy"></span><span class="xc-body"><span class="label">Voices</span><span class="xc-title">15 stories of change</span><span class="xc-text">Girls, families and schools, in their own words, and the things girls built.</span><span class="xc-go">Read the stories</span></span></a>
+      <a class="xcard xc-navy" href="news/"><span class="xc-img"><img src="assets/img/community.webp" alt="Women and girls at a community event for the Day of the Girl Child" loading="lazy"></span><span class="xc-body"><span class="label">In the news</span><span class="xc-title">20 pieces of coverage</span><span class="xc-text">Odia newspapers, news sites and TV on the community events girls led.</span><span class="xc-go">Read the coverage</span></span></a>
     </div>
   </div>
 </section>
@@ -780,7 +810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function roll(el, dur) { if (!el.__parts || el.__done) return; el.__done = true; var t0 = null; dur = dur || 1600;
     (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur); paint(el, 1 - Math.pow(1 - p, 3)); if (p < 1) requestAnimationFrame(step); })(performance.now()); }
   var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { nio.unobserve(e.target); roll(e.target); } }); }, { threshold: 0.4 });
-  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b, .door .h2, .strip .wrap > span:not(.chip)").forEach(function (el) { if (prep(el)) nio.observe(el); });
+  document.querySelectorAll(".stat, .pnums b, .about-stats b, .press-stats b, .gain b, .door .h2, .xc-title, .strip .wrap > span:not(.chip)").forEach(function (el) { if (prep(el)) nio.observe(el); });
   /* staircase evidence rolls when she lands on the step */
   document.querySelectorAll(".stair .out strong").forEach(function (el) {
     if (!prep(el)) return; var st = el.closest(".stair");
@@ -806,13 +836,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   /* 2. scroll reveals on the home page */
   var root = document.querySelector(".hero-split") ? document.body : null; if (!root) return;
-  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
+  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
   var els = [];
   groups.forEach(function (sel) { root.querySelectorAll(sel).forEach(function (el) {
     if (el.closest(".hero-split") || el.classList.contains("rv")) return;
     var sibs = [].filter.call(el.parentNode.children, function (c) { return c.matches(sel); });
     el.style.setProperty("--rd", Math.min(sibs.indexOf(el) * 0.09, 0.6) + "s");
-    el.classList.add(el.matches(".pillar, .cards > *, .stat-cell, .doors > *") ? "rv-zoom" : "rv"); els.push(el);
+    el.classList.add(el.matches(".pillar, .cards > *, .stat-cell, .doors > *, .xcards > *") ? "rv-zoom" : "rv"); els.push(el);
   }); });
   root.querySelectorAll(".hl").forEach(function (h) { if (!h.closest(".hero-split")) { h.classList.add("rv-hl"); els.push(h); } });
   var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
