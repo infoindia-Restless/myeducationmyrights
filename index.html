@@ -526,6 +526,29 @@ section.join { padding-top:var(--s6) !important; }
 @media (max-width:560px) { .xcards { grid-template-columns:1fr; } .xc-img { aspect-ratio:16/9; } }
 @media (prefers-reduced-motion: reduce) { .xcard, .xc-img img, .xc-go::after { transition:none; } .xcard:hover { transform:none; } }
 </style>
+<style id="tagline-css">
+/* tagline: lines light up as they reach the middle of the screen */
+.tagline .tg-lines { margin:0; }
+.tagline .tg-lines span.tg { display:block; color:var(--ink); }
+.tagline .tg-lines span.tg.l2 { color:var(--ink); }
+.tg-w { position:relative; z-index:0; font-family:var(--font-serif); font-style:italic; font-weight:600; font-stretch:100%; letter-spacing:-.01em; }
+.tg-w::before { content:""; position:absolute; z-index:-1; left:-.06em; right:-.1em; bottom:.04em; height:.3em; transform:skewX(calc(var(--slant) * -1)); transform-origin:left center; }
+.l1 .tg-w::before { background:var(--learn); opacity:.85; }
+.l2 .tg-w::before { background:var(--lead); opacity:.85; }
+.l3 .tg-w::before { background:var(--link); }
+.tg-sub { margin:var(--s8) 0 0; display:flex; flex-direction:column; gap:var(--s2); padding-left:2.4em; font-size:clamp(34px, 5.4vw, 68px); }
+.tg-sub .label { font-size:12px; color:var(--ink-muted); }
+.tg-sub .tg-q { font:italic 600 clamp(22px, 2.6vw, 32px)/1.2 var(--font-serif); color:var(--learn-text); }
+.tg-ready .tg { opacity:.14; transform:translateX(-14px); transition:opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.tg-ready .tg.on { opacity:1; transform:none; }
+.tg-ready .tg-w::before { transform:skewX(calc(var(--slant) * -1)) scaleX(0); transition:transform .9s cubic-bezier(.2,.7,.2,1) .35s; }
+.tg-ready .tg.on .tg-w::before { transform:skewX(calc(var(--slant) * -1)) scaleX(1); }
+.tg-ready .tg-sub { opacity:0; transform:translateY(14px); transition:opacity .8s ease, transform .8s ease; }
+.tg-ready .tg-sub.on { opacity:1; transform:none; }
+.tagline .tg-sub span { padding-left:0; }
+.tagline p.tg-sub { margin-top:var(--s8); }
+@media (max-width:600px) { .tg-sub { padding-left:0; } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -604,9 +627,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<div class="wrap"><div class="tagline">
-  <p aria-label="Every right. Every opportunity. Every future."><span>Every right.</span><span>Every opportunity.</span><span>Every future.</span></p>
+<div class="wrap"><div class="tagline tg-anim">
+  <p class="tg-lines" aria-label="Every right. Every opportunity. Every future."><span class="tg l1" aria-hidden="true">Every <em class="tg-w">right.</em></span><span class="tg l2" aria-hidden="true">Every <em class="tg-w">opportunity.</em></span><span class="tg l3" aria-hidden="true">Every <em class="tg-w">future.</em></span></p>
+  <p class="tg-sub"><span class="label">My Education, My Right &#183; Odisha</span><span class="tg-q">Unlock her potential. Change her future.</span></p>
 </div></div>
+<script>
+(function () {
+  var box = document.querySelector(".tg-anim"); if (!box) return;
+  var lines = box.querySelectorAll(".tg"), sub = box.querySelector(".tg-sub");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) { lines.forEach(function (l) { l.classList.add("on"); }); sub.classList.add("on"); return; }
+  box.classList.add("tg-ready");
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+    if (!e.isIntersecting) return; e.target.classList.add("on"); io.unobserve(e.target);
+    if (e.target.classList.contains("l3")) setTimeout(function () { sub.classList.add("on"); }, 700);
+  }); }, { rootMargin: "-38% 0px -38% 0px" });
+  lines.forEach(function (l) { io.observe(l); });
+})();
+</script>
 
 
 
@@ -837,7 +875,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   /* 2. scroll reveals on the home page */
   var root = document.querySelector(".hero-split") ? document.body : null; if (!root) return;
-  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
+  var groups = [".sec-head > *", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
   var els = [];
   groups.forEach(function (sel) { root.querySelectorAll(sel).forEach(function (el) {
     if (el.closest(".hero-split") || el.classList.contains("rv")) return;

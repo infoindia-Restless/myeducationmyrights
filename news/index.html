@@ -843,7 +843,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   /* 2. scroll reveals on the home page */
   var root = document.querySelector(".hero-split") ? document.body : null; if (!root) return;
-  var groups = [".sec-head > *", ".tagline p span", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
+  var groups = [".sec-head > *", ".cards > *", ".why > *", ".barriers li", ".pillar", ".steps li", ".stat-cell", ".featured-grid > *", ".gain", ".voices > *", ".quote", ".doors > *", ".xcards > *", ".partner .wrap > *", ".about > *", ".about-stats > *", ".impl-head > *", ".impl", ".sb-logos", ".sb-text", ".supporter-band .label", ".film-grid > *", ".legacy li", ".open-box"];
   var els = [];
   groups.forEach(function (sel) { root.querySelectorAll(sel).forEach(function (el) {
     if (el.closest(".hero-split") || el.classList.contains("rv")) return;
